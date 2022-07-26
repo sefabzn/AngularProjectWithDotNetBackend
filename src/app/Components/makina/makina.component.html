@@ -1,0 +1,8 @@
+
+<ul class="list-group">
+   <li (click)="setCurrentMakina(makina)"
+   routerLink="/kullanicilar/getByMakineId/{{makina.id}}" 
+   *ngFor="let makina of makinaList"
+   [class]="getCurrentMakinaClass(makina)">{{makina.makina_Ismi}} </li>
+</ul>
+<h5 *ngIf="currentMakina">{{currentMakina.makina_Ismi}}</h5>

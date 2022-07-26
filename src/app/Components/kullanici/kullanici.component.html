@@ -1,0 +1,24 @@
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Kullanici Arama</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" placeholder="kullaniciAdı">
+  </div>
+  <div *ngIf="filterText.length>=1" class="alert alert-success">
+        {{filterText}} aradınız.
+  </div>
+<table  class="table table-hover">
+    <thead>
+        <th scope="col" class="col">Kullanıcı Id</th>
+        <th scope="col" class="col">Kullanıcı İsmi</th>
+        <th scope="col" class="col">Makine Id</th>
+    </thead>
+    <tbody>
+        <tr scope="col" *ngFor="let kullanici of kullanicilar |filterPipe:filterText ">
+            <td>{{kullanici.id}}</td>
+            <td>{{kullanici.kullanici_Adi }}</td>
+            <td>{{kullanici.makineID}}</td>
+            <td><button (click)="addToCart(kullanici)" class="btn btn-success">Sepete Ekle</button></td>
+        </tr>
+    
+    </tbody>
+ 
+</table>

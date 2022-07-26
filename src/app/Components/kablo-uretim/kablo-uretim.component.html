@@ -1,0 +1,22 @@
+<div>Date Picker:<input type="date" [(ngModel)]="selectedDate"><button (click)="getKablolarByDate(selectedDate)">Seç</button></div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Kablo İsmi</th>
+        <th scope="col">Tarih</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr scope="col"  *ngFor="let kablo of kablolar">
+      
+        <td>{{kablo.id}}</td>
+        <td>{{kablo.kabloIsmi}}</td>
+        <td>{{kablo.tarih}}</td>
+
+      </tr>
+      
+    </tbody>
+    <button type="button" routerLink="/kablouretim/add" class="btn btn-primary">Kablo Gir</button>
+
+  </table>

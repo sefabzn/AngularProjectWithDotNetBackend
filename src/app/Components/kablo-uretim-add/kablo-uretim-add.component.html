@@ -1,0 +1,44 @@
+<div class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="kabloUretimAddForm">
+            <div class="form-group">
+              <label for="kabloIsmi">Kablo İsmi</label>
+              <input
+                type="text"
+                id="kabloIsmi"
+                formControlName="kabloIsmi"
+                class="form-control"
+                placeholder="Kablo İsmi"
+              />
+            </div>
+            <label for="makineId">Makina Id</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="makineId"
+                formControlName="makineId"
+                class="form-control"
+                placeholder="Makina Id"
+              />
+            </div>
+            <label for="metraj">Metraj</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="metraj"
+                formControlName="metraj"
+                class="form-control"
+                placeholder="Metraj"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

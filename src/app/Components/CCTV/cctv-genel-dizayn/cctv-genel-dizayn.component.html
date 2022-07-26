@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Kablo İsmi</th>
+        <th scope="col">Tarih</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr scope="col"  *ngFor="let kablo of kablolar">
+      
+        <td>{{kablo.id}}</td>
+        <td>{{kablo.kablo}}</td>
+        <td>{{kablo.tarih}}</td>
+        <td><button routerLink="/cctvdamardizayn/getByCctvGenelDizaynId/{{kablo.id}}" class="btn btn-info">Damar Dizayn</button></td>
+
+
+      </tr>
+      
+    </tbody>
+    <button type="button" routerLink="/cctvgeneldizayn/add" class="btn btn-primary">Kablo Gir</button>
+
+  </table>

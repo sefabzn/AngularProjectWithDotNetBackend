@@ -1,0 +1,33 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="makinaAddForm">
+          <div class="form-group">
+            <label for="makinaNo">Makina No</label>
+            <input
+              type="number"
+              id="makinaNo"
+              formControlName="no"
+              class="form-control"
+              placeholder="Makina No"
+            />
+          </div>
+          <label for="makina_Ismi">Makina İsmi</label>
+          <div class="form-group">
+            <input
+              type="text"
+              id="makina_Ismi"
+              formControlName="makina_Ismi"
+              class="form-control"
+              placeholder="Makina İsmi"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

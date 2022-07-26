@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Ana Id</th>
+      <th scope="col">Renk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr scope="col" *ngFor="let damar of damarlar">
+      <td>{{ damar.id }}</td>
+      <td>{{ damar.anaId }}</td>
+      <td>{{ damar.renk}}</td>
+    </tr>
+  </tbody>
+  <button
+    type="button"
+    routerLink="/cctvgeneldizayn/add"
+    class="btn btn-primary"
+  >
+    Kablo Gir
+  </button>
+</table>
