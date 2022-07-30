@@ -1,0 +1,34 @@
+<div class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="CctvGenelAddForm">
+            <div class="form-group">
+              <label for="kabloIsmi">Kablo İsmi</label>
+              <input
+                type="text"
+                id="kabloIsmi"
+                formControlName="kablo"
+                class="form-control"
+                placeholder="Kablo İsmi"
+              />
+            </div>
+            <label for="kesit">kesit</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="kesit"
+                class="form-control"
+                placeholder="kesit"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
