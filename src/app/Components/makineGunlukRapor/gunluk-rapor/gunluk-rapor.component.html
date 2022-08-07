@@ -1,0 +1,57 @@
+<div class="text-center"><H2>Günlük Raporlar</H2></div>
+<div>Date Picker:  <input type="date" [(ngModel)]="selectedDate">
+  <br><br>
+<br>
+ <select class="form-select" size="1" [(ngModel)]="selectedMakine" >
+  <br>
+    <option   *ngFor="let makine of makineler"  >{{makine.makineIsmi}}</option>
+ </select>
+ <br>
+ <button (click)="getGunlukRaporlar(selectedMakine,selectedDate)" class="btn btn-primary">Ara </button>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Kablo İsmi</th>
+        <th scope="col">Metraj</th>
+        <th scope="col">Kesit Alanı</th>
+        <th scope="col">Verimlilik</th>
+        <th scope="col">Genel Arıza</th>
+        <th scope="col">Renk Değişimi</th>
+        <th scope="col">Renk Değişimi Kaybı</th>
+        <th scope="col">Kesit Değişimi Kaybı</th>
+        <th scope="col">Kopma</th>
+        <th scope="col">Kopma Kaybı</th>
+        <th scope="col">Isınma</th>
+        <th scope="col">Hurda PVC</th>
+        <th scope="col">Hurda Cu</th>
+        <th scope="col">Çalışma Süresi</th>
+        <th scope="col">Kayıp Zaman</th>
+        <th scope="col">Tarih</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  scope="col"  *ngFor="let uretim of gunlukUretimler">
+          <td>{{uretim.kabloIsmi}}</td>
+          <td>{{uretim.metraj}}</td>
+          <td>{{uretim.kesitAlani}}</td>
+          <td>{{uretim.verimlilik}}</td>
+          <td>{{uretim.genelAriza}}</td>
+          <td>{{uretim.renkDegisimi}}</td>
+          <td>{{uretim.renkDegisimiKaybi}}</td>
+          <td>{{uretim.kesitDegisimiKaybi}}</td>
+          <td>{{uretim.kopma}}</td>
+          <td>{{uretim.kopmaKaybi}}</td>
+          <td>{{uretim.isinma}}</td>
+          <td>{{uretim.hurdaPvc}}</td>
+          <td>{{uretim.hurdaCu}}</td>
+          <td>{{uretim.calismaSuresi}}</td>
+          <td>{{uretim.kayipZaman}}</td>
+          <td>{{uretim.tarih}}</td>
+
+        </tr>
+      
+    </tbody>
+
+  </table>
+
+  

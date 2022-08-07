@@ -43,7 +43,7 @@ export class KullaniciComponent implements OnInit {
   }
  
   addToCart(kullanici:Kullanici){
-    this.toastrService.success("Sepete Eklendi",kullanici.kullanici_Adi)
+    this.toastrService.success("Sepete Eklendi",kullanici.kullaniciAdi)
     this.cartService.addToCart(kullanici)
   }
       

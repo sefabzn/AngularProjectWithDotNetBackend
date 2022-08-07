@@ -22,7 +22,6 @@ export class KabloUretimAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.createKabloUretimAddForm()
-    console.log(this.date)
 
   }
   createKabloUretimAddForm(){

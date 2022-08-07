@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-3">
+    <div class="content">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <form [formGroup]="makineAddForm">
+                <div class="form-group">
+                  <label for="no">No</label>
+                  <input
+                    type="text"
+                    id="no"
+                    formControlName="no"
+                    class="form-control"
+                    placeholder="no"
+                  />
+                </div>
+                <label for="makine">Makine</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="makine"
+                    formControlName="makineIsmi"
+                    class="form-control"
+                    placeholder="makine ismi"
+                  />
+                </div>
+                <label for="isinma">Isınma</label>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    id="isinma"
+                    formControlName="isinma"
+                    class="form-control"
+                    placeholder="kesit"
+                  />
+                </div><label for="renkDegisimi">Renk Değişimi</label>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    id="renkDegisimi"
+                    formControlName="renkDegisimi"
+                    class="form-control"
+                    placeholder="renkDegisimi"
+                  />
+                </div><label for="kopma">Kopma</label>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    id="kopma"
+                    formControlName="kopma"
+                    class="form-control"
+                    placeholder="kopma"
+                  />
+                </div>
+                <label for="kesitDegisimi">Kesit Değişimi</label>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    id="kesitDegisimi"
+                    formControlName="kesitDegisimi"
+                    class="form-control"
+                    placeholder="kesitDegisimi"
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-fill btn-primary" (click)="Add()" >Ekle</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+    
+      <table class="table">
+        <thead>
+          <tr>
+             <th scope="col">No</th>
+             <th scope="col">Makine</th>
+             <th scope="col">Isınma</th>
+             <th scope="col">Renk Değişimi</th>
+             <th scope="col">Kopma</th>
+             <th scope="col">Kesit Değişimi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="col" *ngFor="let makine of makineList">
+          
+             <td>{{makine.no}}</td>
+             <td>{{makine.makineIsmi}}</td>
+             <td>{{makine.isinma}}</td>
+             <td>{{makine.renkDegisimi}}</td>
+             <td>{{makine.kopma}}</td>
+             <td>{{makine.kesitDegisimi}}</td>
+          </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+      
+    

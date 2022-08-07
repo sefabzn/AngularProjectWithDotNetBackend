@@ -14,8 +14,7 @@
     <tbody>
         <tr scope="col" *ngFor="let kullanici of kullanicilar |filterPipe:filterText ">
             <td>{{kullanici.id}}</td>
-            <td>{{kullanici.kullanici_Adi }}</td>
-            <td>{{kullanici.makineID}}</td>
+            <td>{{kullanici.kullaniciAdi }}</td>
             <td><button (click)="addToCart(kullanici)" class="btn btn-success">Sepete Ekle</button></td>
         </tr>
     

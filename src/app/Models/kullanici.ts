@@ -1,6 +1,6 @@
 export interface Kullanici{
     id:number;
-    kullanici_Adi:string;
+    kullaniciAdi:string;
     yetki:number
     makineID:number
     status:boolean

@@ -1,0 +1,139 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="content">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="kesiYapisiForm">
+              <div class="form-group">
+                <label for="kesit">Kesit</label>
+                <input
+                  type="text"
+                  id="kesit"
+                  formControlName="kesit"
+                  class="form-control"
+                  placeholder="kesit"
+                />
+              </div>
+              <label for="back">Back</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="back"
+                  formControlName="back"
+                  class="form-control"
+                  placeholder="back"
+                />
+              </div>
+              <label for="kilcalDamarSayisi">Kılcal Damar Sayısı</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="kilcalDamarSayisi"
+                  formControlName="kilcalDamarSayisi"
+                  class="form-control"
+                  placeholder="kilcalDamarSayisi"
+                />
+              </div>
+              <label for="kilcalDamarCapi">Kılcal Damar Çapı</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="kilcalDamarCapi"
+                  formControlName="kilcalDamarCapi"
+                  class="form-control"
+                  placeholder="kilcalDamarCapi"
+                />
+              </div>
+              <label for="hatve">Hatve</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="hatve"
+                  formControlName="hatve"
+                  class="form-control"
+                  placeholder="hatve"
+                />
+              </div>
+
+              <label for="disCap">Dış Çap</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="disCap"
+                  formControlName="disCap"
+                  class="form-control"
+                  placeholder="disCap"
+                />
+              </div>
+              <label for="ayna">Ayna</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="ayna"
+                  formControlName="ayna"
+                  class="form-control"
+                  placeholder="ayna"
+                />
+              </div>
+              <label for="makineIsmi">Makine</label>
+              <div class="form-group">
+                <select formControlName="makineIsmi" class="form-select" size="1">
+                  <option value="">makine1</option>
+                </select>
+  
+              </div>
+              
+              <label for="hiz">Hız</label>
+              <div class="form-group">
+                <input
+                  style="height: 30px"
+                  type="number"
+                  id="hiz"
+                  formControlName="hiz"
+                  class="form-control"
+                  placeholder="hiz"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-fill btn-primary" (click)="Add()" >Ekle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Kesit</th>
+          <th scope="col">Back</th>
+          <th scope="col">Dış Çap</th>
+          <th scope="col">Ayna</th>
+          <th scope="col">Kılcal Damar Sayısı</th>
+          <th scope="col">Kılcal Damar Çapı</th>
+          <th scope="col">Hatve</th>
+          <th scope="col">Alan</th>
+          <th scope="col">Coef</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="col" *ngFor="let kesit of kesitYapisiList">
+          <td>{{ kesit.id }}</td>
+          <td>{{ kesit.kesit }}</td>
+          <td>{{ kesit.back }}</td>
+          <td>{{ kesit.disCap }}</td>
+          <td>{{ kesit.ayna }}</td>
+          <td>{{ kesit.kilcalDamarSayisi }}</td>
+          <td>{{ kesit.kilcalDamarCapi }}</td>
+          <td>{{ kesit.hatve }}</td>
+          <td>{{ kesit.alan }}</td>
+          <td>{{ kesit.coef }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
