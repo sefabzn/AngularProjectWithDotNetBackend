@@ -24,4 +24,7 @@ export class KabloUretimService {
   add(kablo:KabloUretim):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.baseUrl+"KabloUretim/Add",kablo)
   }
+  delete(kablo:KabloUretim){
+    return this.httpClient.post<ResponseModel>(this.baseUrl+"KabloUretim/Delete",kablo)
+  }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CctvGenelDizaynComponent } from '../Components/CCTV/cctv-genel-dizayn/cctv-genel-dizayn.component';
 import { CctvDamarDizaynKablo } from '../Models/cctvDamarDizaynKablo';
 import { cctvGenelDizaynKablo } from '../Models/cctvGenelDizaynKablo';
 import { CctvIsEmri } from '../Models/cctvIsEmri';
@@ -35,5 +36,21 @@ export class CctvKabloService {
 
     let apiUrl=this.baseUrl+"Cctv/CctvIsEmri/GetAll"
     return this.httpClient.get<ListResponseModel<CctvIsEmri>>(apiUrl)
+  }
+  deleteCctvGenelDizayn(kablo:cctvGenelDizaynKablo):Observable<ResponseModel>
+  {
+    let apiUrl=this.baseUrl+"Cctv/CctvGenelDizayn/Delete"
+    return this.httpClient.post<ResponseModel>(apiUrl,kablo)
+
+  }
+  deleteCctvDamarDizayn(kablo:CctvDamarDizaynKablo):Observable<ResponseModel>
+  {
+    let apiUrl=this.baseUrl+"Cctv/CctvDamarDizayn/Delete"
+    return this.httpClient.post<ResponseModel>(apiUrl,kablo)
+  }
+  deleteIsEmri(isEmri:CctvIsEmri):Observable<ResponseModel>
+  {
+    let apiUrl=this.baseUrl+"Cctv/CctvIsEmri/Delete"
+    return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
   }
 }

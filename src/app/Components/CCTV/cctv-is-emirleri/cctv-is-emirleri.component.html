@@ -1,30 +1,49 @@
 <div class="text-center">
-    <H1>Cctv İş Emirleri</H1>
-
+  <H1>Cctv İş Emirleri</H1>
 </div>
 
-<input type="text" placeholder="Kablo İsmi" [(ngModel)]="filterText" >
+<input type="text" placeholder="Kablo İsmi" [(ngModel)]="filterText" />
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">İsmi</th>
-        <th scope="col">Tarih</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr scope="col" *ngFor="let isEmri of isEmirleri | kabloIsmiFilter:filterText" >
-      
-        <td>{{isEmri.id}}</td>
-        <td>{{isEmri.isim}}</td>
-        <td>{{isEmri.tarih}}</td>
-        
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">İsmi</th>
+      <th scope="col">Tarih</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      scope="col"
+      (click)="setSelectedIsEmri(isEmri)"
+      [class]="setRowColor(isEmri)"
+      *ngFor="let isEmri of isEmirleri | kabloIsmiFilter: filterText"
+    >
+      <td>{{ isEmri.id }}</td>
+      <td>{{ isEmri.isim }}</td>
+      <td>{{ isEmri.tarih }}</td>
+    </tr>
+  </tbody>
 
-
-      </tr>
-      
-    </tbody>
-   
-
-  </table>
-  
+  <div class="row">
+    <div class="col col-md-4">
+      <br />
+      <button
+        type="button"
+        routerLink="/Cctv/CctvIsEmirleri/add"
+        class="btn btn-outline-primary"
+      >
+        Kablo Ekle
+      </button>
+    </div>
+    <div class="col col-md-4">
+      <br />
+      <button
+        type="button"
+        (click)="deleteIsEmri(selectedIsEmri)"
+        class="btn btn-outline-primary"
+      >
+        Sil
+      </button>
+    </div>
+  </div>
+</table>

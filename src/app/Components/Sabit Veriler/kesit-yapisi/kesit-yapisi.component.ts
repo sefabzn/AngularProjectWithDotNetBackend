@@ -17,6 +17,7 @@ import { MakineService } from 'src/app/Services/makine.service';
 })
 export class KesitYapisiComponent implements OnInit {
 
+  selectedKesit:KesitYapisi
   makineler:Makine[]
   kesiYapisiForm:FormGroup
   kesitYapisiList:KesitYapisi[]
@@ -41,6 +42,15 @@ export class KesitYapisiComponent implements OnInit {
       makineIsmi:[""],
       hiz:[0]
     })
+  }
+  setSelectedKesit(kesit:KesitYapisi){
+    this.selectedKesit=kesit
+  }
+  setRowColor(kesit:KesitYapisi){
+    if (kesit===this.selectedKesit) {
+      return "table-primary"
+    }
+    return ""
   }
   GetMakineler(){
     this.makineService.getMakinas().subscribe(respond=>{
@@ -73,5 +83,11 @@ export class KesitYapisiComponent implements OnInit {
         this.kesitYapisiList=Response.data
         console.log(this.kesitYapisiList)
       })
+  }
+  deleteKesit(kesit:KesitYapisi){
+    this.kesitYapisiService.delete(kesit).subscribe(response=>{
+      this.toastrService.info(response.message,"İşlem Başarılı")
+      location.reload()
+    })
   }
 }

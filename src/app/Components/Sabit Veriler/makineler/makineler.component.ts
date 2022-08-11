@@ -17,6 +17,7 @@ export class MakinelerComponent implements OnInit {
 
   makineList:Makine[]
   makineAddForm:FormGroup
+  selectedMakine:Makine
   constructor(private formBuilder:FormBuilder,
     private makineService:MakineService,
     private toastrService:ToastrService) { }
@@ -24,6 +25,15 @@ export class MakinelerComponent implements OnInit {
   ngOnInit(): void {
     this.CreateMakineAddForm()
     this.getMakineler()
+  }
+  setSelectedMakine(makine:Makine){
+    this.selectedMakine=makine
+  }
+  setRowColor(makine:Makine){
+    if (makine===this.selectedMakine) {
+      return "table-primary"
+    }
+    return ""
   }
   CreateMakineAddForm(){
     this.makineAddForm=this.formBuilder.group({
@@ -64,6 +74,14 @@ export class MakinelerComponent implements OnInit {
     else{
       this.toastrService.error("Form girişi hatalı","Dikkat")
     }
+  }
+  deleteMakine(makine:Makine){
+
+    this.makineService.delete(makine).subscribe(response=>{
+      location.reload()
+      this.toastrService.info(response.message,"İşlem Başarılı")
+
+    })
   }
 
 }

@@ -7,17 +7,27 @@
     </tr>
   </thead>
   <tbody>
-    <tr scope="col" *ngFor="let damar of damarlar">
+    <tr
+      scope="col"
+      (click)="setSelectedKablo(damar)"
+      [class]="setRowColor(damar)"
+      *ngFor="let damar of damarlar"
+    >
       <td>{{ damar.id }}</td>
       <td>{{ damar.anaId }}</td>
-      <td>{{ damar.renk}}</td>
+      <td>{{ damar.renk }}</td>
     </tr>
   </tbody>
-  <button
-    type="button"
-    routerLink="/cctvgeneldizayn/add"
-    class="btn btn-primary"
-  >
-    Kablo Gir
-  </button>
+ 
+  <div class="row">
+    <div class="col col-md-4">
+      <br>
+      <button type="button" routerLink="/cctvdamardizayn/add" class="btn btn-outline-primary">Kablo Ekle</button>
+
+    </div>
+    <div class="col col-md-4">
+      <br>
+      <button  type="button" (click)="deleteKablo(selectedKablo)" class="btn btn-outline-primary">Sil</button>
+    </div>
+  </div>
 </table>

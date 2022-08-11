@@ -34,6 +34,7 @@ import { OperatorIsEmriComponent } from './Components/operator-is-emri/operator-
 import { OperatorFilterPipe } from './pipes/operator-filter.pipe';
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
+import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/ke
     OperatorFilterPipe,
     MakinelerComponent,
     KesitYapisiComponent,
+    SarfiyatComponent,
   ],
   imports: [
     BrowserModule,

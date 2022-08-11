@@ -1,0 +1,39 @@
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Kablo İsmi</th>
+        <th scope="col">Tarih</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        scope="col"
+        (click)="setSelectedSarfiyat(sarfiyat)"
+        [class]="setRowColor(sarfiyat)"
+        *ngFor="let sarfiyat of sarfiyatList"
+      >
+      <td>{{ sarfiyat.id }}</td>
+      <td>{{ sarfiyat.kabloId }}</td>
+      <td>{{ sarfiyat.kesitId }}</td>
+      <td>{{ sarfiyat.makineId }}</td>
+      <td>{{ sarfiyat.kullanilanPvc }}</td>
+      <td>{{ sarfiyat.kullanilanCu}}</td>
+      <td>{{ sarfiyat.hurdaPvc }}</td>
+      <td>{{ sarfiyat.hurdaCu}}</td>
+      <td>{{ sarfiyat.maliyet}}</td>
+      <td>{{ sarfiyat.tarih}}</td>
+      </tr>
+    </tbody>
+    <div class="row">
+      <div class="col col-md-4">
+        <br>
+        <button type="button" routerLink="/kablouretim/add" class="btn btn-outline-primary">Kablo Ekle</button>
+      </div>
+      <div class="col col-md-4">
+        <br>
+        <button type="button" (click)="delete(selectedSarfiyat)" class="btn btn-outline-primary">Sil</button>
+      </div>
+    </div>
+  </table>
+  

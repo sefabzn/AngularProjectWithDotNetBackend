@@ -12,6 +12,7 @@ export class KabloUretimComponent implements OnInit {
 
   selectedDate:any
   kablolar:KabloUretim[]=[]
+  selectedKablo:KabloUretim
   constructor(private kabloUretimService:KabloUretimService,
     private toastrService:ToastrService) { }
 
@@ -31,9 +32,26 @@ export class KabloUretimComponent implements OnInit {
       })
     }
     else{
-      this.toastrService.error("Geçerli Bir Tarih Giriniz","Tarih Hatası")
+      this.getKablolar();
     }
     
   }
+  setSelectedKablo(kablo:KabloUretim){
+    this.selectedKablo=kablo
+  }
+  selectedRow(kablo:KabloUretim){
+    if  (kablo===this.selectedKablo){
 
+      return "table-primary"
+    }
+    else{
+      return ""
+    }
+  }
+  deleteKablo(kablo:KabloUretim){
+    this.kabloUretimService.delete(kablo).subscribe(response=>{
+      this.toastrService.info(response.message,"Silme Başarılı")
+    })
+    location.reload()
+  }
 }

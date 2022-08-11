@@ -10,14 +10,19 @@ import { ResponseModel } from '../Models/responseModel';
 })
 export class MakineService {
 
-  apiUrl="https://localhost:7289/api/"
+  baseUrl="https://localhost:7289/api/"
   constructor(private httpClient:HttpClient) { }
 
   getMakinas():Observable<ListResponseModel<Makine>>
   {
-    return this.httpClient.get<ListResponseModel<Makine>>(this.apiUrl+"Makineler/GetAll")
+    return this.httpClient.get<ListResponseModel<Makine>>(this.baseUrl+"Makineler/GetAll")
   }
-  add(makina:Makine):Observable<ResponseModel>{
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"Makineler/Add",makina)
+  add(makine:Makine):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.baseUrl+"Makineler/Add",makine)
+  }
+  delete(makine:Makine):Observable<ResponseModel>
+  {
+    let apiUrl=this.baseUrl+"Makineler/Delete"
+    return this.httpClient.post<ResponseModel>(apiUrl,makine)
   }
 }

@@ -7,7 +7,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr scope="col"  *ngFor="let kablo of kablolar">
+      <tr scope="col"
+      (click)="setSelectedKablo(kablo)"
+      [class]="setRowColor(kablo)"
+        *ngFor="let kablo of kablolar">
       
         <td>{{kablo.id}}</td>
         <td>{{kablo.kablo}}</td>
@@ -18,6 +21,16 @@
       </tr>
       
     </tbody>
-    <button type="button" routerLink="/CctvGenelDizayn/Add" class="btn btn-primary">Kablo Gir</button>
+    <div class="row">
+      <div class="col col-md-4">
+        <br>
+        <button type="button" routerLink="/CctvGenelDizayn/Add" class="btn btn-outline-primary">Kablo Ekle</button>
 
+      </div>
+      <div class="col col-md-4">
+        <br>
+      
+        <button  type="button" (click)="deleteKablo(selectedKablo)" class="btn btn-outline-primary">Sil</button>
+      </div>
+    </div>
   </table>

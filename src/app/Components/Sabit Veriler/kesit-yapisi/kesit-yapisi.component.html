@@ -78,12 +78,15 @@
               </div>
               <label for="makineIsmi">Makine</label>
               <div class="form-group">
-                <select formControlName="makineIsmi" class="form-select" size="1">
+                <select
+                  formControlName="makineIsmi"
+                  class="form-select"
+                  size="1"
+                >
                   <option value="">makine1</option>
                 </select>
-  
               </div>
-              
+
               <label for="hiz">Hız</label>
               <div class="form-group">
                 <input
@@ -98,7 +101,29 @@
             </form>
           </div>
           <div class="card-footer">
-            <button class="btn btn-fill btn-primary" (click)="Add()" >Ekle</button>
+            <div class="row">
+              <div class="col col-md-4">
+                <br />
+                <button
+                  type="button"
+                  (click)="Add()"
+                  class="btn btn-outline-primary"
+                >
+                  Kablo Ekle
+                </button>
+              </div>
+              <div class="col-md-3"></div>
+              <div class="col col-md-4">
+                <br />
+                <button
+                  type="button"
+                  (click)="deleteKesit(selectedKesit)"
+                  class="btn btn-outline-primary"
+                >
+                  Sil
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -121,7 +146,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr scope="col" *ngFor="let kesit of kesitYapisiList">
+        <tr
+          scope="col"
+          (click)="setSelectedKesit(kesit)"
+          [class]="setRowColor(kesit)"
+          *ngFor="let kesit of kesitYapisiList"
+        >
           <td>{{ kesit.id }}</td>
           <td>{{ kesit.kesit }}</td>
           <td>{{ kesit.back }}</td>

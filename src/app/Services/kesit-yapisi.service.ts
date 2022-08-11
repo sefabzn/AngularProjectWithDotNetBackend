@@ -18,4 +18,9 @@ export class KesitYapisiService {
   add(kesit:KesitYapisi):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.baseUrl+"KesitYapisi/Add",kesit)
   }
+  delete(kesit:KesitYapisi):Observable<ResponseModel>
+  {
+    let apiUrl=this.baseUrl+"KesitYapisi/Delete"
+    return this.httpClient.post<ResponseModel>(apiUrl,kesit)
+  }
 }

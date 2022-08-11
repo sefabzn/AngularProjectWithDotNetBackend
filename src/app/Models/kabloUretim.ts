@@ -9,7 +9,7 @@ export interface KabloUretim{
     genelAriza:number
     hurdaPvc:number
     hurdaCu:number
-    calismaSaati:number
+    calismaSuresi:number
     kayipZaman:number
     verimlilik:number
     tarih:string

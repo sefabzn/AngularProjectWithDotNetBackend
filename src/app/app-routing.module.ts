@@ -21,6 +21,7 @@ import { OperatorIsEmriComponent } from './Components/operator-is-emri/operator-
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
 import { SabitVerilerMenuComponent } from './Components/Sabit Veriler/sabit-veriler-menu/sabit-veriler-menu.component';
+import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path:"SabitVerilerMenu/DataList",component:KesitYapisiComponent},
   {path:"MakineGunlukRapor",component:GunlukRaporComponent},
   {path:"OperatorIsEmirleri",component:OperatorIsEmriComponent},
+  {path:"Sarfiyat",component:SarfiyatComponent},
 
 
 
