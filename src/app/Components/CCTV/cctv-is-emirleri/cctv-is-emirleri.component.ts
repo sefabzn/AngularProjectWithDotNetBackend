@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CctvIsEmri } from 'src/app/Models/cctvIsEmri';
-import { CctvKabloService } from 'src/app/Services/cctv-kablo.service';
+import { CctvIsEmriService } from 'src/app/Services/CctvKabloServices/cctv-is-emri.service';
 
 @Component({
   selector: 'app-cctv-is-emirleri',
@@ -13,7 +13,7 @@ export class CctvIsEmirleriComponent implements OnInit {
   selectedIsEmri:CctvIsEmri
   filterText:string
   isEmirleri:CctvIsEmri[]
-  constructor(private cctvService:CctvKabloService,
+  constructor(private cctvIsEmriService:CctvIsEmriService,
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
@@ -32,13 +32,13 @@ export class CctvIsEmirleriComponent implements OnInit {
     }
   }
   getCctvIsEmirleri(){
-    this.cctvService.getIsEmirleri().subscribe(response=>{
+    this.cctvIsEmriService.getIsEmirleri().subscribe(response=>{
       this.isEmirleri=response.data
       console.log(response)
     })
   }
   deleteIsEmri(isEmri:CctvIsEmri){
-    this.cctvService.deleteIsEmri(isEmri).subscribe(Response=>{
+    this.cctvIsEmriService.deleteIsEmri(isEmri).subscribe(Response=>{
       this.toastrService.info(Response.message,"İşlem Başarılı")
       location.reload()
     })

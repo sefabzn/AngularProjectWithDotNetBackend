@@ -25,4 +25,5 @@ export class MakineService {
     let apiUrl=this.baseUrl+"Makineler/Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,makine)
   }
+
 }

@@ -1,5 +1,5 @@
-import { IsEmri } from "./isEmri";
+import { IsEmriBase } from "./isEmriBase";
 
-export interface CctvIsEmri extends IsEmri{
+export interface CctvIsEmri extends IsEmriBase{
     
 }

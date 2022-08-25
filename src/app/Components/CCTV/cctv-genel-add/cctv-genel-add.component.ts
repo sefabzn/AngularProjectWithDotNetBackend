@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CctvKabloService } from 'src/app/Services/cctv-kablo.service';
+import { CctvGenelDizaynService } from 'src/app/Services/CctvKabloServices/cctv-genel-dizayn.service';
 @Component({
   selector: 'app-cctv-genel-add',
   templateUrl: './cctv-genel-add.component.html',
@@ -19,7 +19,7 @@ export class CctvGenelAddComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private cctvKabloService:CctvKabloService) { }
+     private cctvGenelDizaynService:CctvGenelDizaynService) { }
 
   ngOnInit(): void {
     this.createKabloUretimAddForm()
@@ -38,7 +38,7 @@ export class CctvGenelAddComponent implements OnInit {
       makinaModel["tarih"]=this.date
       console.log(makinaModel)
       
-      this.cctvKabloService.addGenelDizayn(makinaModel).subscribe(data=>{
+      this.cctvGenelDizaynService.addGenelDizayn(makinaModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
       },responseError=>{
         console.log(responseError.error.errors)

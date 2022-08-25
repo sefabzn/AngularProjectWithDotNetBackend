@@ -13,4 +13,5 @@ export interface KabloUretim{
     kayipZaman:number
     verimlilik:number
     tarih:string
+    degistiren:string
 }

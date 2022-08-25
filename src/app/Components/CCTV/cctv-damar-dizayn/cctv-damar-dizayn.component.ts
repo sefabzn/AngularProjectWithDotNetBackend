@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CctvDamarDizaynKablo } from 'src/app/Models/cctvDamarDizaynKablo';
-import { CctvKabloService } from 'src/app/Services/cctv-kablo.service';
+import { CctvDamarDizaynService } from 'src/app/Services/CctvKabloServices/cctv-damar-dizayn.service';
 
 @Component({
   selector: 'app-cctv-damar-dizayn',
@@ -16,7 +16,7 @@ export class CctvDamarDizaynComponent implements OnInit {
   damarlar:CctvDamarDizaynKablo[]=[]
   constructor(private httpClient:HttpClient,
     private toastrService:ToastrService,
-    private cctvKabloService:CctvKabloService,
+    private cctvDamarDizaynService:CctvDamarDizaynService,
     private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -42,13 +42,13 @@ export class CctvDamarDizaynComponent implements OnInit {
   }
 
   getKablolarByGenelDizaynId(genelDizaynId:number){
-    this.cctvKabloService.getKablolarByGenelDizaynId(genelDizaynId).subscribe(Response=>{
+    this.cctvDamarDizaynService.getKablolarByGenelDizaynId(genelDizaynId).subscribe(Response=>{
       this.damarlar=Response.data
       console.log(Response)
     })
   }
   deleteKablo(kablo:CctvDamarDizaynKablo){
-    this.cctvKabloService.deleteCctvDamarDizayn(kablo).subscribe(response=>{
+    this.cctvDamarDizaynService.deleteDamarDizayn(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload();
     })

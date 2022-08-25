@@ -1,5 +1,5 @@
-export interface CctvDamarDizaynKablo{
-    id:number
-    anaId:number
-    renk:string
+import { DamarDizaynBase } from "./damarDizaynBase";
+
+export interface CctvDamarDizaynKablo extends DamarDizaynBase {
+    imalat:string
 }

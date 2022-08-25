@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators,FormBuilder } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TokenModel } from 'src/app/Models/tokenModel';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -31,8 +32,10 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginModel).subscribe(response=>{
         this.toastrService.info(response.expiration)
         localStorage.setItem("token",response.token)
+        localStorage.setItem("user",response.userName)
       },responseError=>{
-        console.log(responseError)
+        this.toastrService.warning(responseError.error)
+        
       })
     }
   }

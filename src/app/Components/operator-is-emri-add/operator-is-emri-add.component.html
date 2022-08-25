@@ -1,0 +1,117 @@
+<div class="content row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="operatorIsEmriForm">
+            <div class="form-group">
+              <select
+                class="form-select"
+                size="1"
+                formControlName="kullanici"
+              >
+                <br />
+                <option *ngFor="let kullanici of kullanicilar">
+                  {{ kullanici.kullaniciAdi }}
+                </option>
+              </select>
+              <br>
+              <select
+              class="form-select"
+              size="1"
+              formControlName="makine"
+              [(ngModel)]="selectedMakine"
+            >
+              <br />
+              <option *ngFor="let makine of makineler">
+                {{ makine.makineIsmi }}
+              </option>
+            </select>
+              <label for="urunIsmi">Ürün İsmi</label>
+              <input
+                type="text"
+                id="kabloIsmi"
+                formControlName="urunIsmi"
+                class="form-control"
+                placeholder="Ürün İsmi"
+              />
+            </div>
+            <label for="kesit">Dizayn Türü</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="dizaynTuru"
+                class="form-control"
+                placeholder="Dizayn Türü"
+              />
+            </div>
+            <label for="kesit">Kesit Çapı</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="kesitCapi"
+                class="form-control"
+                placeholder="Kesit Çapı"
+              />
+            </div>
+            <label for="kesit">Metraj</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="metraj"
+                class="form-control"
+                placeholder="Metraj"
+              />
+            </div>
+            <label for="kesit">Dış Çap</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="disCap"
+                class="form-control"
+                placeholder="Dış Çap"
+              />
+            </div>
+            <label for="kesit">Back</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="back"
+                class="form-control"
+                placeholder="Back"
+              />
+            </div>
+            <label for="kesit">Ayna</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="ayna"
+                class="form-control"
+                placeholder="Ayna"
+              />
+            </div>
+            <label for="kesit">Kalip</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="kesit"
+                formControlName="kalip"
+                class="form-control"
+                placeholder="Kalip"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+

@@ -1,10 +1,27 @@
-<div>
-  Date Picker:<input type="date" [(ngModel)]="selectedDate" /><button
-    (click)="getKablolarByDate(selectedDate)"
+<div class="text-center">
+ <br>
+  <h1> Operatör Veri Girişi</h1>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-4">
+
+  Date Picker:<input type="date" [(ngModel)]="startDate" />
+</div>
+<div class="col-md-4">
+
+  Date Picker:<input type="date" [(ngModel)]="finishDate" />
+  <button
+    (click)="getKablolarByDateRange(startDate,finishDate)"
   >
     Seç
   </button>
 </div>
+</div>
+<br>
 <table class="table">
   <thead>
     <tr>

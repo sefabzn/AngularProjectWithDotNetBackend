@@ -10,7 +10,8 @@ import { KabloUretimService } from 'src/app/Services/kablo-uretim.service';
 })
 export class KabloUretimComponent implements OnInit {
 
-  selectedDate:any
+  startDate:any
+  finishDate:any
   kablolar:KabloUretim[]=[]
   selectedKablo:KabloUretim
   constructor(private kabloUretimService:KabloUretimService,
@@ -25,9 +26,9 @@ export class KabloUretimComponent implements OnInit {
       this.kablolar=response.data
     })
   }
-  getKablolarByDate(date:string){
-    if(date){
-      this.kabloUretimService.getKablolarbyDate(date).subscribe(response=>{
+  getKablolarByDateRange(startDate:string,finishDate:string){
+    if(startDate && finishDate){
+      this.kabloUretimService.getKablolarbyDateRange(startDate,finishDate).subscribe(response=>{
         this.kablolar=response.data
       })
     }

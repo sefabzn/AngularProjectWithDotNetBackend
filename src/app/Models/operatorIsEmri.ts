@@ -1,5 +1,4 @@
 export interface OperatorIsEmri{
-
     id:number
     makineIsmi:string
     operator:string

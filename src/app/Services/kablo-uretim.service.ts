@@ -17,8 +17,8 @@ export class KabloUretimService {
     let apiUrl=this.baseUrl+"KabloUretim/GetAll"
     return this.httpClient.get<ListResponseModel<KabloUretim>>(apiUrl)
   }
-  getKablolarbyDate(tarih:any):Observable<ListResponseModel<KabloUretim>>{
-    let apiUrl=this.baseUrl+"KabloUretim/GetAllByDate?tarih="+tarih
+  getKablolarbyDateRange(startDate:any,finishDate:any):Observable<ListResponseModel<KabloUretim>>{
+    let apiUrl=this.baseUrl+"KabloUretim/GetAllByDateRange?start="+startDate+"&finish="+finishDate
     return this.httpClient.get<ListResponseModel<KabloUretim>>(apiUrl)
   }
   add(kablo:KabloUretim):Observable<ResponseModel>{

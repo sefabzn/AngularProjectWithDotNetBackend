@@ -22,14 +22,14 @@ import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/ke
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
 import { SabitVerilerMenuComponent } from './Components/Sabit Veriler/sabit-veriler-menu/sabit-veriler-menu.component';
 import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
+import { UretimPlanlamaComponent } from './Components/uretim-planlama/uretim-planlama.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  {path:"",pathMatch:"full",component:AnaMenuComponent},
+  {path:"",pathMatch:"full",component:LoginComponent},
   {path:"kullanicilar/getByMakineId/:makineId",component:KullaniciComponent},
   {path:"kullanicilar",component:KullaniciComponent},
-  {path:"login",component:LoginComponent},
-  {path:"kablouretim",component:KabloUretimComponent},
+  {path:"kablouretim",component:KabloUretimComponent, canActivate:[LoginGuard]},
   {path:"kablouretim/add",component:KabloUretimAddComponent},
   {path:"anamenu",component:AnaMenuComponent},
   {path:"cctvsecme",component:CctvSecmeComponent},
@@ -48,7 +48,7 @@ const routes: Routes = [
   {path:"MakineGunlukRapor",component:GunlukRaporComponent},
   {path:"OperatorIsEmirleri",component:OperatorIsEmriComponent},
   {path:"Sarfiyat",component:SarfiyatComponent},
-
+  {path:"UretimPlanlama",component:UretimPlanlamaComponent,},
 
 
 

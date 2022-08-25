@@ -31,7 +31,6 @@ export class KabloUretimAddComponent implements OnInit {
   }
   createKabloUretimAddForm(){
     this.kabloUretimAddForm=this.formBuilder.group({
-      id:[0],
       kabloIsmi:["",Validators.required],
       makineId:["",Validators.required],
       kesitAlani:["",Validators.required],
@@ -49,6 +48,7 @@ export class KabloUretimAddComponent implements OnInit {
     if(this.kabloUretimAddForm.valid){
       this.makineModel=Object.assign({},this.kabloUretimAddForm.value);
       this.makineModel["tarih"]=this.tarih
+      this.makineModel["degistiren"]=localStorage.getItem("user")
       this.kabloUretimService.add(this.makineModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
         console.log(this.makineModel)

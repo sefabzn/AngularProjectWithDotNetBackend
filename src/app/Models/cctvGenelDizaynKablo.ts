@@ -1,6 +1,6 @@
-export interface cctvGenelDizaynKablo{
-    id:number
-    kablo:string
-    kesit:number
-    tarih:string
+import { GenelDizaynBase } from "./genelDizaynBase";
+
+export interface cctvGenelDizaynKablo extends GenelDizaynBase{
+  core:string
+  hatve:number
 }
