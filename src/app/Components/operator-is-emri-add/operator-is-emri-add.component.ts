@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -29,6 +29,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
   kullanicilar: Kullanici[];
   tarih: string = new Date().toISOString();
   tahminiSure: number;
+  ortakMakineler:Makine[]
   constructor(
     private formBuilder: FormBuilder,
     private makineService: MakineService,
@@ -42,6 +43,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
     this.createOperatorIsEmriForm();
     this.getMakineler();
     this.getKullanicilar();
+    this.ortakMakineler=[];
   }
   getMakineler() {
     this.makineService.getMakinas().subscribe((response) => {
@@ -56,7 +58,6 @@ export class OperatorIsEmriAddComponent implements OnInit {
   createOperatorIsEmriForm() {
     this.operatorIsEmriForm = this.formBuilder.group({
       operator: ['', Validators.required],
-      makineIsmi: ['', Validators.required],
       urunIsmi: ['', Validators.required],
       dizaynTuru: ['', Validators.required],
       kesitCapi: [0, Validators.min(0.001)],
@@ -67,20 +68,45 @@ export class OperatorIsEmriAddComponent implements OnInit {
       kalip: [''],
     });
   }
+  addToOrtakMakineler(makine:Makine){
+    if(this.ortakMakineler.filter(x=>x.makineIsmi==makine.makineIsmi).length<1){
+      this.ortakMakineler.push(makine)
+    }
+    else{
+      this.ortakMakineler=this.ortakMakineler.filter(x=>x.makineIsmi!=makine.makineIsmi)
+    }
+    console.log(this.ortakMakineler)
+    
+  }
+ 
+  verimlilikPayi(makine:Makine){
+    let toplamVerimlilik = 0
+   this.ortakMakineler.forEach(makine => {
+      toplamVerimlilik+=makine.verimlilik
+    });
+    return makine.verimlilik/toplamVerimlilik
+  }
   add() {
+    let toplamMetraj = this.operatorIsEmriForm.value["metraj"]
+    console.log(toplamMetraj)
     if (this.operatorIsEmriForm.valid) {
-      this.isEmriModel = Object.assign({}, this.operatorIsEmriForm.value);
-      this.isEmriModel['tarih'] = this.tarih;
-      this.isEmriModel['degistiren'] = localStorage.getItem('user');
-      this.operatorIsEmriService.add(this.isEmriModel).subscribe(
-        (data) => {
-          this.toastrService.success(data.message, 'Başarılı');
-          console.log(this.isEmriModel);
-        },
-        (responseError) => {
-          console.log(responseError);
-        }
-      );
+      this.ortakMakineler.forEach(makine => {
+        this.isEmriModel = Object.assign({}, this.operatorIsEmriForm.value);
+        this.isEmriModel["metraj"]=Math.round(toplamMetraj*this.verimlilikPayi(makine))
+        this.isEmriModel["makineIsmi"]=makine.makineIsmi
+        this.isEmriModel['tarih'] = this.tarih;
+        this.isEmriModel['degistiren'] = localStorage.getItem('user');
+        this.operatorIsEmriService.add(this.isEmriModel).subscribe(
+          (data) => {
+            this.toastrService.success(data.message, 'Başarılı');
+          },
+          (responseError) => {
+            console.log(responseError);
+          }
+        );
+
+      });
+     
     } else {
       console.log('Form is not valid');
     }
