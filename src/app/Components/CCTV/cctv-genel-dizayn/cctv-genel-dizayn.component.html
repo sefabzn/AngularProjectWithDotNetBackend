@@ -2,38 +2,87 @@
   <h1>CCTV Genel Dizayn Tablosu</h1>
 </div>
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Kablo İsmi</th>
-        <th scope="col">Tarih</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr scope="col"
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Kablo İsmi</th>
+      <th scope="col">Kesit</th>
+      <th scope="col">Örgü</th>
+      <th scope="col">Örgü Tel Yapısı</th>
+      <th scope="col">Polyester Ölçüsü</th>
+      <th scope="col">Folyo Tipi</th>
+      <th scope="col">Dış Kılıf</th>
+      <th scope="col">Dış Çap</th>
+      <th scope="col">Back</th>
+      <th scope="col">Ayna</th>
+      <th scope="col">Kalıp</th>
+      <th scope="col">Tarih</th>
+      <th scope="col">Damar Sayısı</th>
+      <th scope="col">Girilen Damar Sayısı</th>
+      <th scope="col">Zorlama</th>
+      <th scope="col">Degistirilme Tarihi</th>
+      <th scope="col">Degistiren</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      scope="col"
       (click)="setSelectedKablo(kablo)"
       [class]="setRowColor(kablo)"
-        *ngFor="let kablo of kablolar">
-      
-        <td>{{kablo.id}}</td>
-        <td>{{kablo.kablo}}</td>
-        <td>{{kablo.tarih}}</td>
-        <td><button routerLink="/cctvdamardizayn/getByCctvGenelDizaynId/{{kablo.id}}" class="btn btn-info">Damar Dizayn</button></td>
-
-
-      </tr>
-      
-    </tbody>
-    <div class="row">
-      <div class="col col-md-4">
-        <br>
-        <button type="button" routerLink="/CctvGenelDizayn/Add" class="btn btn-outline-primary">Kablo Ekle</button>
-
-      </div>
-      <div class="col col-md-4">
-        <br>
-      
-        <button  type="button" (click)="deleteKablo(selectedKablo)" class="btn btn-outline-primary">Sil</button>
-      </div>
+      *ngFor="let kablo of kablolar"
+    >
+      <td>{{ kablo.id }}</td>
+      <td>{{ kablo.kablo }}</td>
+      <td>{{kablo.kesitCapi}}</td>
+      <td>{{kablo.core}}</td>
+      <td>{{kablo.hatve}}</td>
+      <td>{{ kablo.orgu }}</td>
+      <td>{{ kablo.orguTelYapisi }}</td>
+      <td>{{ kablo.polyesterOlcusu }}</td>
+      <td>{{ kablo.folyoTipi }}</td>
+      <td>{{ kablo.folyoOlcusu }}</td>
+      <td>{{ kablo.disKilif }}</td>
+      <td>{{ kablo.disCap }}</td>
+      <td>{{ kablo.back }}</td>
+      <td>{{ kablo.ayna }}</td>
+      <td>{{ kablo.kalip }}</td>
+      <td>{{ kablo.tarih }}</td>
+      <td>{{ kablo.damarSayisi }}</td>
+      <td>{{ kablo.girilenDamarSayisi }}</td>
+      <td>{{ kablo.zorlama }}</td>
+      <td>{{ kablo.degistirilmeTarihi }}</td>
+      <td>{{ kablo.degistiren }}</td>
+      <td>
+        <button
+          routerLink="/cctvdamardizayn/getByCctvGenelDizaynId/{{ kablo.id }}"
+          class="btn btn-info"
+        >
+          Damar Dizayn
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <div class="row">
+    <div class="col col-md-4">
+      <br />
+      <button
+        type="button"
+        routerLink="/CctvGenelDizayn/Add"
+        class="btn btn-outline-primary"
+      >
+        Kablo Ekle
+      </button>
     </div>
-  </table>
+    <div class="col col-md-4">
+      <br />
+
+      <button
+        type="button"
+        (click)="deleteKablo(selectedKablo)"
+        class="btn btn-outline-primary"
+      >
+        Sil
+      </button>
+    </div>
+  </div>
+</table>

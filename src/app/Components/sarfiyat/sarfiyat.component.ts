@@ -25,13 +25,13 @@ export class SarfiyatComponent implements OnInit {
     });
   }
   getAllByDate(date: string) {
-    if (date) {
-      this.sarfiyatService.getAllByDate(date).subscribe((response) => {
-        this.sarfiyatList = response.data;
-      });
-    } else {
-      this.getAll();
-    }
+    // if (date) {
+    //   this.sarfiyatService.getAllByDate(date).subscribe((response) => {
+    //     this.sarfiyatList = response.data;
+    //   });
+    // } else {
+    //   this.getAll();
+    // }
   }
   setSelectedSarfiyat(sarfiyat:Sarfiyat){
     this.selectedSarfiyat=sarfiyat

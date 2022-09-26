@@ -20,8 +20,8 @@ export class SarfiyatService {
     return this.httpClient.post<ResponseModel>(apiUrl,sarfiyat)
 
   }
-  getAllByDate(tarih:any):Observable<ListResponseModel<Sarfiyat>>{
-    let apiUrl=this.baseUrl+"Sarfiyat/GetAllByDate?tarih="+tarih
+  getAllByDateRange(startDate:string,finishDate:string):Observable<ListResponseModel<Sarfiyat>>{
+    let apiUrl=this.baseUrl+"Sarfiyat/GetAllByDateRange?startDate="+startDate+"&finishDate="+finishDate
     return this.httpClient.get<ListResponseModel<Sarfiyat>>(apiUrl)
   }
   delete(sarfiyat:Sarfiyat):Observable<ResponseModel>{

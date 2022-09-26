@@ -37,6 +37,18 @@ import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/ke
 import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
 import { UretimPlanlamaComponent } from './Components/uretim-planlama/uretim-planlama.component';
 import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/operator-is-emri-add.component';
+import { TelefonSecmeComponent } from './Components/Telefon/telefon-secme/telefon-secme.component';
+import { TelefonIsEmirleriComponent } from './Components/Telefon/telefon-is-emirleri/telefon-is-emirleri.component';
+import { TelefonGenelDizaynComponent } from './Components/Telefon/telefon-genel-dizayn/telefon-genel-dizayn.component';
+import { TelefonGenelAddComponent } from './Components/Telefon/telefon-genel-add/telefon-genel-add.component';
+import { TelefonDamarDizaynComponent } from './Components/Telefon/telefon-damar-dizayn/telefon-damar-dizayn.component';
+import { YanginDamarDizaynComponent } from './Components/Yangin/yangin-damar-dizayn/yangin-damar-dizayn.component';
+import { YanginGenelAddComponent } from './Components/Yangin/yangin-genel-add/yangin-genel-add.component';
+import { YanginGenelDizaynComponent } from './Components/Yangin/yangin-genel-dizayn/yangin-genel-dizayn.component';
+import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirleri/yangin-is-emirleri.component';
+import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
+import { MakineFilterPipe } from './pipes/makine-filter.pipe';
+import { PlanlamaComponent } from './Components/planlama/planlama/planlama.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +81,18 @@ import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/op
     SarfiyatComponent,
     UretimPlanlamaComponent,
     OperatorIsEmriAddComponent,
+    TelefonSecmeComponent,
+    TelefonIsEmirleriComponent,
+    TelefonGenelDizaynComponent,
+    TelefonGenelAddComponent,
+    TelefonDamarDizaynComponent,
+    YanginDamarDizaynComponent,
+    YanginGenelAddComponent,
+    YanginGenelDizaynComponent,
+    YanginIsEmirleriComponent,
+    YanginSecmeComponent,
+    MakineFilterPipe,
+    PlanlamaComponent,
   ],
   imports: [
     BrowserModule,

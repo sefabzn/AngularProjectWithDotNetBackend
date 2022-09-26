@@ -4,7 +4,7 @@ export interface DamarDizaynBase{
     anaId:number
     damarNo:number
     renk:string
-    kesit:number
+    kesitCapi:number
     etk:number
     cap:number
     back:number

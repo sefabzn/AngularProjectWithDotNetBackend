@@ -36,6 +36,7 @@ export class GunlukRaporComponent implements OnInit {
     
     this.gunlukRaporService.getGunlukRaporlar(makineIsmi,tarih).subscribe(response=>{
       this.gunlukUretimler=response.data
+      console.log(response.data)
     },errorResponse=>{
       if(errorResponse.error.errors.Tarih[0]){
         this.toastrService.warning("Uygun bir tarih seçiniz!","Tarih Hatalı")

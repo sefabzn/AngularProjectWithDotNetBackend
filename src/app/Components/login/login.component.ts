@@ -33,11 +33,14 @@ export class LoginComponent implements OnInit {
         this.toastrService.info(response.expiration)
         localStorage.setItem("token",response.token)
         localStorage.setItem("user",response.userName)
+        return "anamenu"
       },responseError=>{
         this.toastrService.warning(responseError.error)
         
       })
+      return "s"
     }
+    return "c"
   }
 
 }

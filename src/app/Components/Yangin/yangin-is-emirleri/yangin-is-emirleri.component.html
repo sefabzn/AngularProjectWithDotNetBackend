@@ -1,0 +1,68 @@
+<div class="text-center">
+    <H1>Yangin İş Emirleri</H1>
+  </div>
+  
+  <input type="text" placeholder="Kablo İsmi" [(ngModel)]="filterText" />
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">İsim</th>
+        <th scope="col">Büküm Barkodu</th>
+        <th scope="col">Damar Barkodu</th>
+        <th scope="col">Damar Büküm Barkodu</th>
+        <th scope="col">Dolgu Barkodu Barkodu</th>
+        <th scope="col">Kılıf Barkodu</th>
+        <th scope="col">Folyo Barkodu</th>
+        <th scope="col">Örgü  Barkodu</th>
+        <th scope="col">Dış Kılıf Barkodu</th>
+        <th scope="col">Tarih</th>
+        <th scope="col">Degistiren</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        scope="col"
+        (click)="setSelectedIsEmri(isEmri)"
+        [class]="setRowColor(isEmri)"
+        *ngFor="let isEmri of isEmirleri | kabloIsmiFilter: filterText"
+      >
+      <td>{{ isEmri.id }}</td>
+      <td>{{ isEmri.isim }}</td>
+      <td>{{ isEmri.bukumBarkodu }}</td>
+      <td>{{ isEmri.damarBarkodu }}</td>
+      <td>{{ isEmri.damarBukumBarkodu }}</td>
+      <td>{{ isEmri.dolguBarkodu }}</td>
+      <td>{{ isEmri.kilifBarkodu }}</td>
+      <td>{{ isEmri.folyoBarkodu }}</td>
+      <td>{{ isEmri.orguBarkodu }}</td>
+      <td>{{ isEmri.disKilifBarkodu }}</td>
+      <td>{{ isEmri.tarih }}</td>
+      <td>{{ isEmri.degistiren }}</td>
+      </tr>
+    </tbody>
+  
+    <div class="row">
+      <div class="col col-md-4">
+        <br />
+        <button
+          type="button"
+          routerLink="/Yangin/YanginIsEmirleri/add"
+          class="btn btn-outline-primary"
+        >
+          Kablo Ekle
+        </button>
+      </div>
+      <div class="col col-md-4">
+        <br />
+        <button
+          type="button"
+          (click)="deleteIsEmri(selectedIsEmri)"
+          class="btn btn-outline-primary"
+        >
+          Sil
+        </button>
+      </div>
+    </div>
+  </table>
+  

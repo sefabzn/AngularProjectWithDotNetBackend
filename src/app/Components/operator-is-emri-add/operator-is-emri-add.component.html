@@ -4,10 +4,11 @@
         <div class="card-body">
           <form [formGroup]="operatorIsEmriForm">
             <div class="form-group">
-              <select
+              <label for="kullanici">Operatör</label>
+              <select id="kullanici"
                 class="form-select"
                 size="1"
-                formControlName="kullanici"
+                formControlName="operator"
               >
                 <br />
                 <option *ngFor="let kullanici of kullanicilar">
@@ -15,11 +16,11 @@
                 </option>
               </select>
               <br>
-              <select
+              <label for="makine">Makine</label>
+              <select id="makine"
               class="form-select"
               size="1"
-              formControlName="makine"
-              [(ngModel)]="selectedMakine"
+              formControlName="makineIsmi"
             >
               <br />
               <option *ngFor="let makine of makineler">
@@ -38,7 +39,7 @@
             <label for="kesit">Dizayn Türü</label>
             <div class="form-group">
               <input
-                type="number"
+                type="text"
                 id="kesit"
                 formControlName="dizaynTuru"
                 class="form-control"
@@ -98,7 +99,7 @@
             <label for="kesit">Kalip</label>
             <div class="form-group">
               <input
-                type="number"
+                type="text"
                 id="kesit"
                 formControlName="kalip"
                 class="form-control"
@@ -108,9 +109,22 @@
           </form>
         </div>
         <div class="card-footer">
-          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+
+            </div>
+            <div class="col">
+              <button class="btn btn-fill btn-secondary" (click)="hesapla()">Süre Hesapla</button>
+
+            </div>
+
+        </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-6">
+      
     </div>
    
   </div>

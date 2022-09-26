@@ -52,7 +52,8 @@ export class KabloUretimComponent implements OnInit {
   deleteKablo(kablo:KabloUretim){
     this.kabloUretimService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"Silme Başarılı")
+      location.reload()
     })
-    location.reload()
+
   }
 }

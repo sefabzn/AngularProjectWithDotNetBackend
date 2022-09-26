@@ -1,6 +1,6 @@
 export interface KesitYapisi{
     id:number
-    kesit:string
+    kesitCapi:string
     back:number
     disCap:number
     ayna:number

@@ -7,4 +7,5 @@ export interface Makine{
     renkDegisimi:number
     kopma:number
     kesitDegisimi:number
+    verimlilik:number
 }

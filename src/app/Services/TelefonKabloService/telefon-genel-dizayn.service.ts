@@ -7,7 +7,7 @@ import { TelefonGenelDizaynKablo } from 'src/app/Models/telefon-genel-dizayn-kab
 @Injectable({
   providedIn: 'root'
 })
-export class TelefonGenelDiaynService {
+export class TelefonGenelDizaynService {
   
   baseUrl="https://localhost:7289/api/"
   constructor(private httpClient:HttpClient) { }

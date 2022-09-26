@@ -2,7 +2,7 @@ export interface Sarfiyat{
 
     id:number
     kabloId:number
-    kesitId:number
+    kesitCapi:number
     makineId:number
     kullanilanPvc:number
     kullanilanCu:number

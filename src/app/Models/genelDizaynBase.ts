@@ -1,7 +1,7 @@
 export interface GenelDizaynBase{
     id : number
     kablo: string
-    kesit:number
+    kesitCapi:number
     orgu:number
     orguTelYapisi:string
     polyesterOlcusu:number

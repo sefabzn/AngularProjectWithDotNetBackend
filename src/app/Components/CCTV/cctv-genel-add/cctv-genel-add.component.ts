@@ -14,6 +14,7 @@ import { CctvGenelDizaynService } from 'src/app/Services/CctvKabloServices/cctv-
 })
 export class CctvGenelAddComponent implements OnInit {
 
+  userName=localStorage.getItem("user")
   CctvGenelAddForm:FormGroup
   date:string=new Date().toISOString().split('/').reverse().join('-')
 
@@ -29,14 +30,33 @@ export class CctvGenelAddComponent implements OnInit {
   createKabloUretimAddForm(){
     this.CctvGenelAddForm=this.formBuilder.group({
       kablo:["",Validators.required],
-      kesit:["",Validators.required]
+      kesit:["",Validators.required],
+      core:["",Validators.required],
+      hatve:["",Validators.required],
+      orgu:["",Validators.required],
+      orguTelYapisi:["",Validators.required],
+      polyesterOlcusu:["",Validators.required],
+      folyoTipi:["",Validators.required],
+      folyoOlcusu:["",Validators.required],
+      disKilif:["",Validators.required],
+      disCap:["",Validators.required],
+      back:["",Validators.required],
+      ayna:["",Validators.required],
+      kalip:["",Validators.required],
+      tarih:[this.date],
+      damarSayisi:["",Validators.required],
+      girilenDamarSayisi:["",Validators.required],
+      zorlama:["",Validators.required],
+      degistirilmeTarihi:[""],
+      degistiren:[this.userName]
+
     })
   }
   add(){
     if(this.CctvGenelAddForm.valid){
       let makinaModel =Object.assign({},this.CctvGenelAddForm.value);
       makinaModel["tarih"]=this.date
-      console.log(makinaModel)
+      makinaModel["degistiren"]=this.userName
       
       this.cctvGenelDizaynService.addGenelDizayn(makinaModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
@@ -49,5 +69,5 @@ export class CctvGenelAddComponent implements OnInit {
       this.toastrService.error("Form girişi hatalı","Dikkat")
     }
   }
-
+  
 }

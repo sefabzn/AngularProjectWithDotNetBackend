@@ -2,7 +2,7 @@ export interface KabloUretim{
     id:number
     kabloIsmi:string
     makineId:number
-    kesitAlani:number
+    kesitCapi:number
     metraj:number
     kopma:number
     renkDegisimi:number

@@ -17,12 +17,24 @@ import { KabloUretimComponent } from './Components/kablo-uretim/kablo-uretim.com
 import { KullaniciComponent } from './Components/kullanici/kullanici.component';
 import { LoginComponent } from './Components/login/login.component';
 import { GunlukRaporComponent } from './Components/makineGunlukRapor/gunluk-rapor/gunluk-rapor.component';
+import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/operator-is-emri-add.component';
 import { OperatorIsEmriComponent } from './Components/operator-is-emri/operator-is-emri.component';
+import { PlanlamaComponent } from './Components/planlama/planlama/planlama.component';
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
 import { SabitVerilerMenuComponent } from './Components/Sabit Veriler/sabit-veriler-menu/sabit-veriler-menu.component';
 import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
+import { TelefonDamarDizaynComponent } from './Components/Telefon/telefon-damar-dizayn/telefon-damar-dizayn.component';
+import { TelefonGenelAddComponent } from './Components/Telefon/telefon-genel-add/telefon-genel-add.component';
+import { TelefonGenelDizaynComponent } from './Components/Telefon/telefon-genel-dizayn/telefon-genel-dizayn.component';
+import { TelefonIsEmirleriComponent } from './Components/Telefon/telefon-is-emirleri/telefon-is-emirleri.component';
+import { TelefonSecmeComponent } from './Components/Telefon/telefon-secme/telefon-secme.component';
 import { UretimPlanlamaComponent } from './Components/uretim-planlama/uretim-planlama.component';
+import { YanginDamarDizaynComponent } from './Components/Yangin/yangin-damar-dizayn/yangin-damar-dizayn.component';
+import { YanginGenelAddComponent } from './Components/Yangin/yangin-genel-add/yangin-genel-add.component';
+import { YanginGenelDizaynComponent } from './Components/Yangin/yangin-genel-dizayn/yangin-genel-dizayn.component';
+import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirleri/yangin-is-emirleri.component';
+import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -47,8 +59,20 @@ const routes: Routes = [
   {path:"SabitVerilerMenu/DataList",component:KesitYapisiComponent},
   {path:"MakineGunlukRapor",component:GunlukRaporComponent},
   {path:"OperatorIsEmirleri",component:OperatorIsEmriComponent},
+  {path:"OperatorIsEmri/Add",component:OperatorIsEmriAddComponent},
   {path:"Sarfiyat",component:SarfiyatComponent},
   {path:"UretimPlanlama",component:UretimPlanlamaComponent,},
+  {path:"telefonsecme",component:TelefonSecmeComponent},
+  {path:"telefongeneldizayn",component:TelefonGenelDizaynComponent},
+  {path:"telefondamardizayn/getByTelefonGenelDizaynId/:telefonGenelDizaynId",component:TelefonDamarDizaynComponent},
+  {path:"TelefonIsEmirleri",component:TelefonIsEmirleriComponent},
+  {path:"TelefonGenelDizayn/Add",component:TelefonGenelAddComponent},
+  {path:"yanginsecme",component:YanginSecmeComponent},
+  {path:"yangingeneldizayn",component:YanginGenelDizaynComponent},
+  {path:"yangindamardizayn/getByYanginGenelDizaynId/:yanginGenelDizaynId",component:YanginDamarDizaynComponent},
+  {path:"YanginIsEmirleri",component:YanginIsEmirleriComponent},
+  {path:"YanginGenelDizayn/Add",component:YanginGenelAddComponent},
+  {path:"Planlama",component:PlanlamaComponent},
 
 
 
