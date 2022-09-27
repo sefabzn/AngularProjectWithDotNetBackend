@@ -30,7 +30,8 @@ export class OperatorIsEmriAddComponent implements OnInit {
   tarih: string = new Date().toISOString();
   tahminiSure: number;
   ortakMakineler: Makine[];
-  asyncResult:Makine[]
+  asyncResult: Makine[];
+  kesitTablosu:MakineKesitHizTablosu[];
   constructor(
     private formBuilder: FormBuilder,
     private makineService: MakineService,
@@ -44,6 +45,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
     this.createOperatorIsEmriForm();
     this.getMakineler();
     this.getKullanicilar();
+    this.getKesitTablosu();
     this.ortakMakineler = [];
   }
   getMakineler() {
@@ -80,7 +82,6 @@ export class OperatorIsEmriAddComponent implements OnInit {
         (x) => x.makineIsmi != makine.makineIsmi
       );
     }
-    console.log(this.ortakMakineler);
   }
 
   verimlilikPayi(makine: Makine) {
@@ -92,8 +93,15 @@ export class OperatorIsEmriAddComponent implements OnInit {
   }
   add() {
     let toplamMetraj = this.ortakMakineIsEmriForm.value['toplamMetraj'];
-    console.log(toplamMetraj);
     if (this.ortakMakineIsEmriForm.valid) {
+      this.setKesit();
+      if (
+        !this.checkIfMakineWorksKesit(this.ortakMakineler, this.selectedKesit)
+      ) {
+        console.log(
+          'makinelerden biri veya birdan fazlası bu kesiti işleyemez!'
+        );
+      }
       this.ortakMakineler.forEach((makine) => {
         this.isEmriModel = Object.assign({}, this.ortakMakineIsEmriForm.value);
         this.isEmriModel['metraj'] = Math.round(
@@ -122,49 +130,64 @@ export class OperatorIsEmriAddComponent implements OnInit {
     });
     return toplamVerimlilik / this.ortakMakineler.length;
   }
-  
 
-   async hesapla() {
+  async hesapla() {
     if (this.ortakMakineIsEmriForm.valid) {
-    this.setKesit();
+      this.setKesit();
       let toplamHiz: number = 0;
       let kesitHizi: number;
-    await this.makineKesitHizTabloService.getAll().toPromise().then((response) => {
-      this.ortakMakineler.forEach(makine => {
-        kesitHizi = response.data.filter(
-          (x) => x.makineId == makine.id && x.kesitCapi == this.selectedKesit
-        )[0].hiz;
-      toplamHiz += kesitHizi;
-
-      });
-
-    });
-    this.getTahminiSure(toplamHiz);
+      await this.makineKesitHizTabloService
+        .getAll()
+        .toPromise()
+        .then((response) => {
+          this.ortakMakineler.forEach((makine) => {
+            kesitHizi = response.data.filter(
+              (x) =>
+                x.makineId == makine.id && x.kesitCapi == this.selectedKesit
+            )[0].hiz;
+            toplamHiz += kesitHizi;
+          });
+        });
+      this.getTahminiSure(toplamHiz);
     }
   }
 
-  async asyncDeneme() {
-     
-      await this.makineService.getMakinas().toPromise().then(response=>{
-        this.asyncResult=response.data
-        this.ortakMakineler.forEach(element => {
-          console.log("a")
-          
-        });
-      })
-    console.log("b")
-  }
   private getTahminiSure(toplamHiz: number) {
     let gercekKesitHizi = (toplamHiz * this.getOrtalamaVerimlilik()) / 100;
     this.tahminiSure =
       this.ortakMakineIsEmriForm.value['toplamMetraj'] / gercekKesitHizi / 60;
-      console.log("toplam hizi = "+toplamHiz+"  verimlilik = "+this.getOrtalamaVerimlilik() + "  " )
+    console.log(
+      'toplam hizi = ' +
+        toplamHiz +
+        '  verimlilik = ' +
+        this.getOrtalamaVerimlilik() +
+        '  '
+    );
     this.toastrService.info(
       'Bu makineyle bu üretim ' + this.tahminiSure + ' saat sürecektir!',
       'Süre Hesaplandı'
     );
   }
-
+  getKesitTablosu(){
+    this.makineKesitHizTabloService.getAll().subscribe((response) => {
+      this.kesitTablosu=response.data
+     });
+  }
+  checkIfMakineWorksKesit(makineler: Makine[], kesit: number): boolean {
+    let eslesenler = [];
+    let tamEslesme:boolean=true
+  
+    makineler.forEach(makine => {
+      eslesenler.push(this.kesitTablosu.filter(x=>x.kesitCapi==kesit && x.makineId==makine.id)[0])
+    });
+    console.log(eslesenler.length);
+    eslesenler.forEach(element => {
+      if (element==undefined) {
+        tamEslesme=false
+      }
+    });
+    return tamEslesme
+  }
   private setKesit() {
     this.selectedKesit = this.ortakMakineIsEmriForm.value['kesitCapi'];
   }
