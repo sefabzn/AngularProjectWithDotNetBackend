@@ -21,7 +21,7 @@ import { OperatorIsEmriService } from 'src/app/Services/operator-is-emri.service
   styleUrls: ['./operator-is-emri-add.component.css'],
 })
 export class OperatorIsEmriAddComponent implements OnInit {
-  operatorIsEmriForm: FormGroup;
+  ortakMakineIsEmriForm: FormGroup;
   isEmriModel: OperatorIsEmri;
   selectedMakine: Makine;
   selectedKesit: number;
@@ -29,7 +29,8 @@ export class OperatorIsEmriAddComponent implements OnInit {
   kullanicilar: Kullanici[];
   tarih: string = new Date().toISOString();
   tahminiSure: number;
-  ortakMakineler:Makine[]
+  ortakMakineler: Makine[];
+  asyncResult:Makine[]
   constructor(
     private formBuilder: FormBuilder,
     private makineService: MakineService,
@@ -43,7 +44,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
     this.createOperatorIsEmriForm();
     this.getMakineler();
     this.getKullanicilar();
-    this.ortakMakineler=[];
+    this.ortakMakineler = [];
   }
   getMakineler() {
     this.makineService.getMakinas().subscribe((response) => {
@@ -56,44 +57,49 @@ export class OperatorIsEmriAddComponent implements OnInit {
     });
   }
   createOperatorIsEmriForm() {
-    this.operatorIsEmriForm = this.formBuilder.group({
+    this.ortakMakineIsEmriForm = this.formBuilder.group({
       operator: ['', Validators.required],
       urunIsmi: ['', Validators.required],
       dizaynTuru: ['', Validators.required],
       kesitCapi: [0, Validators.min(0.001)],
-      metraj: [0, Validators.min(1)],
+      toplamMetraj: [0, Validators.min(1)],
       disCap: [0],
       back: [0],
       ayna: [0],
       kalip: [''],
     });
   }
-  addToOrtakMakineler(makine:Makine){
-    if(this.ortakMakineler.filter(x=>x.makineIsmi==makine.makineIsmi).length<1){
-      this.ortakMakineler.push(makine)
+  addToOrtakMakineler(makine: Makine) {
+    if (
+      this.ortakMakineler.filter((x) => x.makineIsmi == makine.makineIsmi)
+        .length < 1
+    ) {
+      this.ortakMakineler.push(makine);
+    } else {
+      this.ortakMakineler = this.ortakMakineler.filter(
+        (x) => x.makineIsmi != makine.makineIsmi
+      );
     }
-    else{
-      this.ortakMakineler=this.ortakMakineler.filter(x=>x.makineIsmi!=makine.makineIsmi)
-    }
-    console.log(this.ortakMakineler)
-    
+    console.log(this.ortakMakineler);
   }
- 
-  verimlilikPayi(makine:Makine){
-    let toplamVerimlilik = 0
-   this.ortakMakineler.forEach(makine => {
-      toplamVerimlilik+=makine.verimlilik
+
+  verimlilikPayi(makine: Makine) {
+    let toplamVerimlilik = 0;
+    this.ortakMakineler.forEach((makine) => {
+      toplamVerimlilik += makine.verimlilik;
     });
-    return makine.verimlilik/toplamVerimlilik
+    return makine.verimlilik / toplamVerimlilik;
   }
   add() {
-    let toplamMetraj = this.operatorIsEmriForm.value["metraj"]
-    console.log(toplamMetraj)
-    if (this.operatorIsEmriForm.valid) {
-      this.ortakMakineler.forEach(makine => {
-        this.isEmriModel = Object.assign({}, this.operatorIsEmriForm.value);
-        this.isEmriModel["metraj"]=Math.round(toplamMetraj*this.verimlilikPayi(makine))
-        this.isEmriModel["makineIsmi"]=makine.makineIsmi
+    let toplamMetraj = this.ortakMakineIsEmriForm.value['toplamMetraj'];
+    console.log(toplamMetraj);
+    if (this.ortakMakineIsEmriForm.valid) {
+      this.ortakMakineler.forEach((makine) => {
+        this.isEmriModel = Object.assign({}, this.ortakMakineIsEmriForm.value);
+        this.isEmriModel['metraj'] = Math.round(
+          toplamMetraj * this.verimlilikPayi(makine)
+        );
+        this.isEmriModel['makineIsmi'] = makine.makineIsmi;
         this.isEmriModel['tarih'] = this.tarih;
         this.isEmriModel['degistiren'] = localStorage.getItem('user');
         this.operatorIsEmriService.add(this.isEmriModel).subscribe(
@@ -104,42 +110,62 @@ export class OperatorIsEmriAddComponent implements OnInit {
             console.log(responseError);
           }
         );
-
       });
-     
     } else {
       console.log('Form is not valid');
     }
   }
-  hesapla() {
-    if (this.operatorIsEmriForm.valid) {
-      this.setMakineAndKesit();
+  getOrtalamaVerimlilik() {
+    let toplamVerimlilik = 0;
+    this.ortakMakineler.forEach((makine) => {
+      toplamVerimlilik += makine.verimlilik;
+    });
+    return toplamVerimlilik / this.ortakMakineler.length;
+  }
+  
+
+   async hesapla() {
+    if (this.ortakMakineIsEmriForm.valid) {
+    this.setKesit();
+      let toplamHiz: number = 0;
       let kesitHizi: number;
-      this.makineKesitHizTabloService.getAll().subscribe((response) => {
+    await this.makineKesitHizTabloService.getAll().toPromise().then((response) => {
+      this.ortakMakineler.forEach(makine => {
         kesitHizi = response.data.filter(
-          (x) =>
-            x.makineId == this.selectedMakine.id &&
-            x.kesitCapi == this.selectedKesit
+          (x) => x.makineId == makine.id && x.kesitCapi == this.selectedKesit
         )[0].hiz;
-        this.getTahminiSure(kesitHizi);
+      toplamHiz += kesitHizi;
+
       });
+
+    });
+    this.getTahminiSure(toplamHiz);
     }
   }
 
-  private getTahminiSure(kesitHizi: number) {
-    let gercekKesitHizi = (kesitHizi * this.selectedMakine.verimlilik) / 100;
+  async asyncDeneme() {
+     
+      await this.makineService.getMakinas().toPromise().then(response=>{
+        this.asyncResult=response.data
+        this.ortakMakineler.forEach(element => {
+          console.log("a")
+          
+        });
+      })
+    console.log("b")
+  }
+  private getTahminiSure(toplamHiz: number) {
+    let gercekKesitHizi = (toplamHiz * this.getOrtalamaVerimlilik()) / 100;
     this.tahminiSure =
-      (this.operatorIsEmriForm.value['metraj'] / gercekKesitHizi)/60;
+      this.ortakMakineIsEmriForm.value['toplamMetraj'] / gercekKesitHizi / 60;
+      console.log("toplam hizi = "+toplamHiz+"  verimlilik = "+this.getOrtalamaVerimlilik() + "  " )
     this.toastrService.info(
       'Bu makineyle bu üretim ' + this.tahminiSure + ' saat sürecektir!',
       'Süre Hesaplandı'
     );
   }
 
-  private setMakineAndKesit() {
-    this.selectedMakine = this.makineler.filter(
-      (x) => x.makineIsmi == this.operatorIsEmriForm.value['makineIsmi']
-    )[0];
-    this.selectedKesit = this.operatorIsEmriForm.value['kesitCapi'];
+  private setKesit() {
+    this.selectedKesit = this.ortakMakineIsEmriForm.value['kesitCapi'];
   }
 }
