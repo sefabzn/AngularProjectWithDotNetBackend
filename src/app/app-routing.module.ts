@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { AnaMenuComponent } from './Components/ana-menu/ana-menu.component';
-import { CartSummaryComponent } from './Components/cart-summary/cart-summary.component';
+import { BeginningPageComponent } from './Components/beginning-page/beginning-page.component';
 import { CctvDamarDizaynComponent } from './Components/CCTV/cctv-damar-dizayn/cctv-damar-dizayn.component';
 import { CctvGenelAddComponent } from './Components/CCTV/cctv-genel-add/cctv-genel-add.component';
 import { CctvGenelDizaynComponent } from './Components/CCTV/cctv-genel-dizayn/cctv-genel-dizayn.component';
@@ -38,7 +38,7 @@ import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-se
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  {path:"",pathMatch:"full",component:LoginComponent},
+  {path:"Login",pathMatch:"full",component:LoginComponent},
   {path:"kullanicilar/getByMakineId/:makineId",component:KullaniciComponent},
   {path:"kullanicilar",component:KullaniciComponent},
   {path:"kablouretim",component:KabloUretimComponent, canActivate:[LoginGuard]},
@@ -73,6 +73,8 @@ const routes: Routes = [
   {path:"YanginIsEmirleri",component:YanginIsEmirleriComponent},
   {path:"YanginGenelDizayn/Add",component:YanginGenelAddComponent},
   {path:"Planlama",component:PlanlamaComponent},
+  {path:"",pathMatch:'full',component:BeginningPageComponent},
+  
 
 
 

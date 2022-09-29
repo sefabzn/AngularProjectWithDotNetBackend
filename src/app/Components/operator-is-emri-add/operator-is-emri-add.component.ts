@@ -32,6 +32,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
   ortakMakineler: Makine[];
   asyncResult: Makine[];
   kesitTablosu:MakineKesitHizTablosu[];
+  uygunKesitler:number[];
   constructor(
     private formBuilder: FormBuilder,
     private makineService: MakineService,
@@ -72,9 +73,9 @@ export class OperatorIsEmriAddComponent implements OnInit {
     });
   }
   addToOrtakMakineler(makine: Makine) {
+    this.uygunKesitler=[];
     if (
-      this.ortakMakineler.filter((x) => x.makineIsmi == makine.makineIsmi)
-        .length < 1
+      !this.ortakMakineler.includes(makine)
     ) {
       this.ortakMakineler.push(makine);
     } else {
@@ -82,6 +83,25 @@ export class OperatorIsEmriAddComponent implements OnInit {
         (x) => x.makineIsmi != makine.makineIsmi
       );
     }
+    let size = this.ortakMakineler.length
+    if(size>0){
+      let makineIds=this.ortakMakineler.map(x=>x.id)
+      let kesitler = this.kesitTablosu.filter(x=>makineIds.includes(x.makineId)).map(x=>x.kesitCapi)
+      kesitler.forEach(kesit => {
+        if (kesitler.filter(x=> x==kesit).length==size) { //liste içinde  1 kesit türünün ne kadar tekrar ettigini buluyorum
+          if(!this.uygunKesitler.includes(kesit)){      //eğer listenin boyutuyla aynı sayıda tekrar varsa uygunKesitler listesine ekliyorum
+            this.uygunKesitler.push(kesit)
+          }
+         
+        }
+      });
+
+      
+      this.uygunKesitler.sort()
+      
+    }
+   
+  
   }
 
   verimlilikPayi(makine: Makine) {

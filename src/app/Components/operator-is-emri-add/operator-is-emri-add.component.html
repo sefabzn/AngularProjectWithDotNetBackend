@@ -50,15 +50,9 @@
             />
           </div>
           <label for="kesit">Kesit Çapı</label>
-          <div class="form-group">
-            <input
-              type="number"
-              id="kesit"
-              formControlName="kesitCapi"
-              class="form-control"
-              placeholder="Kesit Çapı"
-            />
-          </div>
+          <select name="kesit" id="kesit" class="form-select">
+            <option *ngFor="let kesit of uygunKesitler">{{kesit}}</option>
+          </select>          
           <label for="kesit">Metraj</label>
           <div class="form-group">
             <input

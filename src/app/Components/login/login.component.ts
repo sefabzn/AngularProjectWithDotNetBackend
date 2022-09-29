@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TokenModel } from 'src/app/Models/tokenModel';
 import { AuthService } from 'src/app/Services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   constructor(private formBuilder:FormBuilder,
     private authService:AuthService,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,
+    private router :Router)
+     { }
 
   ngOnInit(): void {
     this.createLoginForm()
@@ -33,14 +36,14 @@ export class LoginComponent implements OnInit {
         this.toastrService.info(response.expiration)
         localStorage.setItem("token",response.token)
         localStorage.setItem("user",response.userName)
-        return "anamenu"
+        this.router.navigate(['/anamenu'])
       },responseError=>{
         this.toastrService.warning(responseError.error)
         
       })
-      return "s"
+      
     }
-    return "c"
+    
   }
 
 }

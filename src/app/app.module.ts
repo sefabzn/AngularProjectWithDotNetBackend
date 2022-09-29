@@ -49,6 +49,7 @@ import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirler
 import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
 import { MakineFilterPipe } from './pipes/makine-filter.pipe';
 import { PlanlamaComponent } from './Components/planlama/planlama/planlama.component';
+import { BeginningPageComponent } from './Components/beginning-page/beginning-page.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { PlanlamaComponent } from './Components/planlama/planlama/planlama.compo
     YanginSecmeComponent,
     MakineFilterPipe,
     PlanlamaComponent,
+    BeginningPageComponent,
   ],
   imports: [
     BrowserModule,
