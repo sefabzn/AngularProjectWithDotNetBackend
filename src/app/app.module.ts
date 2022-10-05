@@ -4,11 +4,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { KullaniciComponent } from './Components/kullanici/kullanici.component';
 import { NaviComponent } from './Components/navi/navi.component';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
+
+import {NgxPaginationModule} from 'ngx-pagination'
 
 import { ToastrModule } from 'ngx-toastr';
 import { CartSummaryComponent } from './Components/cart-summary/cart-summary.component';
@@ -106,6 +109,7 @@ import { BeginningPageComponent } from './Components/beginning-page/beginning-pa
     }),
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}

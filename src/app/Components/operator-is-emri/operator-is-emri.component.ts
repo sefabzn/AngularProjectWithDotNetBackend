@@ -13,6 +13,11 @@ export class OperatorIsEmriComponent implements OnInit {
   filterText:any
   operatorIsEmirleri:OperatorIsEmri[]
   selectedIsEmri:OperatorIsEmri
+
+  page =1;
+  count=0;
+  tableSize=10;
+  
   constructor(private operatorIsEmriService:OperatorIsEmriService,
   private toastrService:ToastrService) 
   { }
@@ -43,4 +48,8 @@ export class OperatorIsEmriComponent implements OnInit {
       location.reload()
     })
   }
+  onTableDataChange(event:any){
+    this.page =event;
+  }
+  
 }

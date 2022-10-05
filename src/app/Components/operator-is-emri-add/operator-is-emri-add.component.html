@@ -50,8 +50,8 @@
             />
           </div>
           <label for="kesit">Kesit Çapı</label>
-          <select name="kesit" id="kesit" class="form-select">
-            <option *ngFor="let kesit of uygunKesitler">{{kesit}}</option>
+          <select [(ngModel)]="selectedKesit" [ngModelOptions]="{standalone: true}" name="kesit" id="kesit" class="form-select">
+            <option *ngFor="let kesit of uygunKesitler" [value]="kesit">{{kesit}}</option>
           </select>          
           <label for="kesit">Metraj</label>
           <div class="form-group">

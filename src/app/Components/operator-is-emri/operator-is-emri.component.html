@@ -26,7 +26,10 @@
       scope="col"
       (click)="setSelectedIsEmri(isEmri)"
       [class]="setRowColor(isEmri)"
-      *ngFor="let isEmri of operatorIsEmirleri | operatorFilter: filterText"
+      *ngFor="let isEmri of operatorIsEmirleri | operatorFilter: filterText | paginate:{
+        itemsPerPage:tableSize,
+        currentPage:page,
+        totalItems:count}; let i =index"
     >
       <td>{{ isEmri.id }}</td>
       <td>{{ isEmri.makineIsmi }}</td>
@@ -43,6 +46,10 @@
       <td>{{ isEmri.tarih }}</td>
     </tr>
   </tbody>
+  <div>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+    </pagination-controls>
+  </div>
   <div class="row">
     <div class="col col-md-8">
       <br />

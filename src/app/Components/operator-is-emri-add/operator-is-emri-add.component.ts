@@ -61,11 +61,11 @@ export class OperatorIsEmriAddComponent implements OnInit {
   }
   createOperatorIsEmriForm() {
     this.ortakMakineIsEmriForm = this.formBuilder.group({
-      operator: ['', Validators.required],
-      urunIsmi: ['', Validators.required],
-      dizaynTuru: ['', Validators.required],
-      kesitCapi: [0, Validators.min(0.001)],
-      toplamMetraj: [0, Validators.min(1)],
+      operator: [''],
+      urunIsmi: [''],
+      dizaynTuru: [''],
+      kesitCapi: [0],
+      toplamMetraj: [0],
       disCap: [0],
       back: [0],
       ayna: [0],
@@ -114,14 +114,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
   add() {
     let toplamMetraj = this.ortakMakineIsEmriForm.value['toplamMetraj'];
     if (this.ortakMakineIsEmriForm.valid) {
-      this.setKesit();
-      if (
-        !this.checkIfMakineWorksKesit(this.ortakMakineler, this.selectedKesit)
-      ) {
-        console.log(
-          'makinelerden biri veya birdan fazlası bu kesiti işleyemez!'
-        );
-      }
+     
       this.ortakMakineler.forEach((makine) => {
         this.isEmriModel = Object.assign({}, this.ortakMakineIsEmriForm.value);
         this.isEmriModel['metraj'] = Math.round(
@@ -153,7 +146,6 @@ export class OperatorIsEmriAddComponent implements OnInit {
 
   async hesapla() {
     if (this.ortakMakineIsEmriForm.valid) {
-      this.setKesit();
       let toplamHiz: number = 0;
       let kesitHizi: number;
       await this.makineKesitHizTabloService
@@ -161,6 +153,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
         .toPromise()
         .then((response) => {
           this.ortakMakineler.forEach((makine) => {
+            
             kesitHizi = response.data.filter(
               (x) =>
                 x.makineId == makine.id && x.kesitCapi == this.selectedKesit
@@ -208,7 +201,5 @@ export class OperatorIsEmriAddComponent implements OnInit {
     });
     return tamEslesme
   }
-  private setKesit() {
-    this.selectedKesit = this.ortakMakineIsEmriForm.value['kesitCapi'];
-  }
+  
 }
