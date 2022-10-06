@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { KabloUretim } from 'src/app/Models/kabloUretim';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { KabloUretimService } from 'src/app/Services/kablo-uretim.service';
 
 @Component({
@@ -14,6 +15,8 @@ export class KabloUretimComponent implements OnInit {
   finishDate:any
   kablolar:KabloUretim[]=[]
   selectedKablo:KabloUretim
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
   constructor(private kabloUretimService:KabloUretimService,
     private toastrService:ToastrService) { }
 
@@ -55,5 +58,8 @@ export class KabloUretimComponent implements OnInit {
       location.reload()
     })
 
+  }
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
   }
 }

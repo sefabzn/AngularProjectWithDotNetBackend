@@ -116,7 +116,10 @@
           scope="col"
           (click)="setSelectedMakine(makine)"
           [class]="setRowColor(makine)"
-          *ngFor="let makine of makineList"
+          *ngFor="let makine of makineList | paginate:{
+            itemsPerPage:paginationProp.tableSize,
+            currentPage:paginationProp.page,
+            totalItems:paginationProp.count}; let i =index"
         >
           <td>{{ makine.no }}</td>
           <td>{{ makine.makineIsmi }}</td>
@@ -127,6 +130,10 @@
           <td>{{ makine.verimlilik }}</td>
         </tr>
       </tbody>
+      <div>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+        </pagination-controls>
+      </div>
     </table>
   </div>
 </div>

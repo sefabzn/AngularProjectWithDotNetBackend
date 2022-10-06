@@ -19,7 +19,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { GunlukRaporComponent } from './Components/makineGunlukRapor/gunluk-rapor/gunluk-rapor.component';
 import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/operator-is-emri-add.component';
 import { OperatorIsEmriComponent } from './Components/operator-is-emri/operator-is-emri.component';
-import { PlanlamaComponent } from './Components/planlama/planlama/planlama.component';
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
 import { SabitVerilerMenuComponent } from './Components/Sabit Veriler/sabit-veriler-menu/sabit-veriler-menu.component';
@@ -72,7 +71,6 @@ const routes: Routes = [
   {path:"yangindamardizayn/getByYanginGenelDizaynId/:yanginGenelDizaynId",component:YanginDamarDizaynComponent},
   {path:"YanginIsEmirleri",component:YanginIsEmirleriComponent},
   {path:"YanginGenelDizayn/Add",component:YanginGenelAddComponent},
-  {path:"Planlama",component:PlanlamaComponent},
   {path:"",pathMatch:'full',component:BeginningPageComponent},
   
 

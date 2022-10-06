@@ -27,9 +27,9 @@
       (click)="setSelectedIsEmri(isEmri)"
       [class]="setRowColor(isEmri)"
       *ngFor="let isEmri of operatorIsEmirleri | operatorFilter: filterText | paginate:{
-        itemsPerPage:tableSize,
-        currentPage:page,
-        totalItems:count}; let i =index"
+        itemsPerPage:paginationProp.tableSize,
+        currentPage:paginationProp.page,
+        totalItems:paginationProp.count}; let i =index"
     >
       <td>{{ isEmri.id }}</td>
       <td>{{ isEmri.makineIsmi }}</td>

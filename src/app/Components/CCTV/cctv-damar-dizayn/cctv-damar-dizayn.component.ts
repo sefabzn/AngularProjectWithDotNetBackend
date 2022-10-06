@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CctvDamarDizaynKablo } from 'src/app/Models/cctvDamarDizaynKablo';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { CctvDamarDizaynService } from 'src/app/Services/CctvKabloServices/cctv-damar-dizayn.service';
 
 @Component({
@@ -11,10 +12,15 @@ import { CctvDamarDizaynService } from 'src/app/Services/CctvKabloServices/cctv-
   styleUrls: ['./cctv-damar-dizayn.component.css']
 })
 export class CctvDamarDizaynComponent implements OnInit {
-
   selectedKablo:CctvDamarDizaynKablo
   damarlar:CctvDamarDizaynKablo[]=[]
-  constructor(private httpClient:HttpClient,
+  isDamarEkle:boolean=false
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
+  constructor(
     private toastrService:ToastrService,
     private cctvDamarDizaynService:CctvDamarDizaynService,
     private activatedRoute:ActivatedRoute) { }
@@ -52,5 +58,13 @@ export class CctvDamarDizaynComponent implements OnInit {
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload();
     })
+  }
+  setIsDamarEkle(){
+    if(this.isDamarEkle){
+      this.isDamarEkle=false
+    }
+    else{
+      this.isDamarEkle=true
+    }
   }
 }

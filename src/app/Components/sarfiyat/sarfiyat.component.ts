@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { Sarfiyat } from 'src/app/Models/sarfiyat';
 import { SarfiyatService } from 'src/app/Services/sarfiyat.service';
 
@@ -12,6 +13,11 @@ export class SarfiyatComponent implements OnInit {
   selectedDate: any;
   sarfiyatList: Sarfiyat[];
   selectedSarfiyat:Sarfiyat
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private sarfiyatService: SarfiyatService,
     private toastrService:ToastrService) {}
 

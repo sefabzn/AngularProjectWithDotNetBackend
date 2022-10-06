@@ -8,6 +8,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { KesitYapisi } from 'src/app/Models/kesitYapisi';
 import { Makine } from 'src/app/Models/makine';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { KesitYapisiService } from 'src/app/Services/kesit-yapisi.service';
 import { MakineService } from 'src/app/Services/makine.service';
 @Component({
@@ -21,6 +22,11 @@ export class KesitYapisiComponent implements OnInit {
   makineler:Makine[]
   kesiYapisiForm:FormGroup
   kesitYapisiList:KesitYapisi[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private toastrService:ToastrService,
     private makineService:MakineService,
     private kesitYapisiService:KesitYapisiService,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { TelefonGenelDizaynKablo } from 'src/app/Models/telefon-genel-dizayn-kablo';
 import { TelefonGenelDizaynService } from 'src/app/Services/TelefonKabloService/telefon-genel-dizayn.service';
 @Component({
@@ -11,6 +12,11 @@ export class TelefonGenelDizaynComponent implements OnInit {
 
   selectedKablo:TelefonGenelDizaynKablo
   kablolar:TelefonGenelDizaynKablo[]=[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(
     private toastrService:ToastrService,
     private telefonGenelDizaynService:TelefonGenelDizaynService) { }

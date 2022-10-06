@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { GunlukRapor } from 'src/app/Models/gunlukRapor';
 import { ListResponseModel } from 'src/app/Models/listResponseModel';
 import { Makine } from 'src/app/Models/makine';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { GunlukRaporService } from 'src/app/Services/gunluk-rapor.service';
 import { MakineService } from 'src/app/Services/makine.service';
 
@@ -18,6 +19,11 @@ export class GunlukRaporComponent implements OnInit {
   selectedMakine:any
   makineler:Makine[]
   gunlukUretimler:GunlukRapor[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private gunlukRaporService:GunlukRaporService,
     private makineService:MakineService,
     private toastrService:ToastrService) { }

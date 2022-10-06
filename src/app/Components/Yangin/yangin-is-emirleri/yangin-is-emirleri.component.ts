@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { YanginIsEmri } from 'src/app/Models/yangin-is-emri';
 import { YanginIsEmriService } from 'src/app/Services/YanginKabloServices/yangin-is-emri.service';
 @Component({
@@ -12,6 +13,11 @@ export class YanginIsEmirleriComponent implements OnInit {
   selectedIsEmri:YanginIsEmri
   filterText:string
   isEmirleri:YanginIsEmri[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private yanginIsEmriService:YanginIsEmriService,
     private toastrService:ToastrService) { }
 

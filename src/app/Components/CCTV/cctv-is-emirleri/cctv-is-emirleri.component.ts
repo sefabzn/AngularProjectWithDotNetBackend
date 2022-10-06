@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CctvIsEmri } from 'src/app/Models/cctvIsEmri';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { CctvIsEmriService } from 'src/app/Services/CctvKabloServices/cctv-is-emri.service';
 
 @Component({
@@ -13,6 +14,11 @@ export class CctvIsEmirleriComponent implements OnInit {
   selectedIsEmri:CctvIsEmri
   filterText:string
   isEmirleri:CctvIsEmri[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private cctvIsEmriService:CctvIsEmriService,
     private toastrService:ToastrService) { }
 

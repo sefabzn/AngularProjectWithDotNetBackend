@@ -30,7 +30,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr  scope="col"  *ngFor="let uretim of gunlukUretimler">
+      <tr  scope="col"  *ngFor="let uretim of gunlukUretimler | paginate:{
+        itemsPerPage:paginationProp.tableSize,
+        currentPage:paginationProp.page,
+        totalItems:paginationProp.count}; let i =index">
           <td>{{uretim.kabloIsmi}}</td>
           <td>{{uretim.metraj}}</td>
           <td>{{uretim.kesitAlani}}</td>
@@ -51,7 +54,10 @@
         </tr>
       
     </tbody>
-
+    <div>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+      </pagination-controls>
+    </div>
   </table>
 
   

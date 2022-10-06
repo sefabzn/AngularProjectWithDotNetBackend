@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { TelefonIsEmri } from 'src/app/Models/telefon-is-emri';
 import { TelefonIsEmriService } from 'src/app/Services/TelefonKabloService/telefon-is-emri.service';
 @Component({
@@ -12,6 +13,11 @@ export class TelefonIsEmirleriComponent implements OnInit {
   selectedIsEmri:TelefonIsEmri
   filterText:string
   isEmirleri:TelefonIsEmri[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private telefonIsEmriService:TelefonIsEmriService,
     private toastrService:ToastrService) { }
 

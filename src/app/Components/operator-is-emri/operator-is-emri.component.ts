@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OperatorIsEmri } from 'src/app/Models/operatorIsEmri';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { OperatorIsEmriService } from 'src/app/Services/operator-is-emri.service';
 
 @Component({
@@ -13,11 +14,9 @@ export class OperatorIsEmriComponent implements OnInit {
   filterText:any
   operatorIsEmirleri:OperatorIsEmri[]
   selectedIsEmri:OperatorIsEmri
+  paginationProp:paginationProps= new paginationProps(1,0,10)
 
-  page =1;
-  count=0;
-  tableSize=10;
-  
+ 
   constructor(private operatorIsEmriService:OperatorIsEmriService,
   private toastrService:ToastrService) 
   { }
@@ -49,7 +48,7 @@ export class OperatorIsEmriComponent implements OnInit {
     })
   }
   onTableDataChange(event:any){
-    this.page =event;
+    this.paginationProp.page =event;
   }
   
 }

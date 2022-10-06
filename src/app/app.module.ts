@@ -51,8 +51,8 @@ import { YanginGenelDizaynComponent } from './Components/Yangin/yangin-genel-diz
 import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirleri/yangin-is-emirleri.component';
 import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
 import { MakineFilterPipe } from './pipes/makine-filter.pipe';
-import { PlanlamaComponent } from './Components/planlama/planlama/planlama.component';
 import { BeginningPageComponent } from './Components/beginning-page/beginning-page.component';
+import { CctvDamarDizaynAddComponent } from './Components/CCTV/cctv-damar-dizayn-add/cctv-damar-dizayn-add.component';
 
 @NgModule({
   declarations: [
@@ -96,8 +96,8 @@ import { BeginningPageComponent } from './Components/beginning-page/beginning-pa
     YanginIsEmirleriComponent,
     YanginSecmeComponent,
     MakineFilterPipe,
-    PlanlamaComponent,
     BeginningPageComponent,
+    CctvDamarDizaynAddComponent,
   ],
   imports: [
     BrowserModule,

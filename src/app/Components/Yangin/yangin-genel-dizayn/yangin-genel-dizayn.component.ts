@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { YanginGenelDizaynKablo } from 'src/app/Models/yangin-genel-dizayn-kablo';
 import { YanginGenelDizaynService } from 'src/app/Services/YanginKabloServices/yangin-genel-dizayn.service';
 @Component({
@@ -11,6 +12,11 @@ export class YanginGenelDizaynComponent implements OnInit {
 
   selectedKablo:YanginGenelDizaynKablo
   kablolar:YanginGenelDizaynKablo[]=[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(
     private toastrService:ToastrService,
     private yanginGenelDizaynService:YanginGenelDizaynService) { }

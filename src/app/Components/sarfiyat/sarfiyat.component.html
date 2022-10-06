@@ -15,7 +15,10 @@
         scope="col"
         (click)="setSelectedSarfiyat(sarfiyat)"
         [class]="setRowColor(sarfiyat)"
-        *ngFor="let sarfiyat of sarfiyatList"
+        *ngFor="let sarfiyat of sarfiyatList | paginate:{
+          itemsPerPage:paginationProp.tableSize,
+          currentPage:paginationProp.page,
+          totalItems:paginationProp.count}; let i =index"
       >
       <td>{{ sarfiyat.id }}</td>
       <td>{{ sarfiyat.kabloId }}</td>
@@ -29,6 +32,10 @@
       <td>{{ sarfiyat.tarih}}</td>
       </tr>
     </tbody>
+    <div>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+      </pagination-controls>
+    </div>
     <div class="row">
       <div class="col col-md-4">
         <br>

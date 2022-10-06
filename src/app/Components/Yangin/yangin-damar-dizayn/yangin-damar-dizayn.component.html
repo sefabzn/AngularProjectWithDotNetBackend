@@ -22,7 +22,10 @@
         scope="col"
         (click)="setSelectedKablo(damar)"
         [class]="setRowColor(damar)"
-        *ngFor="let damar of damarlar"
+        *ngFor="let damar of damarlar | paginate:{
+          itemsPerPage:paginationProp.tableSize,
+          currentPage:paginationProp.page,
+          totalItems:paginationProp.count}; let i =index"
       >
       <td>{{ damar.id }}</td>
       <td>{{ damar.anaId }}</td>
@@ -37,7 +40,10 @@
       <td>{{ damar.hatve }}</td>
       </tr>
     </tbody>
-   
+    <div>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+      </pagination-controls>
+    </div>
     <div class="row">
       <div class="col col-md-4">
         <br>

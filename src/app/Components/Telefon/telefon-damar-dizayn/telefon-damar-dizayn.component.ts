@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { TelefonDamarDizaynKablo } from 'src/app/Models/telefon-damar-dizayn-kablo';
 import { TelefonDamarDizaynService } from 'src/app/Services/TelefonKabloService/telefon-damar-dizayn.service';
 @Component({
@@ -12,6 +13,11 @@ export class TelefonDamarDizaynComponent implements OnInit {
 
   selectedKablo:TelefonDamarDizaynKablo
   damarlar:TelefonDamarDizaynKablo[]=[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(
     private toastrService:ToastrService,
     private telefonDamarDizaynService:TelefonDamarDizaynService,

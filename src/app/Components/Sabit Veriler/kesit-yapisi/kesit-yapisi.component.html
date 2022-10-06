@@ -153,7 +153,10 @@
           scope="col"
           (click)="setSelectedKesit(kesit)"
           [class]="setRowColor(kesit)"
-          *ngFor="let kesit of kesitYapisiList"
+          *ngFor="let kesit of kesitYapisiList | paginate:{
+            itemsPerPage:paginationProp.tableSize,
+            currentPage:paginationProp.page,
+            totalItems:paginationProp.count}; let i =index"
         >
           <td>{{ kesit.id }}</td>
           <td>{{ kesit.kesitCapi }}</td>
@@ -167,6 +170,10 @@
           <td>{{ kesit.coef }}</td>
         </tr>
       </tbody>
+      <div>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+        </pagination-controls>
+      </div>
     </table>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { cctvGenelDizaynKablo } from 'src/app/Models/cctvGenelDizaynKablo';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { CctvGenelDizaynService } from 'src/app/Services/CctvKabloServices/cctv-genel-dizayn.service';
 
 @Component({
@@ -13,6 +14,11 @@ export class CctvGenelDizaynComponent implements OnInit {
 
   selectedKablo:cctvGenelDizaynKablo
   kablolar:cctvGenelDizaynKablo[]=[]
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(
     private toastrService:ToastrService,
     private cctvGenelDizaynService:CctvGenelDizaynService) { }

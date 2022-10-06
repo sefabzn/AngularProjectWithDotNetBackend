@@ -10,6 +10,7 @@ import { Kullanici } from 'src/app/Models/kullanici';
 import { Makine } from 'src/app/Models/makine';
 import { MakineKesitHizTablosu } from 'src/app/Models/makineKesitHizTablosu';
 import { OperatorIsEmri } from 'src/app/Models/operatorIsEmri';
+import { paginationProps } from 'src/app/Models/paginationProps';
 
 import { KullaniciService } from 'src/app/Services/kullanici.service';
 import { MakineKesitHizTablosuService } from 'src/app/Services/makine-kesit-hiz-tablosu.service';
@@ -33,6 +34,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
   asyncResult: Makine[];
   kesitTablosu:MakineKesitHizTablosu[];
   uygunKesitler:number[];
+
   constructor(
     private formBuilder: FormBuilder,
     private makineService: MakineService,
@@ -176,11 +178,26 @@ export class OperatorIsEmriAddComponent implements OnInit {
         this.getOrtalamaVerimlilik() +
         '  '
     );
+    if (this.tahminiSure<4) {
+      this.toastrService.info(
+     
+        'Bu makineyle bu üretim ' + this.tahminiSure + ' saat sürecektir! 4 saat altındaki çalışma süresi israftır',
+        'Verimsiz Üretim Onay Alın!!!'
+      );
+      
+    }
+    else{
+
     this.toastrService.info(
+     
+      
       'Bu makineyle bu üretim ' + this.tahminiSure + ' saat sürecektir!',
       'Süre Hesaplandı'
+      
     );
   }
+}
+
   getKesitTablosu(){
     this.makineKesitHizTabloService.getAll().subscribe((response) => {
       this.kesitTablosu=response.data

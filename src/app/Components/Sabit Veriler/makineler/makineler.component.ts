@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { paginationProps } from 'src/app/Models/paginationProps';
 @Component({
   selector: 'app-makineler',
   templateUrl: './makineler.component.html',
@@ -18,6 +19,11 @@ export class MakinelerComponent implements OnInit {
   makineList:Makine[]
   makineAddForm:FormGroup
   selectedMakine:Makine
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private formBuilder:FormBuilder,
     private makineService:MakineService,
     private toastrService:ToastrService) { }

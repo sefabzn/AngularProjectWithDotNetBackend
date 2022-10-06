@@ -44,7 +44,10 @@
       scope="col"
       (click)="setSelectedKablo(kablo)"
       [class]="selectedRow(kablo)"
-      *ngFor="let kablo of kablolar"
+      *ngFor="let kablo of kablolar  | paginate:{
+        itemsPerPage:paginationProp.tableSize,
+        currentPage:paginationProp.page,
+        totalItems:paginationProp.count}; let i =index"
     >
       <td>{{ kablo.id }}</td>
       <td>{{ kablo.kabloIsmi }}</td>
@@ -60,6 +63,10 @@
       <td>{{ kablo.tarih }}</td>
     </tr>
   </tbody>
+  <div>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+    </pagination-controls>
+  </div>
   <div class="row">
     <div class="col col-md-4">
       <br>
