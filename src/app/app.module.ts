@@ -53,6 +53,9 @@ import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-se
 import { MakineFilterPipe } from './pipes/makine-filter.pipe';
 import { BeginningPageComponent } from './Components/beginning-page/beginning-page.component';
 import { CctvDamarDizaynAddComponent } from './Components/CCTV/cctv-damar-dizayn-add/cctv-damar-dizayn-add.component';
+import { TelefonDamarDizaynAddComponent } from './Components/Telefon/telefon-damar-dizayn-add/telefon-damar-dizayn-add.component';
+import { YanginDamarDizaynAddComponent } from './Components/Yangin/yangin-damar-dizayn-add/yangin-damar-dizayn-add.component';
+import { KabloUretimUpdateComponent } from './Components/kablo-uretim/kablo-uretim-update/kablo-uretim-update.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +101,9 @@ import { CctvDamarDizaynAddComponent } from './Components/CCTV/cctv-damar-dizayn
     MakineFilterPipe,
     BeginningPageComponent,
     CctvDamarDizaynAddComponent,
+    TelefonDamarDizaynAddComponent,
+    YanginDamarDizaynAddComponent,
+    KabloUretimUpdateComponent,
   ],
   imports: [
     BrowserModule,

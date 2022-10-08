@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { KabloUretim } from '../Models/kabloUretim';
 import { ListResponseModel } from '../Models/listResponseModel';
 import { ResponseModel } from '../Models/responseModel';
+import { SingleResponseModel } from '../Models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,11 @@ export class KabloUretimService {
   getKablolar():Observable<ListResponseModel<KabloUretim>>{
     let apiUrl=this.baseUrl+"KabloUretim/GetAll"
     return this.httpClient.get<ListResponseModel<KabloUretim>>(apiUrl)
+  }
+  getById(kabloId:number){
+    let apiUrl=this.baseUrl+"KabloUretim/GetById?id="+kabloId
+    return this.httpClient.get<SingleResponseModel<KabloUretim>>(apiUrl)
+
   }
   getKablolarbyDateRange(startDate:any,finishDate:any):Observable<ListResponseModel<KabloUretim>>{
     let apiUrl=this.baseUrl+"KabloUretim/GetAllByDateRange?start="+startDate+"&finish="+finishDate
@@ -30,5 +36,8 @@ export class KabloUretimService {
   }
   delete(kablo:KabloUretim){
     return this.httpClient.post<ResponseModel>(this.baseUrl+"KabloUretim/Delete",kablo)
+  }
+  update(kablo:KabloUretim):Observable<ResponseModel>{
+    return this.httpClient.put<ResponseModel>(this.baseUrl+"KabloUretim/Update",kablo)
   }
 }

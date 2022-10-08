@@ -11,6 +11,7 @@ import { TelefonDamarDizaynService } from 'src/app/Services/TelefonKabloService/
 })
 export class TelefonDamarDizaynComponent implements OnInit {
 
+  isDamarEkle:boolean=false
   selectedKablo:TelefonDamarDizaynKablo
   damarlar:TelefonDamarDizaynKablo[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
@@ -57,5 +58,12 @@ export class TelefonDamarDizaynComponent implements OnInit {
       location.reload();
     })
   }
-
+  setIsDamarEkle(){
+    if(this.isDamarEkle){
+      this.isDamarEkle=false
+    }
+    else{
+      this.isDamarEkle=true
+    }
+  }
 }

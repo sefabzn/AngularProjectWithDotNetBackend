@@ -44,16 +44,21 @@
       <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
       </pagination-controls>
     </div>
-    <div class="row">
-      <div class="col col-md-4">
-        <br>
-        <button type="button" routerLink="/telefondamardizayn/add" class="btn btn-outline-primary">Kablo Ekle</button>
-  
-      </div>
-      <div class="col col-md-4">
-        <br>
-        <button  type="button" (click)="deleteKablo(selectedKablo)" class="btn btn-outline-primary">Sil</button>
-      </div>
-    </div>
+   
   </table>
+  <div class="row">
+    <div class="col col-md-4">
+      <br>
+      <button type="button" (click)="setIsDamarEkle()" class="btn btn-outline-primary">Damar Ekle</button>
+  
+    </div>
+    <div class="col col-md-4">
+      <br>
+      <button  type="button" (click)="deleteKablo(selectedKablo)" class="btn btn-outline-primary">Sil</button>
+    </div>
+  </div>
+  <br><br>
+  <div *ngIf="isDamarEkle">
+    <app-telefon-damar-dizayn-add></app-telefon-damar-dizayn-add>
+  </div>
   

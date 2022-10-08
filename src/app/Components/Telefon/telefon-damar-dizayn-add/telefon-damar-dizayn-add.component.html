@@ -1,0 +1,118 @@
+<div class="text-center">
+    <h1 ><i>Damar  Dizayn Veri Girişi Formu</i> </h1>
+  </div>
+  <br>
+  <div class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="telefonDamarAddForm">
+            <label for="damarNo">Damar No</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="damarNo"
+                formControlName="damarNo"
+                class="form-control"
+                placeholder="damarNo"
+              />
+            </div>
+            <label for="renk">Renk</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="renk"
+                formControlName="renk"
+                class="form-control"
+                placeholder="renk"
+              />
+            </div>
+            <label for="imalat">İmalat</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="imalat"
+                formControlName="imalat"
+                class="form-control"
+                placeholder="imalat"
+              />
+            </div>
+            <label for="kesitCapi">Kesit Çapı</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="kesitCapi"
+                formControlName="kesitCapi"
+                class="form-control"
+                placeholder="kesitCapi"
+              />
+            </div>
+            <label for="etk">ETK</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="etk"
+                formControlName="etk"
+                class="form-control"
+                placeholder="etk"
+              />
+            </div>
+            <label for="Cap">Çap</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="Cap"
+                formControlName="cap"
+                class="form-control"
+                placeholder="Cap"
+              />
+            </div>
+            <label for="Back">Back</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="Back"
+                formControlName="back"
+                class="form-control"
+                placeholder="Back"
+              />
+            </div>
+            <label for="Ayna">Ayna</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="Ayna"
+                formControlName="ayna"
+                class="form-control"
+                placeholder="Ayna"
+              />
+            </div>
+            <label for="Kalip">Kalıp</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="Kalip"
+                formControlName="kalip"
+                class="form-control"
+                placeholder="Kalip"
+              />
+            </div>
+            <label for="Hatve">Hatve</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="Hatve"
+                formControlName="hatve"
+                class="form-control"
+                placeholder="Hatve"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

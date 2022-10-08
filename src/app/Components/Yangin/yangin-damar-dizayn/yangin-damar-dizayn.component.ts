@@ -14,7 +14,7 @@ export class YanginDamarDizaynComponent implements OnInit {
   selectedKablo:YanginDamarDizaynKablo
   damarlar:YanginDamarDizaynKablo[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
-
+  isDamarEkle:boolean=false
   onTableDataChange(event:any){
     this.paginationProp.page =event;
   }
@@ -25,8 +25,8 @@ export class YanginDamarDizaynComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
-      if(params["telefonGenelDizaynId"]){
-        this.getKablolarByGenelDizaynId(params["telefonGenelDizaynId"])
+      if(params["yanginGenelDizaynId"]){
+        this.getKablolarByGenelDizaynId(params["yanginGenelDizaynId"])
       }
       else{
         console.log("tüm damarlar")
@@ -57,6 +57,13 @@ export class YanginDamarDizaynComponent implements OnInit {
       location.reload();
     })
   }
-
+  setIsDamarEkle(){
+    if(this.isDamarEkle){
+      this.isDamarEkle=false
+    }
+    else{
+      this.isDamarEkle=true
+    }
+  }
 
 }

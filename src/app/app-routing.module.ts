@@ -13,6 +13,7 @@ import { GrafikMenusuComponent } from './Components/Grafikler/grafik-menusu/graf
 import { SarfiyatGrafikComponent } from './Components/Grafikler/sarfiyat-grafik/sarfiyat-grafik.component';
 import { UretimGrafikComponent } from './Components/Grafikler/uretim-grafik/uretim-grafik.component';
 import { KabloUretimAddComponent } from './Components/kablo-uretim-add/kablo-uretim-add.component';
+import { KabloUretimUpdateComponent } from './Components/kablo-uretim/kablo-uretim-update/kablo-uretim-update.component';
 import { KabloUretimComponent } from './Components/kablo-uretim/kablo-uretim.component';
 import { KullaniciComponent } from './Components/kullanici/kullanici.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -72,6 +73,7 @@ const routes: Routes = [
   {path:"YanginIsEmirleri",component:YanginIsEmirleriComponent},
   {path:"YanginGenelDizayn/Add",component:YanginGenelAddComponent},
   {path:"",pathMatch:'full',component:BeginningPageComponent},
+  {path:"kablouretim/update/:kabloId",component:KabloUretimUpdateComponent},
   
 
 

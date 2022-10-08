@@ -15,6 +15,7 @@ export class KabloUretimComponent implements OnInit {
   finishDate:any
   kablolar:KabloUretim[]=[]
   selectedKablo:KabloUretim
+  selectedKabloId:number
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
   constructor(private kabloUretimService:KabloUretimService,
@@ -42,6 +43,7 @@ export class KabloUretimComponent implements OnInit {
   }
   setSelectedKablo(kablo:KabloUretim){
     this.selectedKablo=kablo
+    this.selectedKabloId=this.selectedKablo.id
   }
   selectedRow(kablo:KabloUretim){
     if  (kablo===this.selectedKablo){
