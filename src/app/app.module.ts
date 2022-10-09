@@ -60,6 +60,7 @@ import { CctvGenelDizaynUpdateComponent } from './Components/CCTV/cctv-genel-diz
 import { CctvDamarDizaynUpdateComponent } from './Components/CCTV/cctv-damar-dizayn-update/cctv-damar-dizayn-update.component';
 import { TelefonGenelDizaynUpdateComponent } from './Components/Telefon/telefon-genel-dizayn-update/telefon-genel-dizayn-update.component';
 import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-genel-dizayn-update/yangin-genel-dizayn-update.component';
+import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-update/operator-is-emri-update.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-gen
     CctvDamarDizaynUpdateComponent,
     TelefonGenelDizaynUpdateComponent,
     YanginGenelDizaynUpdateComponent,
+    OperatorIsEmriUpdateComponent,
   ],
   imports: [
     BrowserModule,

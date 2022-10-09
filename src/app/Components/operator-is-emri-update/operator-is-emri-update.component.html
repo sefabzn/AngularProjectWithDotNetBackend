@@ -1,4 +1,4 @@
-<div class="content row">
+<div *ngIf="isFormCreated == true" class="content row">
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
@@ -10,6 +10,7 @@
               class="form-select"
               size="1"
               formControlName="operator"
+              [value]="isEmri.operator"
             >
               <br />
               <option
@@ -19,6 +20,7 @@
                 {{ kullanici.kullaniciAdi }}
               </option>
             </select>
+
             <br />
             <label for="makineler">Makineler </label><br />
             <div
@@ -27,11 +29,12 @@
             >
               <input
                 class="form-check-input"
-                type="checkbox"
-                name="inlineCheckbox1"
+                type="radio"
+                name="makine"
                 id="makineler"
                 value="option1"
-                (click)="addToOrtakMakineler(makine)"
+                (click)="getKesitler(makine)"
+                [checked]="makine.makineIsmi == isEmri.makineIsmi"
               />
               <label class="form-check-label" for="inlineRadio1">{{
                 makine.makineIsmi
@@ -45,57 +48,64 @@
               formControlName="urunIsmi"
               class="form-control"
               placeholder="Ürün İsmi"
+              [checked]="false"
             />
           </div>
-          <label for="kesit">Dizayn Türü</label>
+          <label for="dizaynTuru">Dizayn Türü</label>
           <div class="form-group">
             <input
               type="text"
-              id="kesit"
+              id="dizaynTuru"
               formControlName="dizaynTuru"
               class="form-control"
               placeholder="Dizayn Türü"
             />
           </div>
           <label for="kesit">Kesit Çapı</label>
-
-          <select formControlName="kesitCapi" id="kesit" class="form-select">
+          <select
+            [value]="isEmri.kesitCapi"
+            name="kesit"
+            id="kesit"
+            class="form-select"
+            size="1"
+            formControlName="kesitCapi"
+          >
             <option value="nan">---------</option>
             <option *ngFor="let kesit of uygunKesitler" [value]="kesit">
               {{ kesit }}
             </option>
           </select>
-          <label for="kesit">Metraj(cm)</label>
+          <label for="kesit">Metraj (cm)</label>
           <div class="form-group">
             <input
               type="number"
               id="kesit"
-              formControlName="toplamMetraj"
+              formControlName="metraj"
               class="form-control"
               placeholder="Metraj"
             />
           </div>
-          <label for="kesit">Dış Çap</label>
+          <label for="disCap">Dış Çap</label>
           <div class="form-group">
             <input
               type="number"
-              id="kesit"
+              id="disCap"
               formControlName="disCap"
               class="form-control"
               placeholder="Dış Çap"
             />
           </div>
-          <label for="kesit">Back</label>
+          <label for="back">Back</label>
           <div class="form-group">
             <input
               type="number"
-              id="kesit"
+              id="back"
               formControlName="back"
               class="form-control"
               placeholder="Back"
             />
           </div>
-          <label for="kesit">Ayna</label>
+          <label for="ayna">Ayna</label>
           <div class="form-group">
             <input
               type="number"
@@ -105,12 +115,12 @@
               placeholder="Ayna"
             />
           </div>
-          <label for="kesit">Kalip</label>
+          <label for="kalip">Kalip</label>
           <div class="form-group">
             <input
               type="text"
-              id="kesit"
-              formControlName="kalip"
+              id="kalip"
+              formControlName="dizaynTuru"
               class="form-control"
               placeholder="Kalip"
             />
@@ -120,8 +130,8 @@
       <div class="card-footer">
         <div class="row">
           <div class="col">
-            <button class="btn btn-fill btn-primary" (click)="add()">
-              Ekle
+            <button class="btn btn-fill btn-primary" (click)="update()">
+              Düzenle
             </button>
           </div>
           <div class="col">

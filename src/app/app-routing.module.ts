@@ -20,6 +20,7 @@ import { KullaniciComponent } from './Components/kullanici/kullanici.component';
 import { LoginComponent } from './Components/login/login.component';
 import { GunlukRaporComponent } from './Components/makineGunlukRapor/gunluk-rapor/gunluk-rapor.component';
 import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/operator-is-emri-add.component';
+import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-update/operator-is-emri-update.component';
 import { OperatorIsEmriComponent } from './Components/operator-is-emri/operator-is-emri.component';
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
@@ -63,6 +64,8 @@ const routes: Routes = [
   {path:"MakineGunlukRapor",component:GunlukRaporComponent},
   {path:"OperatorIsEmirleri",component:OperatorIsEmriComponent},
   {path:"OperatorIsEmri/Add",component:OperatorIsEmriAddComponent},
+  {path:"OperatorIsEmri/Update/:isEmriId",component:OperatorIsEmriUpdateComponent},
+
   {path:"Sarfiyat",component:SarfiyatComponent},
   {path:"UretimPlanlama",component:UretimPlanlamaComponent,},
   {path:"telefonsecme",component:TelefonSecmeComponent},

@@ -10,7 +10,6 @@ import { Kullanici } from 'src/app/Models/kullanici';
 import { Makine } from 'src/app/Models/makine';
 import { MakineKesitHizTablosu } from 'src/app/Models/makineKesitHizTablosu';
 import { OperatorIsEmri } from 'src/app/Models/operatorIsEmri';
-import { paginationProps } from 'src/app/Models/paginationProps';
 
 import { KullaniciService } from 'src/app/Services/kullanici.service';
 import { MakineKesitHizTablosuService } from 'src/app/Services/makine-kesit-hiz-tablosu.service';
@@ -111,14 +110,17 @@ export class OperatorIsEmriAddComponent implements OnInit {
     this.ortakMakineler.forEach((makine) => {
       toplamVerimlilik += makine.verimlilik;
     });
-    return makine.verimlilik / toplamVerimlilik;
+    let verimlilik =makine.verimlilik / toplamVerimlilik;
+    
+    return verimlilik
   }
   add() {
     let toplamMetraj = this.ortakMakineIsEmriForm.value['toplamMetraj'];
     if (this.ortakMakineIsEmriForm.valid) {
      
-      this.ortakMakineler.forEach((makine) => {
+    this.ortakMakineler.forEach((makine) => {
         this.isEmriModel = Object.assign({}, this.ortakMakineIsEmriForm.value);
+        
         this.isEmriModel['metraj'] = Math.round(
           toplamMetraj * this.verimlilikPayi(makine)
         );
@@ -147,6 +149,7 @@ export class OperatorIsEmriAddComponent implements OnInit {
   }
 
   async hesapla() {
+    this.selectedKesit=this.ortakMakineIsEmriForm.value["kesitCapi"]
     if (this.ortakMakineIsEmriForm.valid) {
       let toplamHiz: number = 0;
       let kesitHizi: number;
@@ -155,7 +158,6 @@ export class OperatorIsEmriAddComponent implements OnInit {
         .toPromise()
         .then((response) => {
           this.ortakMakineler.forEach((makine) => {
-            
             kesitHizi = response.data.filter(
               (x) =>
                 x.makineId == makine.id && x.kesitCapi == this.selectedKesit
@@ -210,7 +212,6 @@ export class OperatorIsEmriAddComponent implements OnInit {
     makineler.forEach(makine => {
       eslesenler.push(this.kesitTablosu.filter(x=>x.kesitCapi==kesit && x.makineId==makine.id)[0])
     });
-    console.log(eslesenler.length);
     eslesenler.forEach(element => {
       if (element==undefined) {
         tamEslesme=false

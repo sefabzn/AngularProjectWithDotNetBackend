@@ -33,7 +33,7 @@ export class KabloUretimAddComponent implements OnInit {
     this.kabloUretimAddForm=this.formBuilder.group({
       kabloIsmi:["",Validators.required],
       makineId:["",Validators.required],
-      kesitAlani:["",Validators.required],
+      kesitCapi:["",Validators.required],
       metraj:["",Validators.required],
       kopma:["",Validators.required],
       renkDegisimi:["",Validators.required],

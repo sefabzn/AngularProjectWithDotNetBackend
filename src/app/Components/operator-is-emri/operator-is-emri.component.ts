@@ -14,6 +14,7 @@ export class OperatorIsEmriComponent implements OnInit {
   filterText:any
   operatorIsEmirleri:OperatorIsEmri[]
   selectedIsEmri:OperatorIsEmri
+  selectedIsEmriId:number
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
  
@@ -28,6 +29,7 @@ export class OperatorIsEmriComponent implements OnInit {
   setSelectedIsEmri(isEmri:OperatorIsEmri){
 
     this.selectedIsEmri=isEmri
+    this.selectedIsEmriId=isEmri.id
   }
   setRowColor(isEmri:OperatorIsEmri){
     if (isEmri===this.selectedIsEmri) {

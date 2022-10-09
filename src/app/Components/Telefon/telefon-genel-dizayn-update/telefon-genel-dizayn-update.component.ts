@@ -26,6 +26,7 @@ export class TelefonGenelDizaynUpdateComponent implements OnInit {
      private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    
     this.activatedRoute.params.subscribe((params)=>{
 
       if (params["kabloId"]) {
