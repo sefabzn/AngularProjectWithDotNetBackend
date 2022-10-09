@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <form [formGroup]="makineAddForm">
+            <form [formGroup]="makineForm">
               <div class="form-group">
                 <label for="no">No</label>
                 <input
@@ -90,6 +90,16 @@
                   class="btn btn-outline-primary"
                 >
                   Sil
+                </button>
+              </div>
+              <div class="col col-md-4">
+                <br />
+                <button
+                  type="button"
+                  (click)="update(selectedMakine)"
+                  class="btn btn-outline-primary"
+                >
+                  Güncelle
                 </button>
               </div>
             </div>

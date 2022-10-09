@@ -22,7 +22,7 @@ export class KesitYapisiComponent implements OnInit {
   makineler:Makine[]
   kesiYapisiForm:FormGroup
   kesitYapisiList:KesitYapisi[]
-  paginationProp:paginationProps= new paginationProps(1,0,10)
+  paginationProp:paginationProps= new paginationProps(1,0,15)
 
   onTableDataChange(event:any){
     this.paginationProp.page =event;
@@ -36,21 +36,33 @@ export class KesitYapisiComponent implements OnInit {
     this.CreateKesitYapisiForm()
     this.getKesitYapisiList()
   }
+
+  CreateKesitYapisiUpdateForm(kesitYapisi:KesitYapisi){
+    this.kesiYapisiForm=this.formbuilder.group({
+      kesitCapi:[kesitYapisi.kesitCapi,Validators.required],
+      back:[kesitYapisi.back,Validators.required],
+      kilcalDamarSayisi:[kesitYapisi.kilcalDamarSayisi,Validators.required],
+      kilcalDamarCapi:[kesitYapisi.kilcalDamarCapi,Validators.required],
+      hatve:[kesitYapisi.hatve,Validators.required],
+      disCap:[kesitYapisi.disCap,Validators.required],
+      ayna:[kesitYapisi.ayna,Validators.required],
+    })
+  }
   CreateKesitYapisiForm(){
     this.kesiYapisiForm=this.formbuilder.group({
-      kesit:["",Validators.required],
+      kesitCapi:["",Validators.required],
       back:["",Validators.required],
       kilcalDamarSayisi:["",Validators.required],
       kilcalDamarCapi:["",Validators.required],
       hatve:["",Validators.required],
       disCap:["",Validators.required],
       ayna:["",Validators.required],
-      makineIsmi:[""],
-      hiz:[0]
+     
     })
   }
   setSelectedKesit(kesit:KesitYapisi){
     this.selectedKesit=kesit
+    this.CreateKesitYapisiUpdateForm(kesit)
   }
   setRowColor(kesit:KesitYapisi){
     if (kesit===this.selectedKesit) {
@@ -63,6 +75,27 @@ export class KesitYapisiComponent implements OnInit {
       this.makineler=respond.data
       console.log(this.makineler)
     })
+  }
+  update(kesitYapisi:KesitYapisi){
+    if(this.kesiYapisiForm.valid){
+      let kesitModel =Object.assign({},this.kesiYapisiForm.value);
+      kesitModel["Id"]=kesitYapisi.id;
+      this.kesitYapisiService.update(kesitModel).subscribe(data=>{
+        this.toastrService.success(data.message,"Başarılı")
+        this.getKesitYapisiList()
+       
+      },responseError=>{
+        if (responseError.error.ValidationErrors.length>0){
+          for (let i = 0; i <responseError.error.ValidationErrors.length ; i++) {
+            this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage,"Doğrulama Hatası")
+  
+          }
+        }
+      })
+    }
+    else{
+      this.toastrService.error("Form girişi hatalı","Dikkat")
+    }
   }
   Add(){
     if(this.kesiYapisiForm.valid){

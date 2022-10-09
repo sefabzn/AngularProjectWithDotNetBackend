@@ -13,7 +13,7 @@
                 <input
                   type="text"
                   id="kesit"
-                  formControlName="kesit"
+                  formControlName="kesitCapi"
                   class="form-control"
                   placeholder="kesit"
                 />
@@ -79,28 +79,8 @@
                   placeholder="ayna"
                 />
               </div>
-              <label for="makineIsmi">Makine</label>
-              <div class="form-group">
-                <select
-                  formControlName="makineIsmi"
-                  class="form-select"
-                  size="1"
-                >
-                  <option value="">makine1</option>
-                </select>
-              </div>
-
-              <label for="hiz">Hız</label>
-              <div class="form-group">
-                <input
-                  style="height: 30px"
-                  type="number"
-                  id="hiz"
-                  formControlName="hiz"
-                  class="form-control"
-                  placeholder="hiz"
-                />
-              </div>
+            
+             
             </form>
           </div>
           <div class="card-footer">
@@ -115,7 +95,9 @@
                   Kablo Ekle
                 </button>
               </div>
-              <div class="col-md-3"></div>
+              <div class="col col-md-2">
+
+              </div>
               <div class="col col-md-4">
                 <br />
                 <button
@@ -124,6 +106,16 @@
                   class="btn btn-outline-primary"
                 >
                   Sil
+                </button>
+              </div>
+              <div class="col col-md-4">
+                <br />
+                <button
+                  type="button"
+                  (click)="update(selectedKesit)"
+                  class="btn btn-outline-primary"
+                >
+                  Güncelle
                 </button>
               </div>
             </div>

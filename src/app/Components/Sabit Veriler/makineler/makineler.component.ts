@@ -17,7 +17,7 @@ import { paginationProps } from 'src/app/Models/paginationProps';
 export class MakinelerComponent implements OnInit {
 
   makineList:Makine[]
-  makineAddForm:FormGroup
+  makineForm:FormGroup
   selectedMakine:Makine
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
@@ -32,8 +32,32 @@ export class MakinelerComponent implements OnInit {
     this.CreateMakineAddForm()
     this.getMakineler()
   }
+
+  update(makine:Makine){
+
+    if(this.makineForm.valid){
+      let makinaModel =Object.assign({},this.makineForm.value);
+      makinaModel["Id"]=makine.id
+      this.makineService.update(makinaModel).subscribe(data=>{
+        this.toastrService.success(data.message,"Başarılı")
+        this.getMakineler()
+       
+      },responseError=>{
+        if (responseError.error.ValidationErrors.length>0){
+          for (let i = 0; i <responseError.error.ValidationErrors.length ; i++) {
+            this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage,"Doğrulama Hatası")
+  
+          }
+        }
+      })
+    }
+    else{
+      this.toastrService.error("Form girişi hatalı","Dikkat")
+    }
+  }
   setSelectedMakine(makine:Makine){
     this.selectedMakine=makine
+    this.CreateMakineUpdateForm(makine)
   }
   setRowColor(makine:Makine){
     if (makine===this.selectedMakine) {
@@ -41,8 +65,19 @@ export class MakinelerComponent implements OnInit {
     }
     return ""
   }
+  CreateMakineUpdateForm(makine:Makine){
+    this.makineForm=this.formBuilder.group({
+      no:[makine.no,Validators.required],
+      makineIsmi:[makine.makineIsmi,Validators.required],
+      isinma:[makine.isinma,Validators.required],
+      renkDegisimi:[makine.renkDegisimi,Validators.required],
+      kopma:[makine.kopma,Validators.required],
+      kesitDegisimi:[makine.kesitDegisimi,Validators.required],
+    })
+
+  }
   CreateMakineAddForm(){
-    this.makineAddForm=this.formBuilder.group({
+    this.makineForm=this.formBuilder.group({
       no:["",Validators.required],
       makineIsmi:["",Validators.required],
       isinma:["",Validators.required],
@@ -62,8 +97,8 @@ export class MakinelerComponent implements OnInit {
     console.log("temp")
   }
   Add(){
-    if(this.makineAddForm.valid){
-      let makinaModel =Object.assign({},this.makineAddForm.value);
+    if(this.makineForm.valid){
+      let makinaModel =Object.assign({},this.makineForm.value);
       this.makineService.add(makinaModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
         this.getMakineler()
@@ -83,6 +118,7 @@ export class MakinelerComponent implements OnInit {
   }
   deleteMakine(makine:Makine){
 
+    console.log(makine)
     this.makineService.delete(makine).subscribe(response=>{
       location.reload()
       this.toastrService.info(response.message,"İşlem Başarılı")
