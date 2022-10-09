@@ -11,6 +11,7 @@ import { TelefonGenelDizaynService } from 'src/app/Services/TelefonKabloService/
 export class TelefonGenelDizaynComponent implements OnInit {
 
   selectedKablo:TelefonGenelDizaynKablo
+  selectedKabloId:number
   kablolar:TelefonGenelDizaynKablo[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
@@ -27,6 +28,7 @@ export class TelefonGenelDizaynComponent implements OnInit {
 
   setSelectedKablo(kablo:TelefonGenelDizaynKablo){
     this.selectedKablo=kablo
+    this.selectedKabloId=kablo.id
   }
   setRowColor(kablo){
     if (kablo===this.selectedKablo) {

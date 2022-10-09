@@ -16,6 +16,7 @@ export class GunlukRaporService {
     let apiUrl=this.baseUrl+"Makineler/GetGunlukRaporlar?makineIsmi="+makineIsmi+"&Tarih="+tarih
     return this.httpClient.get<ListResponseModel<GunlukRapor>>(apiUrl)
   }
+  
   delete(rapor:GunlukRapor):Observable<ResponseModel>
   {
     let apiUrl=this.baseUrl+"Makineler/DeleteGunlukRaporlar"

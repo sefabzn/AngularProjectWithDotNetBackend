@@ -29,16 +29,22 @@
       scope="col"
       (click)="setSelectedKablo(kablo)"
       [class]="setRowColor(kablo)"
-      *ngFor="let kablo of kablolar| paginate:{
-        itemsPerPage:paginationProp.tableSize,
-        currentPage:paginationProp.page,
-        totalItems:paginationProp.count}; let i =index"
+      *ngFor="
+        let kablo of kablolar
+          | paginate
+            : {
+                itemsPerPage: paginationProp.tableSize,
+                currentPage: paginationProp.page,
+                totalItems: paginationProp.count
+              };
+        let i = index
+      "
     >
       <td>{{ kablo.id }}</td>
       <td>{{ kablo.kablo }}</td>
-      <td>{{kablo.kesitCapi}}</td>
-      <td>{{kablo.core}}</td>
-      <td>{{kablo.hatve}}</td>
+      <td>{{ kablo.kesitCapi }}</td>
+      <td>{{ kablo.core }}</td>
+      <td>{{ kablo.hatve }}</td>
       <td>{{ kablo.orgu }}</td>
       <td>{{ kablo.orguTelYapisi }}</td>
       <td>{{ kablo.polyesterOlcusu }}</td>
@@ -66,7 +72,11 @@
     </tr>
   </tbody>
   <div>
-    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
     </pagination-controls>
   </div>
   <div class="row">
@@ -89,6 +99,16 @@
         class="btn btn-outline-primary"
       >
         Sil
+      </button>
+    </div>
+    <div class="col col-md-4">
+      <br />
+      <button
+        type="button"
+        routerLink="/CctvGenelDizayn/update/{{ selectedKabloId }}"
+        class="btn btn-outline-primary"
+      >
+        Düzenle
       </button>
     </div>
   </div>

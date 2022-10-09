@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../Models/listResponseModel';
 import { OperatorIsEmri } from '../Models/operatorIsEmri';
 import { ResponseModel } from '../Models/responseModel';
+import { SingleResponseModel } from '../Models/singleResponseModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,9 @@ export class OperatorIsEmriService {
 
     return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
   }
+  update(isEmri:OperatorIsEmri):Observable<ResponseModel>{
+    return this.httpClient.put<ResponseModel>(this.baseUrl+"OperatorIsEmri/Update",isEmri)
+  }
   getIsEmirleri():Observable<ListResponseModel<OperatorIsEmri>>{
     let apiUrl=this.baseUrl+"OperatorIsEmri/GetAll"
     return this.httpClient.get<ListResponseModel<OperatorIsEmri>>(apiUrl);
@@ -25,5 +29,10 @@ export class OperatorIsEmriService {
   {
     let apiUrl=this.baseUrl+"OperatorIsEmri/Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
+  }
+  getById(kabloId:number){
+    let apiUrl=this.baseUrl+"OperatorIsEmri/GetById?id="+kabloId
+    return this.httpClient.get<SingleResponseModel<OperatorIsEmri>>(apiUrl)
+
   }
 }

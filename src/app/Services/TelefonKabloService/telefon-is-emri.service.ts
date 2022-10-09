@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/Models/listResponseModel';
 import { ResponseModel } from 'src/app/Models/responseModel';
+import { SingleResponseModel } from 'src/app/Models/singleResponseModel';
 import { TelefonIsEmri } from 'src/app/Models/telefon-is-emri';
 HttpClient
 @Injectable({
@@ -20,6 +21,11 @@ export class TelefonIsEmriService {
   addIsEmri(isEmri:TelefonIsEmri):Observable<ResponseModel>{
     let apiUrl = this.baseUrl+"Telefon/TelefonIsEmri/Add"
     return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
+  }
+  getById(kabloId:number){
+    let apiUrl=this.baseUrl+"Telefon/TelefonIsEmri/GetById?id="+kabloId
+    return this.httpClient.get<SingleResponseModel<TelefonIsEmri>>(apiUrl)
+
   }
   deleteIsEmri(isEmri:TelefonIsEmri):Observable<ResponseModel>
   {

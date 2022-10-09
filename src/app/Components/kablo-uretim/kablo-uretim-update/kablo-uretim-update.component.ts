@@ -53,7 +53,7 @@ export class KabloUretimUpdateComponent implements OnInit {
     this.kabloUretimUpdateForm=this.formBuilder.group({
       kabloIsmi:[this.kablo.kabloIsmi,Validators.required],
       makineId:[this.kablo.makineId,Validators.required],
-      kesitAlani:[this.kablo.kesitCapi,Validators.required],
+      kesitCapi:[this.kablo.kesitCapi,Validators.required],
       metraj:[this.kablo.metraj,Validators.required],
       kopma:[this.kablo.kopma,Validators.required],
       renkDegisimi:[this.kablo.renkDegisimi,Validators.required],

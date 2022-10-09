@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../Models/listResponseModel';
 import { KesitYapisi } from '../Models/kesitYapisi';
 import { ResponseModel } from '../Models/responseModel';
+import { SingleResponseModel } from '../Models/singleResponseModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,5 +23,13 @@ export class KesitYapisiService {
   {
     let apiUrl=this.baseUrl+"KesitYapisi/Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,kesit)
+  }
+  getById(kabloId:number){
+    let apiUrl=this.baseUrl+"KesitYapisi/GetById?id="+kabloId
+    return this.httpClient.get<SingleResponseModel<KesitYapisi>>(apiUrl)
+
+  }
+  update(kesit:KesitYapisi):Observable<ResponseModel>{
+    return this.httpClient.put<ResponseModel>(this.baseUrl+"KesitYapisi/Update",kesit)
   }
 }

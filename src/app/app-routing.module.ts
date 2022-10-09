@@ -4,6 +4,7 @@ import { AnaMenuComponent } from './Components/ana-menu/ana-menu.component';
 import { BeginningPageComponent } from './Components/beginning-page/beginning-page.component';
 import { CctvDamarDizaynComponent } from './Components/CCTV/cctv-damar-dizayn/cctv-damar-dizayn.component';
 import { CctvGenelAddComponent } from './Components/CCTV/cctv-genel-add/cctv-genel-add.component';
+import { CctvGenelDizaynUpdateComponent } from './Components/CCTV/cctv-genel-dizayn-update/cctv-genel-dizayn-update.component';
 import { CctvGenelDizaynComponent } from './Components/CCTV/cctv-genel-dizayn/cctv-genel-dizayn.component';
 import { CctvIsEmirleriComponent } from './Components/CCTV/cctv-is-emirleri/cctv-is-emirleri.component';
 import { CctvSecmeComponent } from './Components/CCTV/cctv-secme/cctv-secme.component';
@@ -26,12 +27,14 @@ import { SabitVerilerMenuComponent } from './Components/Sabit Veriler/sabit-veri
 import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
 import { TelefonDamarDizaynComponent } from './Components/Telefon/telefon-damar-dizayn/telefon-damar-dizayn.component';
 import { TelefonGenelAddComponent } from './Components/Telefon/telefon-genel-add/telefon-genel-add.component';
+import { TelefonGenelDizaynUpdateComponent } from './Components/Telefon/telefon-genel-dizayn-update/telefon-genel-dizayn-update.component';
 import { TelefonGenelDizaynComponent } from './Components/Telefon/telefon-genel-dizayn/telefon-genel-dizayn.component';
 import { TelefonIsEmirleriComponent } from './Components/Telefon/telefon-is-emirleri/telefon-is-emirleri.component';
 import { TelefonSecmeComponent } from './Components/Telefon/telefon-secme/telefon-secme.component';
 import { UretimPlanlamaComponent } from './Components/uretim-planlama/uretim-planlama.component';
 import { YanginDamarDizaynComponent } from './Components/Yangin/yangin-damar-dizayn/yangin-damar-dizayn.component';
 import { YanginGenelAddComponent } from './Components/Yangin/yangin-genel-add/yangin-genel-add.component';
+import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-genel-dizayn-update/yangin-genel-dizayn-update.component';
 import { YanginGenelDizaynComponent } from './Components/Yangin/yangin-genel-dizayn/yangin-genel-dizayn.component';
 import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirleri/yangin-is-emirleri.component';
 import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
@@ -74,8 +77,9 @@ const routes: Routes = [
   {path:"YanginGenelDizayn/Add",component:YanginGenelAddComponent},
   {path:"",pathMatch:'full',component:BeginningPageComponent},
   {path:"kablouretim/update/:kabloId",component:KabloUretimUpdateComponent},
-  
-
+  {path:"CctvGenelDizayn/update/:kabloId",component:CctvGenelDizaynUpdateComponent},
+  {path:"TelefonGenelDizayn/update/:kabloId",component:TelefonGenelDizaynUpdateComponent},
+  {path:"YanginGenelDizayn/update/:kabloId",component:YanginGenelDizaynUpdateComponent},
 
 
 ];

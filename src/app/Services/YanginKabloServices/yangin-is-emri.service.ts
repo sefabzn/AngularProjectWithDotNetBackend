@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/Models/listResponseModel';
 import { ResponseModel } from 'src/app/Models/responseModel';
+import { SingleResponseModel } from 'src/app/Models/singleResponseModel';
 import { YanginIsEmri } from 'src/app/Models/yangin-is-emri';
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,10 @@ export class YanginIsEmriService {
   {
     let apiUrl=this.baseUrl+"Yangin/YanginIsEmri/Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
+  }
+  getById(kabloId:number){
+    let apiUrl=this.baseUrl+"Yangin/YanginIsEmri/GetById?id="+kabloId
+    return this.httpClient.get<SingleResponseModel<YanginIsEmri>>(apiUrl)
+
   }
 }

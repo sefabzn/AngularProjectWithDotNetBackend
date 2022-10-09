@@ -9,7 +9,7 @@ import { YanginGenelDizaynService } from 'src/app/Services/YanginKabloServices/y
   styleUrls: ['./yangin-genel-dizayn.component.css']
 })
 export class YanginGenelDizaynComponent implements OnInit {
-
+  selectedKabloId:number
   selectedKablo:YanginGenelDizaynKablo
   kablolar:YanginGenelDizaynKablo[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
@@ -27,6 +27,7 @@ export class YanginGenelDizaynComponent implements OnInit {
 
   setSelectedKablo(kablo:YanginGenelDizaynKablo){
     this.selectedKablo=kablo
+    this.selectedKabloId=kablo.id
   }
   setRowColor(kablo){
     if (kablo===this.selectedKablo) {

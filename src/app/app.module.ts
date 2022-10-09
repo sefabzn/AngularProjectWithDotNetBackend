@@ -56,6 +56,10 @@ import { CctvDamarDizaynAddComponent } from './Components/CCTV/cctv-damar-dizayn
 import { TelefonDamarDizaynAddComponent } from './Components/Telefon/telefon-damar-dizayn-add/telefon-damar-dizayn-add.component';
 import { YanginDamarDizaynAddComponent } from './Components/Yangin/yangin-damar-dizayn-add/yangin-damar-dizayn-add.component';
 import { KabloUretimUpdateComponent } from './Components/kablo-uretim/kablo-uretim-update/kablo-uretim-update.component';
+import { CctvGenelDizaynUpdateComponent } from './Components/CCTV/cctv-genel-dizayn-update/cctv-genel-dizayn-update.component';
+import { CctvDamarDizaynUpdateComponent } from './Components/CCTV/cctv-damar-dizayn-update/cctv-damar-dizayn-update.component';
+import { TelefonGenelDizaynUpdateComponent } from './Components/Telefon/telefon-genel-dizayn-update/telefon-genel-dizayn-update.component';
+import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-genel-dizayn-update/yangin-genel-dizayn-update.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +108,10 @@ import { KabloUretimUpdateComponent } from './Components/kablo-uretim/kablo-uret
     TelefonDamarDizaynAddComponent,
     YanginDamarDizaynAddComponent,
     KabloUretimUpdateComponent,
+    CctvGenelDizaynUpdateComponent,
+    CctvDamarDizaynUpdateComponent,
+    TelefonGenelDizaynUpdateComponent,
+    YanginGenelDizaynUpdateComponent,
   ],
   imports: [
     BrowserModule,

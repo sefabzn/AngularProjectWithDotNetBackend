@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Kullanici } from '../Models/kullanici';
 import { ListResponseModel } from '../Models/listResponseModel';
 import { ResponseModel } from '../Models/responseModel';
+import { SingleResponseModel } from '../Models/singleResponseModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,5 +27,13 @@ export class KullaniciService {
   {
     let apiUrl=this.baseUrl+"Kullanicilar/Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,kullanici)
+  }
+  getById(kabloId:number){
+    let apiUrl=this.baseUrl+"Kullanicilar/GetById?id="+kabloId
+    return this.httpClient.get<SingleResponseModel<Kullanici>>(apiUrl)
+
+  }
+  update(kullanici:Kullanici):Observable<ResponseModel>{
+    return this.httpClient.put<ResponseModel>(this.baseUrl+"Kullanicilar/Update",kullanici)
   }
 }

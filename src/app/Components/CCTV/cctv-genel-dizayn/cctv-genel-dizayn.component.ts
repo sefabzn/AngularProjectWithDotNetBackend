@@ -11,7 +11,7 @@ import { CctvGenelDizaynService } from 'src/app/Services/CctvKabloServices/cctv-
 })
 export class CctvGenelDizaynComponent implements OnInit {
 
-
+  selectedKabloId:number
   selectedKablo:cctvGenelDizaynKablo
   kablolar:cctvGenelDizaynKablo[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
@@ -29,6 +29,7 @@ export class CctvGenelDizaynComponent implements OnInit {
 
   setSelectedKablo(kablo:cctvGenelDizaynKablo){
     this.selectedKablo=kablo
+    this.selectedKabloId=kablo.id
   }
   setRowColor(kablo){
     if (kablo===this.selectedKablo) {
