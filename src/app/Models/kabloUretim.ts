@@ -2,15 +2,16 @@ export interface KabloUretim{
     id:number
     kabloIsmi:string
     makineId:number
-    kesitAlani:number
+    kesitCapi:number
     metraj:number
     kopma:number
     renkDegisimi:number
     genelAriza:number
     hurdaPvc:number
     hurdaCu:number
-    calismaSaati:number
+    calismaSuresi:number
     kayipZaman:number
     verimlilik:number
     tarih:string
+    degistiren:string
 }

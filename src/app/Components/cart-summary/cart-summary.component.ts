@@ -24,6 +24,6 @@ export class CartSummaryComponent implements OnInit {
   }
   removeFromCart(kullanici:Kullanici){
     this.cartService.removeFromCart(kullanici)
-    this.toastrService.error("Sepetten Silindi",kullanici.kullanici_Adi + " Sepetten Silindi")
+    this.toastrService.error("Sepetten Silindi",kullanici.kullaniciAdi + " Sepetten Silindi")
   }
 }

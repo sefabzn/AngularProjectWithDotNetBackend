@@ -1,0 +1,50 @@
+  <br>
+  <div class="text-center">
+    <h1>Sarfiyat Tablosu </h1>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Kablo İsmi</th>
+        <th scope="col">Tarih</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        scope="col"
+        (click)="setSelectedSarfiyat(sarfiyat)"
+        [class]="setRowColor(sarfiyat)"
+        *ngFor="let sarfiyat of sarfiyatList | paginate:{
+          itemsPerPage:paginationProp.tableSize,
+          currentPage:paginationProp.page,
+          totalItems:paginationProp.count}; let i =index"
+      >
+      <td>{{ sarfiyat.id }}</td>
+      <td>{{ sarfiyat.kabloId }}</td>
+      <td>{{ sarfiyat.kesitCapi }}</td>
+      <td>{{ sarfiyat.makineId }}</td>
+      <td>{{ sarfiyat.kullanilanPvc }}</td>
+      <td>{{ sarfiyat.kullanilanCu}}</td>
+      <td>{{ sarfiyat.hurdaPvc }}</td>
+      <td>{{ sarfiyat.hurdaCu}}</td>
+      <td>{{ sarfiyat.maliyet}}</td>
+      <td>{{ sarfiyat.tarih}}</td>
+      </tr>
+    </tbody>
+    <div>
+      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+      </pagination-controls>
+    </div>
+    <div class="row">
+      <div class="col col-md-4">
+        <br>
+        <button type="button" routerLink="/kablouretim/add" class="btn btn-outline-primary">Kablo Ekle</button>
+      </div>
+      <div class="col col-md-4">
+        <br>
+        <button type="button" (click)="delete(selectedSarfiyat)" class="btn btn-outline-primary">Sil</button>
+      </div>
+    </div>
+  </table>
+  

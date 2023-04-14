@@ -1,0 +1,85 @@
+<div class="text-center"><H2>Operatör İş Emirleri</H2></div>
+<br /><br />
+<br />
+<input type="text" placeholder="Operatör" [(ngModel)]="filterText" />
+<br /><br />
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Makine ismi</th>
+      <th scope="col">Operatör</th>
+      <th scope="col">Ürün İsmi</th>
+      <th scope="col">Dizayn Türü</th>
+      <th scope="col">Kesit Çapı</th>
+      <th scope="col">Metraj</th>
+      <th scope="col">Dış Çap</th>
+      <th scope="col">Back</th>
+      <th scope="col">Ayna</th>
+      <th scope="col">Kalıp</th>
+      <th scope="col">Teorik Maliyet</th>
+      <th scope="col">Tarih</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      scope="col"
+      (click)="setSelectedIsEmri(isEmri)"
+      [class]="setRowColor(isEmri)"
+      *ngFor="let isEmri of operatorIsEmirleri | operatorFilter: filterText | paginate:{
+        itemsPerPage:paginationProp.tableSize,
+        currentPage:paginationProp.page,
+        totalItems:paginationProp.count}; let i =index"
+    >
+      <td>{{ isEmri.id }}</td>
+      <td>{{ isEmri.makineIsmi }}</td>
+      <td>{{ isEmri.operator }}</td>
+      <td>{{ isEmri.urunIsmi }}</td>
+      <td>{{ isEmri.dizaynTuru }}</td>
+      <td>{{ isEmri.kesitCapi }}</td>
+      <td>{{ isEmri.metraj }}</td>
+      <td>{{ isEmri.disCap }}</td>
+      <td>{{ isEmri.back }}</td>
+      <td>{{ isEmri.ayna }}</td>
+      <td>{{ isEmri.kalip }}</td>
+      <td>{{ isEmri.teorikMaliyet }}</td>
+      <td>{{ isEmri.tarih }}</td>
+    </tr>
+  </tbody>
+  <div>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+    </pagination-controls>
+  </div>
+  <div class="row">
+    <div class="col col-md-8">
+      <br />
+      <button
+        type="button"
+        routerLink="/OperatorIsEmri/Add"
+        class="btn btn-outline-primary"
+      >
+        İş Emri Ekle 
+      </button>
+    </div>
+    <div class="col col-md-4">
+      <br />
+      <button
+        type="button"
+        (click)="deleteIsEmri(selectedIsEmri)"
+        class="btn btn-outline-primary"
+      >
+        Sil
+      </button>
+    </div>
+    <div class="col col-md-4">
+      <br />
+      <button
+        type="button"
+        routerLink="/OperatorIsEmri/Update/{{selectedIsEmriId}}"
+        class="btn btn-outline-primary"
+      >
+        Düzenle
+      </button>
+    </div>
+  </div>
+</table>

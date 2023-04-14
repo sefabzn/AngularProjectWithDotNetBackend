@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { KabloUretim } from 'src/app/Models/kabloUretim';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { KabloUretimService } from 'src/app/Services/kablo-uretim.service';
 
 @Component({
@@ -10,8 +11,13 @@ import { KabloUretimService } from 'src/app/Services/kablo-uretim.service';
 })
 export class KabloUretimComponent implements OnInit {
 
-  selectedDate:any
+  startDate:any
+  finishDate:any
   kablolar:KabloUretim[]=[]
+  selectedKablo:KabloUretim
+  selectedKabloId:number
+  paginationProp:paginationProps= new paginationProps(1,0,10)
+
   constructor(private kabloUretimService:KabloUretimService,
     private toastrService:ToastrService) { }
 
@@ -24,16 +30,38 @@ export class KabloUretimComponent implements OnInit {
       this.kablolar=response.data
     })
   }
-  getKablolarByDate(date:string){
-    if(date){
-      this.kabloUretimService.getKablolarbyDate(date).subscribe(response=>{
+  getKablolarByDateRange(startDate:string,finishDate:string){
+    if(startDate && finishDate){
+      this.kabloUretimService.getKablolarbyDateRange(startDate,finishDate).subscribe(response=>{
         this.kablolar=response.data
       })
     }
     else{
-      this.toastrService.error("Geçerli Bir Tarih Giriniz","Tarih Hatası")
+      this.getKablolar();
     }
     
   }
+  setSelectedKablo(kablo:KabloUretim){
+    this.selectedKablo=kablo
+    this.selectedKabloId=this.selectedKablo.id
+  }
+  selectedRow(kablo:KabloUretim){
+    if  (kablo===this.selectedKablo){
 
+      return "table-primary"
+    }
+    else{
+      return ""
+    }
+  }
+  deleteKablo(kablo:KabloUretim){
+    this.kabloUretimService.delete(kablo).subscribe(response=>{
+      this.toastrService.info(response.message,"Silme Başarılı")
+      location.reload()
+    })
+
+  }
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
 }

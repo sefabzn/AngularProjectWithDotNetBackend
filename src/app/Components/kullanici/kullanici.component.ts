@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Kullanici } from 'src/app/Models/kullanici';
+import { paginationProps } from 'src/app/Models/paginationProps';
 import { CartService } from 'src/app/Services/cart.service';
 import { KullaniciService } from 'src/app/Services/kullanici.service';
 @Component({
@@ -14,6 +15,11 @@ export class KullaniciComponent implements OnInit {
 
   filterText="";
   kullanicilar:Kullanici[]=[]
+  paginationProp = new paginationProps(1,0,10);
+
+  onTableDataChange(event:any){
+    this.paginationProp.page =event;
+  }
   constructor(private kullaniciService:KullaniciService,
     private activatedRoute:ActivatedRoute,
     private toastrService:ToastrService,
@@ -43,7 +49,7 @@ export class KullaniciComponent implements OnInit {
   }
  
   addToCart(kullanici:Kullanici){
-    this.toastrService.success("Sepete Eklendi",kullanici.kullanici_Adi)
+    this.toastrService.success("Sepete Eklendi",kullanici.kullaniciAdi)
     this.cartService.addToCart(kullanici)
   }
       

@@ -1,0 +1,63 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <br />
+    <h1 class="jumbotron-heading">Üretim Grafiği</h1>
+  </div>
+</section>
+<br />
+<br />
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-4">
+    Date Picker:<input type="date" [(ngModel)]="startDate" />
+  </div>
+  <div class="col-md-4">
+    Date Picker:<input type="date" [(ngModel)]="finishDate" />
+  </div>
+</div>
+<div style="margin-left: 480px; margin-top: 50px; width: 200px">
+  <div class="col-md-15">
+    <label for="makineler"><h5>Bir makine seçin:</h5> </label>
+    <select
+      class="form-select"
+      [(ngModel)]="selectedMakineIsmi"
+      name="makineler"
+      id="makineler"
+    >
+      <option *ngFor="let makine of makineler">{{ makine.makineIsmi }}</option>
+    </select>
+  </div>
+  <button
+    style="margin-left: 15px; margin-top: 50px; width: 150px; height: 50px"
+    (click)="
+      getKablolarByDateRangeAndMakine(startDate, finishDate, selectedMakineIsmi)
+    "
+  >
+    Seç
+  </button>
+</div>
+
+<div class="row">
+  <div class="col-md-3"><canvas id="verimlilikChart"></canvas></div>
+  <div class="col-md-4">
+    <br /><br /><br />
+    <h5>Ortalama Verimlilik : {{ ortalamaVerimlilik }}</h5>
+  </div>
+  <div class="col-md-3" >
+        <canvas id="gunChart" ></canvas>
+  </div>
+  <div class="col-md-2">
+    <br><br>
+    <h5>Seçilen Gün : {{secilenGun}}</h5>
+    <h5>Çalışılan Gün : {{calisilanGun}}</h5>
+  </div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><canvas id="uretimChart"></canvas></div>
+  <div class="col-md-4">
+    <br>
+  <br>
+  <h5>Toplam Metraj (m) : {{toplamMetraj}}</h5>
+  <h5>Verimli Gün : {{verimliGun}}</h5>
+  <h5>Verimsiz Gün : {{verimsizGun}}</h5>
+</div>
+</div>

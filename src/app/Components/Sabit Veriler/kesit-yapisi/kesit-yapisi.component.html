@@ -1,0 +1,171 @@
+<div class="text-center">
+  <h1>Kesit Yapısı</h1>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="content">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="kesiYapisiForm">
+              <div class="form-group">
+                <label for="kesit">Kesit</label>
+                <input
+                  type="text"
+                  id="kesit"
+                  formControlName="kesitCapi"
+                  class="form-control"
+                  placeholder="kesit"
+                />
+              </div>
+              <label for="back">Back</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="back"
+                  formControlName="back"
+                  class="form-control"
+                  placeholder="back"
+                />
+              </div>
+              <label for="kilcalDamarSayisi">Kılcal Damar Sayısı</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="kilcalDamarSayisi"
+                  formControlName="kilcalDamarSayisi"
+                  class="form-control"
+                  placeholder="kilcalDamarSayisi"
+                />
+              </div>
+              <label for="kilcalDamarCapi">Kılcal Damar Çapı</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="kilcalDamarCapi"
+                  formControlName="kilcalDamarCapi"
+                  class="form-control"
+                  placeholder="kilcalDamarCapi"
+                />
+              </div>
+              <label for="hatve">Hatve</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="hatve"
+                  formControlName="hatve"
+                  class="form-control"
+                  placeholder="hatve"
+                />
+              </div>
+
+              <label for="disCap">Dış Çap</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="disCap"
+                  formControlName="disCap"
+                  class="form-control"
+                  placeholder="disCap"
+                />
+              </div>
+              <label for="ayna">Ayna</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="ayna"
+                  formControlName="ayna"
+                  class="form-control"
+                  placeholder="ayna"
+                />
+              </div>
+            
+             
+            </form>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col col-md-4">
+                <br />
+                <button
+                  type="button"
+                  (click)="Add()"
+                  class="btn btn-outline-primary"
+                >
+                  Kablo Ekle
+                </button>
+              </div>
+              <div class="col col-md-2">
+
+              </div>
+              <div class="col col-md-4">
+                <br />
+                <button
+                  type="button"
+                  (click)="deleteKesit(selectedKesit)"
+                  class="btn btn-outline-primary"
+                >
+                  Sil
+                </button>
+              </div>
+              <div class="col col-md-4">
+                <br />
+                <button
+                  type="button"
+                  (click)="update(selectedKesit)"
+                  class="btn btn-outline-primary"
+                >
+                  Güncelle
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Kesit</th>
+          <th scope="col">Back</th>
+          <th scope="col">Dış Çap</th>
+          <th scope="col">Ayna</th>
+          <th scope="col">Kılcal Damar Sayısı</th>
+          <th scope="col">Kılcal Damar Çapı</th>
+          <th scope="col">Hatve</th>
+          <th scope="col">Alan</th>
+          <th scope="col">Coef</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          scope="col"
+          (click)="setSelectedKesit(kesit)"
+          [class]="setRowColor(kesit)"
+          *ngFor="let kesit of kesitYapisiList | paginate:{
+            itemsPerPage:paginationProp.tableSize,
+            currentPage:paginationProp.page,
+            totalItems:paginationProp.count}; let i =index"
+        >
+          <td>{{ kesit.id }}</td>
+          <td>{{ kesit.kesitCapi }}</td>
+          <td>{{ kesit.back }}</td>
+          <td>{{ kesit.disCap }}</td>
+          <td>{{ kesit.ayna }}</td>
+          <td>{{ kesit.kilcalDamarSayisi }}</td>
+          <td>{{ kesit.kilcalDamarCapi }}</td>
+          <td>{{ kesit.hatve }}</td>
+          <td>{{ kesit.alan }}</td>
+          <td>{{ kesit.coef }}</td>
+        </tr>
+      </tbody>
+      <div>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+        </pagination-controls>
+      </div>
+    </table>
+  </div>
+</div>

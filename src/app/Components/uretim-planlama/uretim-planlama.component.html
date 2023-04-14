@@ -1,0 +1,87 @@
+<div class="content row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="uretimPlanlamaForm">
+          <div class="form-group">
+            <select
+              class="form-select"
+              size="1"
+              formControlName="makine"
+              [(ngModel)]="selectedMakine"
+            >
+              <br />
+              <option *ngFor="let makine of makineler">
+                {{ makine.makineIsmi }}
+              </option>
+            </select>
+            <label for="kabloIsmi">Kesit</label>
+            <input
+              type="text"
+              id="kabloIsmi"
+              formControlName="kablo"
+              class="form-control"
+              placeholder="Kablo İsmi"
+            />
+          </div>
+          <label for="kesit">Metraj</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="kesit"
+              formControlName="kesit"
+              class="form-control"
+              placeholder="kesit"
+            />
+          </div>
+          <label for="kesit">Çalışma Süresi</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="kesit"
+              formControlName="kesit"
+              class="form-control"
+              placeholder="kesit"
+            />
+          </div>
+          <label for="kesit">Ortalama Verimlilik</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="kesit"
+              formControlName="kesit"
+              class="form-control"
+              placeholder="kesit"
+            />
+          </div>
+          <label for="kesit">Hız</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="kesit"
+              formControlName="kesit"
+              class="form-control"
+              placeholder="kesit"
+            />
+          </div>
+          <label for="kesit">Süre</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="kesit"
+              formControlName="kesit"
+              class="form-control"
+              placeholder="kesit"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <app-operator-is-emri-add></app-operator-is-emri-add>
+  </div>
+</div>

@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" routerLink="anamenu">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -15,6 +15,12 @@
           <app-cart-summary></app-cart-summary>
           <li class="nav-item">
             <a class="nav-link disabled">Disabled</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dolar = {{dolarKuru}} TL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Euro = {{euroKuru}} TL</a>
           </li>
         </ul>
         <form class="d-flex" role="search">

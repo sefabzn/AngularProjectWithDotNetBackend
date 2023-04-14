@@ -12,13 +12,18 @@
         <th scope="col" class="col">Makine Id</th>
     </thead>
     <tbody>
-        <tr scope="col" *ngFor="let kullanici of kullanicilar |filterPipe:filterText ">
+        <tr scope="col" *ngFor="let kullanici of kullanicilar |filterPipe:filterText | paginate:{
+            itemsPerPage:paginationProp.tableSize,
+            currentPage:paginationProp.page,
+            totalItems:paginationProp.count}; let i =index">
             <td>{{kullanici.id}}</td>
-            <td>{{kullanici.kullanici_Adi }}</td>
-            <td>{{kullanici.makineID}}</td>
+            <td>{{kullanici.kullaniciAdi }}</td>
             <td><button (click)="addToCart(kullanici)" class="btn btn-success">Sepete Ekle</button></td>
         </tr>
     
     </tbody>
- 
+    <div>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+        </pagination-controls>
+      </div>
 </table>

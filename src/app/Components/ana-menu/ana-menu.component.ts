@@ -11,5 +11,5 @@ export class AnaMenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
 }

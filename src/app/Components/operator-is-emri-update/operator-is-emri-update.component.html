@@ -1,0 +1,147 @@
+<div *ngIf="isFormCreated == true" class="content row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="ortakMakineIsEmriForm">
+          <div class="form-group">
+            <label for="kullanici">Operatör</label>
+            <select
+              id="kullanici"
+              class="form-select"
+              size="1"
+              formControlName="operator"
+              [value]="isEmri.operator"
+            >
+              <br />
+              <option
+                [value]="kullanici.kullaniciAdi"
+                *ngFor="let kullanici of kullanicilar"
+              >
+                {{ kullanici.kullaniciAdi }}
+              </option>
+            </select>
+
+            <br />
+            <label for="makineler">Makineler </label><br />
+            <div
+              *ngFor="let makine of makineler"
+              class="form-check form-check-inline"
+            >
+              <input
+                class="form-check-input"
+                type="radio"
+                name="makine"
+                id="makineler"
+                value="option1"
+                (click)="getKesitler(makine)"
+                [checked]="makine.makineIsmi == isEmri.makineIsmi"
+              />
+              <label class="form-check-label" for="inlineRadio1">{{
+                makine.makineIsmi
+              }}</label>
+            </div>
+            <br />
+            <label for="urunIsmi">Ürün İsmi</label>
+            <input
+              type="text"
+              id="kabloIsmi"
+              formControlName="urunIsmi"
+              class="form-control"
+              placeholder="Ürün İsmi"
+              [checked]="false"
+            />
+          </div>
+          <label for="dizaynTuru">Dizayn Türü</label>
+          <div class="form-group">
+            <input
+              type="text"
+              id="dizaynTuru"
+              formControlName="dizaynTuru"
+              class="form-control"
+              placeholder="Dizayn Türü"
+            />
+          </div>
+          <label for="kesit">Kesit Çapı</label>
+          <select
+            [value]="isEmri.kesitCapi"
+            name="kesit"
+            id="kesit"
+            class="form-select"
+            size="1"
+            formControlName="kesitCapi"
+          >
+            <option value="nan">---------</option>
+            <option *ngFor="let kesit of uygunKesitler" [value]="kesit">
+              {{ kesit }}
+            </option>
+          </select>
+          <label for="kesit">Metraj (cm)</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="kesit"
+              formControlName="metraj"
+              class="form-control"
+              placeholder="Metraj"
+            />
+          </div>
+          <label for="disCap">Dış Çap</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="disCap"
+              formControlName="disCap"
+              class="form-control"
+              placeholder="Dış Çap"
+            />
+          </div>
+          <label for="back">Back</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="back"
+              formControlName="back"
+              class="form-control"
+              placeholder="Back"
+            />
+          </div>
+          <label for="ayna">Ayna</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="kesit"
+              formControlName="ayna"
+              class="form-control"
+              placeholder="Ayna"
+            />
+          </div>
+          <label for="kalip">Kalip</label>
+          <div class="form-group">
+            <input
+              type="text"
+              id="kalip"
+              formControlName="dizaynTuru"
+              class="form-control"
+              placeholder="Kalip"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-fill btn-primary" (click)="update()">
+              Düzenle
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-fill btn-secondary" (click)="hesapla()">
+              Süre Hesapla
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6"></div>
+</div>

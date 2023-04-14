@@ -26,10 +26,12 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                "./node_modules/ngx-toastr/toastr.css", 
               "src/styles.css"
-
             ],
-            "scripts": ["./node_modules/jquery/dist/jquery.min.js",
-               "./node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              ]
           },
           "configurations": {
             "production": {
@@ -101,5 +103,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "edc31a11-e5d8-49c8-99ce-08ca150194ef"
   }
 }

@@ -1,22 +1,84 @@
-<div>Date Picker:<input type="date" [(ngModel)]="selectedDate"><button (click)="getKablolarByDate(selectedDate)">Seç</button></div>
+<div class="text-center">
+ <br>
+  <h1> Operatör Veri Girişi</h1>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-4">
+
+  Date Picker:<input type="date" [(ngModel)]="startDate" />
+</div>
+<div class="col-md-4">
+
+  Date Picker:<input type="date" [(ngModel)]="finishDate" />
+  <button
+    (click)="getKablolarByDateRange(startDate,finishDate)"
+  >
+    Seç
+  </button>
+</div>
+</div>
+<br>
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Kablo İsmi</th>
-        <th scope="col">Tarih</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr scope="col"  *ngFor="let kablo of kablolar">
-      
-        <td>{{kablo.id}}</td>
-        <td>{{kablo.kabloIsmi}}</td>
-        <td>{{kablo.tarih}}</td>
-
-      </tr>
-      
-    </tbody>
-    <button type="button" routerLink="/kablouretim/add" class="btn btn-primary">Kablo Gir</button>
-
-  </table>
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Kablo İsmi</th>
+      <th scope="col">Makine Id</th>
+      <th scope="col">Kesit Alanı</th>
+      <th scope="col">Metraj</th>
+      <th scope="col">Kopma</th>
+      <th scope="col">Renk Değişimi</th>
+      <th scope="col">Genel Arıza</th>
+      <th scope="col">Hurda Pvc</th>
+      <th scope="col">Hurda Cu</th>
+      <th scope="col">Hurda Calışma Süresi</th>
+      <th scope="col">Tarih</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      scope="col"
+      (click)="setSelectedKablo(kablo)"
+      [class]="selectedRow(kablo)"
+      *ngFor="let kablo of kablolar  | paginate:{
+        itemsPerPage:paginationProp.tableSize,
+        currentPage:paginationProp.page,
+        totalItems:paginationProp.count}; let i =index"
+    >
+      <td>{{ kablo.id }}</td>
+      <td>{{ kablo.kabloIsmi }}</td>
+      <td>{{ kablo.makineId }}</td>
+      <td>{{ kablo.kesitCapi }}</td>
+      <td>{{ kablo.metraj }}</td>
+      <td>{{ kablo.kopma }}</td>
+      <td>{{ kablo.renkDegisimi }}</td>
+      <td>{{ kablo.genelAriza }}</td>
+      <td>{{ kablo.hurdaPvc }}</td>
+      <td>{{ kablo.hurdaCu }}</td>
+      <td>{{ kablo.calismaSuresi }}</td>
+      <td>{{ kablo.tarih }}</td>
+    </tr>
+  </tbody>
+  <div>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+    </pagination-controls>
+  </div>
+  <div class="row">
+    <div class="col col-md-4">
+      <br>
+      <button type="button" routerLink="/kablouretim/add" class="btn btn-outline-primary">Kablo Ekle</button>
+    </div>
+    <div class="col col-md-4">
+      <br>
+      <button type="button" (click)="deleteKablo(selectedKablo)" class="btn btn-outline-primary">Sil</button>
+    </div>
+    <div class="col col-md-4">
+      <br>
+      <button type="button" routerLink="/kablouretim/update/{{selectedKabloId}}" class="btn btn-outline-primary">Düzenle</button>
+    </div>
+  </div>
+</table>
