@@ -31,7 +31,7 @@ export class CctvGenelDizaynUpdateComponent implements OnInit {
       if (params["kabloId"]) {
         this.kabloId=params["kabloId"]
         this.getKablo()
-
+        this.createCctvGenelUpdateForm()
       }
       else{
         this.toastrService.warning("Geçerli Kablo Yok")

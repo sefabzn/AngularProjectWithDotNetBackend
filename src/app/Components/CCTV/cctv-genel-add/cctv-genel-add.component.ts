@@ -44,10 +44,10 @@ export class CctvGenelAddComponent implements OnInit {
       ayna:["",Validators.required],
       kalip:["",Validators.required],
       tarih:[this.date],
-      damarSayisi:["",Validators.required],
-      girilenDamarSayisi:["",Validators.required],
-      zorlama:["",Validators.required],
-      degistirilmeTarihi:[""],
+      damarSayisi:[0],
+      girilenDamarSayisi:[0],
+      zorlama:[""],
+      degistirilmeTarihi:[this.date],
       degistiren:[this.userName]
 
     })

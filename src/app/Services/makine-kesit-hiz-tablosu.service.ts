@@ -17,5 +17,8 @@ export class MakineKesitHizTablosuService {
     let apiUrl =this.baseUrl+"MakineKesitHizTablosu/GetAll"
     return this.httpClient.get<ListResponseModel<MakineKesitHizTablosu>>(apiUrl)
   }
-  
+  getAllOrdered():Observable<ListResponseModel<MakineKesitHizTablosu>>{
+    let apiUrl =this.baseUrl+"MakineKesitHizTablosu/GetAllOrdered"
+    return this.httpClient.get<ListResponseModel<MakineKesitHizTablosu>>(apiUrl)
+  }
 }

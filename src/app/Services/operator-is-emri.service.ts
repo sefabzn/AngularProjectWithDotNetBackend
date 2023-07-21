@@ -5,6 +5,7 @@ import { ListResponseModel } from '../Models/listResponseModel';
 import { OperatorIsEmri } from '../Models/operatorIsEmri';
 import { ResponseModel } from '../Models/responseModel';
 import { SingleResponseModel } from '../Models/singleResponseModel';
+import { OrtakIsEmri } from '../Models/ortakIsEmri';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,19 @@ export class OperatorIsEmriService {
 
     return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
   }
+  addOrtak(ortakIsEmri:OrtakIsEmri){
+
+    let apiUrl=this.baseUrl+"OperatorIsEmri/IsPlaniOlustur"
+
+    return this.httpClient.post(apiUrl,ortakIsEmri)
+  }
+  sureHesapla(ortakIsEmri:OrtakIsEmri){
+
+    let apiUrl=this.baseUrl+"OperatorIsEmri/TeorikSureHesapla"
+
+    return this.httpClient.post<number>(apiUrl,ortakIsEmri)
+  }
+ 
   update(isEmri:OperatorIsEmri):Observable<ResponseModel>{
     return this.httpClient.put<ResponseModel>(this.baseUrl+"OperatorIsEmri/Update",isEmri)
   }

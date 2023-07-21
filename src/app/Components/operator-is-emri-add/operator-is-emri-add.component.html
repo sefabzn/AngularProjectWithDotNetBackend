@@ -4,22 +4,7 @@
       <div class="card-body">
         <form [formGroup]="ortakMakineIsEmriForm">
           <div class="form-group">
-            <label for="kullanici">Operatör</label>
-            <select
-              id="kullanici"
-              class="form-select"
-              size="1"
-              formControlName="operator"
-            >
-              <br />
-              <option
-                [value]="kullanici.kullaniciAdi"
-                *ngFor="let kullanici of kullanicilar"
-              >
-                {{ kullanici.kullaniciAdi }}
-              </option>
-            </select>
-            <br />
+           
             <label for="makineler">Makineler </label><br />
             <div
               *ngFor="let makine of makineler"
@@ -59,7 +44,7 @@
           </div>
           <label for="kesit">Kesit Çapı</label>
 
-          <select formControlName="kesitCapi" id="kesit" class="form-select">
+          <select formControlName="kesit" id="kesit" class="form-select">
             <option value="nan">---------</option>
             <option *ngFor="let kesit of uygunKesitler" [value]="kesit">
               {{ kesit }}
@@ -70,7 +55,7 @@
             <input
               type="number"
               id="kesit"
-              formControlName="toplamMetraj"
+              formControlName="metraj"
               class="form-control"
               placeholder="Metraj"
             />
@@ -125,7 +110,7 @@
             </button>
           </div>
           <div class="col">
-            <button class="btn btn-fill btn-secondary" (click)="hesapla()">
+            <button class="btn btn-fill btn-secondary" (click)="sureHesapla()">
               Süre Hesapla
             </button>
           </div>

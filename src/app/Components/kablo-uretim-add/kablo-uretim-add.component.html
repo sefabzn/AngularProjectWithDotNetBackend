@@ -97,20 +97,20 @@
                 placeholder="Hurda Cu"
               />
             </div>
-            <label for="calismaSuresi">Çalışma Süresi dakika(dk)</label>
+            <label for="calismaSuresi">Çalışma Süresi (saat)</label>
             <div class="form-group">
               <input
                 type="number"
                 id="calismaSuresi"
                 formControlName="calismaSuresi"
                 class="form-control"
-                placeholder="Calışma Süresi (dk)"
+                placeholder="Calışma Süresi (saat)"
               />
             </div>
           </form>
         </div>
         <div class="card-footer">
-          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+          <button class="btn btn-fill btn-primary" (click)="add()" routerLink="/kablouretim">Ekle</button>
         </div>
       </div>
     </div>

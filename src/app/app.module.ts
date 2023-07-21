@@ -61,6 +61,9 @@ import { CctvDamarDizaynUpdateComponent } from './Components/CCTV/cctv-damar-diz
 import { TelefonGenelDizaynUpdateComponent } from './Components/Telefon/telefon-genel-dizayn-update/telefon-genel-dizayn-update.component';
 import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-genel-dizayn-update/yangin-genel-dizayn-update.component';
 import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-update/operator-is-emri-update.component';
+import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.component';
+
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 @NgModule({
   declarations: [
@@ -114,6 +117,7 @@ import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-upd
     TelefonGenelDizaynUpdateComponent,
     YanginGenelDizaynUpdateComponent,
     OperatorIsEmriUpdateComponent,
+    IsEmriTakipComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,6 +130,7 @@ import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-upd
     BrowserAnimationsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    NgxBarcodeModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}

@@ -40,6 +40,7 @@ import { YanginGenelDizaynComponent } from './Components/Yangin/yangin-genel-diz
 import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirleri/yangin-is-emirleri.component';
 import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
 import { LoginGuard } from './guards/login.guard';
+import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.component';
 
 const routes: Routes = [
   {path:"Login",pathMatch:"full",component:LoginComponent},
@@ -83,6 +84,7 @@ const routes: Routes = [
   {path:"CctvGenelDizayn/update/:kabloId",component:CctvGenelDizaynUpdateComponent},
   {path:"TelefonGenelDizayn/update/:kabloId",component:TelefonGenelDizaynUpdateComponent},
   {path:"YanginGenelDizayn/update/:kabloId",component:YanginGenelDizaynUpdateComponent},
+  {path:"IsEmriTakip",component:IsEmriTakipComponent},
 
 
 ];
