@@ -1,0 +1,52 @@
+<br />
+<div class="text-center">
+  <h1>Process Girişi</h1>
+</div>
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="surecForm" *ngIf="surecForm">
+          <div class="form-group">
+            <label for="surecIsmi">Süreç İsmi</label>
+            <input
+              type="text"
+              id="surecIsmi"
+              formControlName="isim"
+              class="form-control"
+              placeholder="Süreç İsmi"
+            />
+          </div>
+          <label for="aciklama">Açıklama</label>
+          <div class="form-group">
+            <input
+              type="text"
+              id="aciklama"
+              formControlName="aciklama"
+              class="form-control"
+              placeholder="Açıklama"
+            />
+          </div>
+          <label for="tamamlanmaDurumu">Tamamlanma</label>
+          <div class="form-group">
+            <input
+              type="checkbox"
+              id="tamamlanmaDurumu"
+              formControlName="tamamlanmaDurumu"
+              placeholder="Tamamlanma"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button *ngIf="surec"
+          class="btn btn-fill btn-primary"
+          (click)="update()"
+            routerLink="../../{{surec.isEmriId}}" 
+        >
+          Düzenle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

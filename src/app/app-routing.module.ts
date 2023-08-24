@@ -41,6 +41,9 @@ import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirler
 import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
 import { LoginGuard } from './guards/login.guard';
 import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.component';
+import { SureclerComponent } from './Components/surecler/surecler.component';
+import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add.component';
+import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
 
 const routes: Routes = [
   {path:"Login",pathMatch:"full",component:LoginComponent},
@@ -85,6 +88,10 @@ const routes: Routes = [
   {path:"TelefonGenelDizayn/update/:kabloId",component:TelefonGenelDizaynUpdateComponent},
   {path:"YanginGenelDizayn/update/:kabloId",component:YanginGenelDizaynUpdateComponent},
   {path:"IsEmriTakip",component:IsEmriTakipComponent},
+
+  {path:"surecler/:isEmriId",component:SureclerComponent},
+  {path:"surecler/Add/:isEmriId",component:SurecAddComponent},
+  {path:"surecler/Update/:surecId",component:SurecUpdateComponent},
 
 
 ];

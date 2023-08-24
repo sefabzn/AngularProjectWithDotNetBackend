@@ -1,0 +1,37 @@
+
+
+<table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">İsim</th>
+        <th scope="col">Açıklama</th>
+        <th scope="col">İş Emri Id</th>
+        <th scope="col">Tamamlanma Durumu</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let surec of surecList">
+            <td>{{surec.isim}}</td>
+            <td>{{surec.aciklama}}</td>
+            <td>{{surec.isEmriId}}</td>
+            <td>{{surec.tamamlanmaDurumu}}</td>
+            <td> <button
+              type="button"
+              routerLink="/surecler/Update/{{surec.id}}"
+              class="btn btn-outline-primary"
+            >
+              Düzenle
+          </button></td>
+
+        </tr>
+    </tbody>
+    <button
+          type="button"
+          routerLink="/surecler/Add/{{isEmriId}}"
+          class="btn btn-outline-primary"
+        >
+          Süreç Ekle
+      </button>
+
+    </table>

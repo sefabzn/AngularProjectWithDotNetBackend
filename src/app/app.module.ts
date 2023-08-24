@@ -64,6 +64,9 @@ import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-upd
 import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.component';
 
 import { NgxBarcodeModule } from 'ngx-barcode';
+import { SureclerComponent } from './Components/surecler/surecler.component';
+import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add.component';
+import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +121,9 @@ import { NgxBarcodeModule } from 'ngx-barcode';
     YanginGenelDizaynUpdateComponent,
     OperatorIsEmriUpdateComponent,
     IsEmriTakipComponent,
+    SureclerComponent,
+    SurecAddComponent,
+    SurecUpdateComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,10 +26,17 @@
       scope="col"
       (click)="setSelectedIsEmri(isEmri)"
       [class]="setRowColor(isEmri)"
-      *ngFor="let isEmri of operatorIsEmirleri | operatorFilter: filterText | paginate:{
-        itemsPerPage:paginationProp.tableSize,
-        currentPage:paginationProp.page,
-        totalItems:paginationProp.count}; let i =index"
+      *ngFor="
+        let isEmri of operatorIsEmirleri
+          | operatorFilter : filterText
+          | paginate
+            : {
+                itemsPerPage: paginationProp.tableSize,
+                currentPage: paginationProp.page,
+                totalItems: paginationProp.count
+              };
+        let i = index
+      "
     >
       <td>{{ isEmri.id }}</td>
       <td>{{ isEmri.makineIsmi }}</td>
@@ -44,10 +51,23 @@
       <td>{{ isEmri.kalip }}</td>
       <td>{{ isEmri.teorikMaliyet }}</td>
       <td>{{ isEmri.tarih }}</td>
+      <td>
+        <button
+          type="button"
+          routerLink="/surecler/{{isEmri.id}}"
+          class="btn btn-outline-primary"
+        >
+          Süreçleri Yönet
+        </button>
+      </td>
     </tr>
   </tbody>
   <div>
-    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
     </pagination-controls>
   </div>
   <div class="row">
@@ -58,7 +78,7 @@
         routerLink="/OperatorIsEmri/Add"
         class="btn btn-outline-primary"
       >
-        İş Emri Ekle 
+        İş Emri Ekle
       </button>
     </div>
     <div class="col col-md-4">
@@ -75,7 +95,7 @@
       <br />
       <button
         type="button"
-        routerLink="/OperatorIsEmri/Update/{{selectedIsEmriId}}"
+        routerLink="/OperatorIsEmri/Update/{{ selectedIsEmriId }}"
         class="btn btn-outline-primary"
       >
         Düzenle

@@ -1,4 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
+
+import { SurecService } from 'src/app/Services/surec.service';
 
 @Component({
   selector: 'app-ana-menu',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnaMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private surecService:SurecService) { }
 
   ngOnInit(): void {
-  }
  
+  }
+
 }
