@@ -1,16 +1,19 @@
-export interface IsEmriBase{
+import { Process } from "./process";
+import { GenelDizaynBase } from "./genelDizaynBase";
+import { KabloUretim } from "./kabloUretim";
 
-    id:number
-    isim:string
-    bukumBarkodu:string
-    damarBarkodu:string
-    damarBukumBarkodu:string
-    dolguBarkodu:string
-    kilifBarkodu:string
-    folyoBarkodu:string
-    orguBarkodu:string
-    disKilifBarkodu:string
-    tarih:string
-    degistiren:string
-
+export interface IsEmriBase {
+    id: number;
+    isim: string | null;
+    tur: string | null;
+    metraj: number;
+    tamamlanmaDurumu: boolean;
+    barkod: string | null;
+    surecler: Process[] | null;
+    makineIsmi: string | null;
+    tarih: string;
+    degistiren: string | null;
+    genelDizaynId: number;
+    genelDizayn: GenelDizaynBase | null;
+    kabloUretimler: KabloUretim[] | null;
 }

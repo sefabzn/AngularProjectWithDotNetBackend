@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Surec } from '../Models/surec';
+import { Surec } from '../Models/process';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from '../Models/listResponseModel';
 import { HttpClient } from '@angular/common/http';

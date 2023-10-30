@@ -5,6 +5,7 @@
       <tr>
         <th scope="col">İsim</th>
         <th scope="col">Açıklama</th>
+        <th scope="col">Order</th>
         <th scope="col">İş Emri Id</th>
         <th scope="col">Tamamlanma Durumu</th>
 
@@ -14,6 +15,7 @@
         <tr *ngFor="let surec of surecList">
             <td>{{surec.isim}}</td>
             <td>{{surec.aciklama}}</td>
+            <td>{{surec.order}}</td>
             <td>{{surec.isEmriId}}</td>
             <td>{{surec.tamamlanmaDurumu}}</td>
             <td> <button

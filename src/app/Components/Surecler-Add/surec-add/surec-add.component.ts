@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Routes } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OperatorIsEmri } from 'src/app/Models/operatorIsEmri';
-import { Surec } from 'src/app/Models/surec';
+import { Surec } from 'src/app/Models/process';
 import { OperatorIsEmriService } from 'src/app/Services/operator-is-emri.service';
 import { SurecService } from 'src/app/Services/surec.service';
-
+import { SureclerComponent } from '../../surecler/surecler.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-surec-add',
   templateUrl: './surec-add.component.html',
@@ -16,16 +17,18 @@ import { SurecService } from 'src/app/Services/surec.service';
 export class SurecAddComponent implements OnInit {
 
   surecAddForm:FormGroup
-  surecModel:any
+  surecModel:Surec
   isEmriId:number
   isEmri:OperatorIsEmri
   constructor(private formBuilder:FormBuilder,
     private surecService:SurecService,
     private isEmriService:OperatorIsEmriService,
     private activatedRoute:ActivatedRoute,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
+   
     this.activatedRoute.params.subscribe((params)=>{
 
       if (params["isEmriId"]) {
@@ -44,6 +47,7 @@ export class SurecAddComponent implements OnInit {
     this.surecAddForm=this.formBuilder.group({
       isim:["",Validators.required],
       aciklama:["",Validators.required],
+      order:[0,Validators.required],
       tamamlanmaDurumu:[false],
    
       
@@ -63,6 +67,7 @@ export class SurecAddComponent implements OnInit {
 
       this.surecModel["isEmriId"]=this.isEmriId
       this.surecModel["operatorIsEmri"]=this.isEmri
+      this.surecModel["tamamlanmaDurumu"]=false
 
     
       this.surecService.Add(this.surecModel).subscribe(data=>{

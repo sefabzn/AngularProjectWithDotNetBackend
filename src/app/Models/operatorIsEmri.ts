@@ -11,6 +11,7 @@ export interface OperatorIsEmri{
     ayna:number
     kalip:number
     teorikMaliyet:number
+    barkod:string
     tarih:string
 
 }

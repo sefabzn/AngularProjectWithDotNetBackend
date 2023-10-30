@@ -27,13 +27,14 @@
               placeholder="Açıklama"
             />
           </div>
-          <label for="tamamlanmaDurumu">Tamamlanma</label>
+          <label for="order">Order</label>
           <div class="form-group">
             <input
-              type="checkbox"
-              id="tamamlanmaDurumu"
-              formControlName="tamamlanmaDurumu"
-              placeholder="Tamamlanma"
+              type="number"
+              id="order"
+              formControlName="order"
+              class="form-control"
+              placeholder="Order"
             />
           </div>
         </form>
@@ -42,7 +43,7 @@
         <button
           class="btn btn-fill btn-primary"
           (click)="add()"
-         routerLink="../../{{isEmriId}}"
+         routerLink="/surecler/{{isEmriId}}"
         >
           Ekle
         </button>

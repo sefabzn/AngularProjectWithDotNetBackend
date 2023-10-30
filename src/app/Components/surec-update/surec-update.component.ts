@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Surec } from 'src/app/Models/surec';
+import { Surec } from 'src/app/Models/process';
 import { SurecService } from 'src/app/Services/surec.service';
 
 @Component({
@@ -43,12 +43,12 @@ export class SurecUpdateComponent implements OnInit {
   createSurecForm() {
  
     this.surecForm = this.formBuilder.group({
-      isim: [this.surec.isim],
-      aciklama:[this.surec.aciklama],
+      isim: [this.surec.isim,Validators.required],
+      aciklama:[this.surec.aciklama,Validators.required],
+      order:[this.surec.order,Validators.required],
       tamamlanmaDurumu: [this.surec.tamamlanmaDurumu],
      
     });
-    console.log(1245)
   }
   getSurec(){
     this.surecService.getById(this.surecId).subscribe(response=>{
