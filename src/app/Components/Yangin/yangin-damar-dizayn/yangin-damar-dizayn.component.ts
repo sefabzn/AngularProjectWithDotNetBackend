@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { YanginDamarDizaynKablo } from 'src/app/Models/yangin-damar-dizayn-kablo';
-import { YanginDamarDizaynService } from 'src/app/Services/YanginKabloServices/yangin-damar-dizayn.service';
+import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 @Component({
   selector: 'app-yangin-damar-dizayn',
   templateUrl: './yangin-damar-dizayn.component.html',
@@ -20,7 +20,7 @@ export class YanginDamarDizaynComponent implements OnInit {
   }
   constructor(
     private toastrService:ToastrService,
-    private yanginDamarDizaynService:YanginDamarDizaynService,
+    private damarDizaynService:DamarDizaynService,
     private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -46,13 +46,13 @@ export class YanginDamarDizaynComponent implements OnInit {
   }
 
   getKablolarByGenelDizaynId(genelDizaynId:number){
-    this.yanginDamarDizaynService.getKablolarByGenelDizaynId(genelDizaynId).subscribe(Response=>{
+    this.damarDizaynService.getAllByGenelDizaynId(genelDizaynId).subscribe(Response=>{
       this.damarlar=Response.data
       console.log(Response)
     })
   }
   deleteKablo(kablo:YanginDamarDizaynKablo){
-    this.yanginDamarDizaynService.DeleteDamarDizayn(kablo).subscribe(response=>{
+    this.damarDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload();
     })

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Surec } from '../Models/process';
+import { Process } from '../Models/process';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from '../Models/listResponseModel';
 import { HttpClient } from '@angular/common/http';
@@ -11,26 +11,26 @@ import { SingleResponseModel } from '../Models/singleResponseModel';
 })
 export class SurecService {
   constructor(private httpClient:HttpClient) { }
-  baseUrl="https://localhost:7289/api/"
+  baseUrl="https://localhost:7289/api/Process"
 
-  getSurecler():Observable<ListResponseModel<Surec>>{
-    let apiUrl=this.baseUrl+"Process/GetAll"
-    return this.httpClient.get<ListResponseModel<Surec>>(apiUrl)
+  getSurecler():Observable<ListResponseModel<Process>>{
+    let apiUrl=this.baseUrl+"/GetAll"
+    return this.httpClient.get<ListResponseModel<Process>>(apiUrl)
   }
-  getAllById(isEmriId:number):Observable<ListResponseModel<Surec>>{
-    let apiUrl=this.baseUrl+"Process/GetAllByIsEmriId"
-    return this.httpClient.get<ListResponseModel<Surec>>(apiUrl+"?id="+isEmriId)
+  getAllById(isEmriId:number):Observable<ListResponseModel<Process>>{
+    let apiUrl=this.baseUrl+"/GetAllByIsEmriId"
+    return this.httpClient.get<ListResponseModel<Process>>(apiUrl+"?id="+isEmriId)
   }
-  getById(id:number):Observable<SingleResponseModel<Surec>>{
-    let apiUrl=this.baseUrl+"Process/GetById"
-    return this.httpClient.get<SingleResponseModel<Surec>>(apiUrl+"?id="+id)
+  getById(id:number):Observable<SingleResponseModel<Process>>{
+    let apiUrl=this.baseUrl+"/GetById"
+    return this.httpClient.get<SingleResponseModel<Process>>(apiUrl+"?id="+id)
   }
-  Add(surec:Surec):Observable<ResponseModel>{
-    let apiUrl =  this.baseUrl+"Process/Add";
+  Add(process:Process):Observable<ResponseModel>{
+    let apiUrl =  this.baseUrl+"/Add";
 
-    return this.httpClient.post<ResponseModel>(apiUrl,surec);
+    return this.httpClient.post<ResponseModel>(apiUrl,process);
   }
-  update(surec:Surec):Observable<ResponseModel>{
-    return this.httpClient.put<ResponseModel>(this.baseUrl+"Process/Update",surec)
+  update(process:Process):Observable<ResponseModel>{
+    return this.httpClient.put<ResponseModel>(this.baseUrl+"Process/Update",process)
   }
 }

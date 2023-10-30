@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Surec } from 'src/app/Models/process';
+import { Process } from 'src/app/Models/process';
 import { SurecService } from 'src/app/Services/surec.service';
 
 @Component({
@@ -19,8 +19,8 @@ export class SurecUpdateComponent implements OnInit {
 
   surecId:number
   surecForm: FormGroup;
-  surec:Surec
-  surecModel:Surec
+  surec:Process
+  surecModel:Process
   ngOnInit(): void {
 
     
@@ -66,7 +66,6 @@ export class SurecUpdateComponent implements OnInit {
         this.surecModel = Object.assign({}, this.surecForm.value);
         this.surecModel["id"]=this.surec.id
         this.surecModel['isEmriId'] = this.surec.isEmriId;
-        this.surecModel['operatorIsEmri'] =this.surec.operatorIsEmri;
         console.log(this.surecModel)
         this.surecService.update(this.surecModel).subscribe(
           (data) => {

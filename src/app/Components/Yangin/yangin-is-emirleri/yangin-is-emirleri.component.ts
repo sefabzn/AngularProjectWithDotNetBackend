@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { YanginIsEmri } from 'src/app/Models/yangin-is-emri';
-import { YanginIsEmriService } from 'src/app/Services/YanginKabloServices/yangin-is-emri.service';
+import { IsEmriService } from 'src/app/Services/is-emri.service';
 @Component({
   selector: 'app-yangin-is-emirleri',
   templateUrl: './yangin-is-emirleri.component.html',
@@ -18,11 +18,11 @@ export class YanginIsEmirleriComponent implements OnInit {
   onTableDataChange(event:any){
     this.paginationProp.page =event;
   }
-  constructor(private yanginIsEmriService:YanginIsEmriService,
+  constructor(private isEmriService:IsEmriService,
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
-    this.getTelefonIsEmirleri();
+    this.getIsEmirleri();
   }
 
   setSelectedIsEmri(isEmri:YanginIsEmri){
@@ -36,14 +36,14 @@ export class YanginIsEmirleriComponent implements OnInit {
       return ""
     }
   }
-  getTelefonIsEmirleri(){
-    this.yanginIsEmriService.getIsEmirleri().subscribe(response=>{
+  getIsEmirleri(){
+    this.isEmriService.getAll().subscribe(response=>{
       this.isEmirleri=response.data
       console.log(response)
     })
   }
   deleteIsEmri(isEmri:YanginIsEmri){
-    this.yanginIsEmriService.deleteIsEmri(isEmri).subscribe(Response=>{
+    this.isEmriService.delete(isEmri).subscribe(Response=>{
       this.toastrService.info(Response.message,"İşlem Başarılı")
       location.reload()
     })

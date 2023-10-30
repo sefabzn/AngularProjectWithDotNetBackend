@@ -17,31 +17,31 @@ export class GenelDizaynService {
 
   getAll(tur?:string):Observable<ListResponseModel<GenelDizaynBase>>{
     if (tur) {
-    let apiUrl=this.baseUrl+"GenelDizayn/GetAll/"+tur
+    let apiUrl=this.baseUrl+"/GetAll/"+tur
     return this.httpClient.get<ListResponseModel<GenelDizaynBase>>(apiUrl)
       
     }
-    let apiUrl=this.baseUrl+"GenelDizayn/GetAll"
+    let apiUrl=this.baseUrl+"/GetAll"
     return this.httpClient.get<ListResponseModel<GenelDizaynBase>>(apiUrl)
   }
   getAllByDate(tarih:any):Observable<ListResponseModel<GenelDizaynBase>>{
-    let apiUrl=this.baseUrl+"GenelDizayn/GetAllByDate?tarih="+tarih
+    let apiUrl=this.baseUrl+"/GetAllByDate?tarih="+tarih
     return this.httpClient.get<ListResponseModel<GenelDizaynBase>>(apiUrl)
   }
   add(kablo:GenelDizaynBase):Observable<ResponseModel>{
-    return this.httpClient.post<ResponseModel>(this.baseUrl+"GenelDizayn/Add",kablo)
+    return this.httpClient.post<ResponseModel>(this.baseUrl+"/Add",kablo)
   }
   update(kablo:GenelDizaynBase):Observable<ResponseModel>{
-    return this.httpClient.put<ResponseModel>(this.baseUrl+"GenelDizayn/Update",kablo)
+    return this.httpClient.put<ResponseModel>(this.baseUrl+"/Update",kablo)
   }
   getById(kabloId:number){
-    let apiUrl=this.baseUrl+"GenelDizayn/GetById?id="+kabloId
+    let apiUrl=this.baseUrl+"/GetById?id="+kabloId
     return this.httpClient.get<SingleResponseModel<GenelDizaynBase>>(apiUrl)
 
   }
-  deleteGenelDizayn(kablo:GenelDizaynBase):Observable<ResponseModel>
+  delete(kablo:GenelDizaynBase):Observable<ResponseModel>
   {
-    let apiUrl=this.baseUrl+"GenelDizayn/Delete"
+    let apiUrl=this.baseUrl+"/Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,kablo)
 
   }

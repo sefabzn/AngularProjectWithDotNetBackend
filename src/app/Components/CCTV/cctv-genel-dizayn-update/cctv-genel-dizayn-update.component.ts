@@ -6,7 +6,7 @@ import { FormGroup,
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { cctvGenelDizaynKablo } from 'src/app/Models/cctvGenelDizaynKablo';
-import { CctvGenelDizaynService } from 'src/app/Services/CctvKabloServices/cctv-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
   selector: 'app-cctv-genel-dizayn-update',
@@ -22,7 +22,7 @@ export class CctvGenelDizaynUpdateComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private cctvGenelDizaynService:CctvGenelDizaynService,
+     private genelDizaynService:GenelDizaynService,
      private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -41,10 +41,9 @@ export class CctvGenelDizaynUpdateComponent implements OnInit {
     
   }
   getKablo(){
-    this.cctvGenelDizaynService.getById(this.kabloId).subscribe ((response)=>{
+    this.genelDizaynService.getById(this.kabloId).subscribe ((response)=>{
       this.kablo=response.data
       this.createCctvGenelUpdateForm()
-      console.log("scaasvavaas")
     })
   }
   createCctvGenelUpdateForm(){
@@ -74,7 +73,7 @@ export class CctvGenelDizaynUpdateComponent implements OnInit {
       model["tarih"]=this.date
       model["degistiren"]=this.userName
       
-      this.cctvGenelDizaynService.update(model).subscribe(data=>{
+      this.genelDizaynService.update(model).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
       },responseError=>{
         console.log(responseError.error.errors)

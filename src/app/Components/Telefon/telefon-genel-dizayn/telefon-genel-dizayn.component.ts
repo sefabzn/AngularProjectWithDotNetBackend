@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { TelefonGenelDizaynKablo } from 'src/app/Models/telefon-genel-dizayn-kablo';
-import { TelefonGenelDizaynService } from 'src/app/Services/TelefonKabloService/telefon-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 @Component({
   selector: 'app-telefon-genel-dizayn',
   templateUrl: './telefon-genel-dizayn.component.html',
@@ -20,7 +20,7 @@ export class TelefonGenelDizaynComponent implements OnInit {
   }
   constructor(
     private toastrService:ToastrService,
-    private telefonGenelDizaynService:TelefonGenelDizaynService) { }
+    private genelDizaynService:GenelDizaynService) { }
 
   ngOnInit(): void {
     this.getKablos()
@@ -39,13 +39,13 @@ export class TelefonGenelDizaynComponent implements OnInit {
     }
   }
   getKablos(){
-    this.telefonGenelDizaynService.getKablolar().subscribe(response=>{
+    this.genelDizaynService.getAll().subscribe(response=>{
       this.kablolar=response.data
     })
   }
   deleteKablo(kablo:TelefonGenelDizaynKablo){
 
-    this.telefonGenelDizaynService.deleteGenelDizayn(kablo).subscribe(response=>{
+    this.genelDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload()
 

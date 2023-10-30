@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Routes } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OperatorIsEmri } from 'src/app/Models/operatorIsEmri';
-import { Surec } from 'src/app/Models/process';
+import { Process } from 'src/app/Models/process';
 import { OperatorIsEmriService } from 'src/app/Services/operator-is-emri.service';
 import { SurecService } from 'src/app/Services/surec.service';
 import { SureclerComponent } from '../../surecler/surecler.component';
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class SurecAddComponent implements OnInit {
 
   surecAddForm:FormGroup
-  surecModel:Surec
+  surecModel:Process
   isEmriId:number
   isEmri:OperatorIsEmri
   constructor(private formBuilder:FormBuilder,

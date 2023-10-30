@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CctvIsEmri } from 'src/app/Models/cctvIsEmri';
 import { paginationProps } from 'src/app/Models/paginationProps';
-import { CctvIsEmriService } from 'src/app/Services/CctvKabloServices/cctv-is-emri.service';
+import { IsEmriService } from 'src/app/Services/is-emri.service';
 
 @Component({
   selector: 'app-cctv-is-emirleri',
@@ -19,7 +19,7 @@ export class CctvIsEmirleriComponent implements OnInit {
   onTableDataChange(event:any){
     this.paginationProp.page =event;
   }
-  constructor(private cctvIsEmriService:CctvIsEmriService,
+  constructor(private isEmriService:IsEmriService,
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
@@ -38,13 +38,13 @@ export class CctvIsEmirleriComponent implements OnInit {
     }
   }
   getCctvIsEmirleri(){
-    this.cctvIsEmriService.getIsEmirleri().subscribe(response=>{
+    this.isEmriService.getAll().subscribe(response=>{
       this.isEmirleri=response.data
       console.log(response)
     })
   }
   deleteIsEmri(isEmri:CctvIsEmri){
-    this.cctvIsEmriService.deleteIsEmri(isEmri).subscribe(Response=>{
+    this.isEmriService.delete(isEmri).subscribe(Response=>{
       this.toastrService.info(Response.message,"İşlem Başarılı")
       location.reload()
     })

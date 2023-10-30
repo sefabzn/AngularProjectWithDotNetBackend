@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CctvDamarDizaynService } from 'src/app/Services/CctvKabloServices/cctv-damar-dizayn.service';
+import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 @Component({
   selector: 'app-cctv-damar-dizayn-add',
   templateUrl: './cctv-damar-dizayn-add.component.html',
@@ -20,7 +20,7 @@ export class CctvDamarDizaynAddComponent implements OnInit {
   anaId:number
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private cctvDamarDizaynService:CctvDamarDizaynService,
+     private damarDizaynService:DamarDizaynService,
      private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -53,9 +53,9 @@ export class CctvDamarDizaynAddComponent implements OnInit {
   add(){
     if(this.CctvDamarAddForm.valid){
       let formModel =Object.assign({},this.CctvDamarAddForm.value);
-      formModel["anaId"]=this.anaId
+      formModel["genelDizaynId"]=this.anaId
       
-      this.cctvDamarDizaynService.addDamarDizayn(formModel).subscribe(data=>{
+      this.damarDizaynService.add(formModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
         location.reload();
       },responseError=>{

@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { TelefonGenelDizaynService } from 'src/app/Services/TelefonKabloService/telefon-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
   selector: 'app-telefon-genel-add',
@@ -22,7 +22,7 @@ export class TelefonGenelAddComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private telefonGenelDizaynService:TelefonGenelDizaynService) { }
+     private genelDizaynService:GenelDizaynService) { }
 
   ngOnInit(): void {
     this.createKabloUretimAddForm()
@@ -59,7 +59,7 @@ export class TelefonGenelAddComponent implements OnInit {
       makinaModel["tarih"]=this.date
       console.log(makinaModel)
       
-      this.telefonGenelDizaynService.addGenelDizayn(makinaModel).subscribe(data=>{
+      this.genelDizaynService.add(makinaModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
       },responseError=>{
         console.log(responseError.error.errors)

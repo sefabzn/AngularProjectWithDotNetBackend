@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { cctvGenelDizaynKablo } from 'src/app/Models/cctvGenelDizaynKablo';
 import { paginationProps } from 'src/app/Models/paginationProps';
-import { CctvGenelDizaynService } from 'src/app/Services/CctvKabloServices/cctv-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
   selector: 'app-cctv-genel-dizayn',
@@ -21,7 +21,7 @@ export class CctvGenelDizaynComponent implements OnInit {
   }
   constructor(
     private toastrService:ToastrService,
-    private cctvGenelDizaynService:CctvGenelDizaynService) { }
+    private GenelDizaynService:GenelDizaynService) { }
 
   ngOnInit(): void {
     this.getKablos()
@@ -40,13 +40,13 @@ export class CctvGenelDizaynComponent implements OnInit {
     }
   }
   getKablos(){
-    this.cctvGenelDizaynService.getKablolar().subscribe(response=>{
+    this.GenelDizaynService.getAll('TELEFON').subscribe(response=>{
       this.kablolar=response.data
     })
   }
   deleteKablo(kablo:cctvGenelDizaynKablo){
 
-    this.cctvGenelDizaynService.deleteGenelDizayn(kablo).subscribe(response=>{
+    this.GenelDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload()
 

@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CctvGenelDizaynService } from 'src/app/Services/CctvKabloServices/cctv-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 @Component({
   selector: 'app-cctv-genel-add',
   templateUrl: './cctv-genel-add.component.html',
@@ -20,7 +20,7 @@ export class CctvGenelAddComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private cctvGenelDizaynService:CctvGenelDizaynService) { }
+     private genelDizaynService:GenelDizaynService) { }
 
   ngOnInit(): void {
     this.createKabloUretimAddForm()
@@ -54,11 +54,11 @@ export class CctvGenelAddComponent implements OnInit {
   }
   add(){
     if(this.CctvGenelAddForm.valid){
-      let makinaModel =Object.assign({},this.CctvGenelAddForm.value);
-      makinaModel["tarih"]=this.date
-      makinaModel["degistiren"]=this.userName
+      let genelDizaynModel =Object.assign({},this.CctvGenelAddForm.value);
+      genelDizaynModel["tarih"]=this.date
+      genelDizaynModel["degistiren"]=this.userName
       
-      this.cctvGenelDizaynService.addGenelDizayn(makinaModel).subscribe(data=>{
+      this.genelDizaynService.add(genelDizaynModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
       },responseError=>{
         console.log(responseError.error.errors)

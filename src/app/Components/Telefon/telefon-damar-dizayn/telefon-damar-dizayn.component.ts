@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { TelefonDamarDizaynKablo } from 'src/app/Models/telefon-damar-dizayn-kablo';
-import { TelefonDamarDizaynService } from 'src/app/Services/TelefonKabloService/telefon-damar-dizayn.service';
+import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 @Component({
   selector: 'app-telefon-damar-dizayn',
   templateUrl: './telefon-damar-dizayn.component.html',
@@ -21,7 +21,7 @@ export class TelefonDamarDizaynComponent implements OnInit {
   }
   constructor(
     private toastrService:ToastrService,
-    private telefonDamarDizaynService:TelefonDamarDizaynService,
+    private damarDizaynService:DamarDizaynService,
     private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -47,13 +47,13 @@ export class TelefonDamarDizaynComponent implements OnInit {
   }
 
   getKablolarByGenelDizaynId(genelDizaynId:number){
-    this.telefonDamarDizaynService.getKablolarByGenelDizaynId(genelDizaynId).subscribe(Response=>{
+    this.damarDizaynService.getAllByGenelDizaynId(genelDizaynId).subscribe(Response=>{
       this.damarlar=Response.data
       console.log(Response)
     })
   }
   deleteKablo(kablo:TelefonDamarDizaynKablo){
-    this.telefonDamarDizaynService.DeleteDamarDizayn(kablo).subscribe(response=>{
+    this.damarDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload();
     })

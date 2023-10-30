@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Surec } from 'src/app/Models/process';
+import { Process } from 'src/app/Models/process';
 import { SurecService } from 'src/app/Services/surec.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class SureclerComponent implements OnInit {
 
 
   isEmriId:number
-  surecList:Surec[]
+  surecList:Process[]
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
 

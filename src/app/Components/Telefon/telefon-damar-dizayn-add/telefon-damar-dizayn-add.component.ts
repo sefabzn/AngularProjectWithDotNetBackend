@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TelefonDamarDizaynService } from 'src/app/Services/TelefonKabloService/telefon-damar-dizayn.service';
+import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 @Component({
   selector: 'app-telefon-damar-dizayn-add',
   templateUrl: './telefon-damar-dizayn-add.component.html',
@@ -21,7 +21,7 @@ export class TelefonDamarDizaynAddComponent implements OnInit {
   anaId:number
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private telefonDamarDizaynService:TelefonDamarDizaynService,
+     private damarDizaynService:DamarDizaynService,
      private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -54,9 +54,9 @@ export class TelefonDamarDizaynAddComponent implements OnInit {
   add(){
     if(this.telefonDamarAddForm.valid){
       let formModel =Object.assign({},this.telefonDamarAddForm.value);
-      formModel["anaId"]=this.anaId
+      formModel["genelDizaynId"]=this.anaId
       
-      this.telefonDamarDizaynService.addDamarDizayn(formModel).subscribe(data=>{
+      this.damarDizaynService.add(formModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
         location.reload();
       },responseError=>{

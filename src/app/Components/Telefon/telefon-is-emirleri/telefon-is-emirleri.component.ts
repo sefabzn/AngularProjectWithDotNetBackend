@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { TelefonIsEmri } from 'src/app/Models/telefon-is-emri';
-import { TelefonIsEmriService } from 'src/app/Services/TelefonKabloService/telefon-is-emri.service';
+import { IsEmriService } from 'src/app/Services/is-emri.service';
 @Component({
   selector: 'app-telefon-is-emirleri',
   templateUrl: './telefon-is-emirleri.component.html',
@@ -18,7 +18,7 @@ export class TelefonIsEmirleriComponent implements OnInit {
   onTableDataChange(event:any){
     this.paginationProp.page =event;
   }
-  constructor(private telefonIsEmriService:TelefonIsEmriService,
+  constructor(private isEmriService:IsEmriService,
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
@@ -37,13 +37,13 @@ export class TelefonIsEmirleriComponent implements OnInit {
     }
   }
   getTelefonIsEmirleri(){
-    this.telefonIsEmriService.getIsEmirleri().subscribe(response=>{
+    this.isEmriService.getAll().subscribe(response=>{
       this.isEmirleri=response.data
       console.log(response)
     })
   }
   deleteIsEmri(isEmri:TelefonIsEmri){
-    this.telefonIsEmriService.deleteIsEmri(isEmri).subscribe(Response=>{
+    this.isEmriService.delete(isEmri).subscribe(Response=>{
       this.toastrService.info(Response.message,"İşlem Başarılı")
       location.reload()
     })

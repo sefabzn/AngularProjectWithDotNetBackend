@@ -6,7 +6,7 @@ import { FormGroup,
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { YanginGenelDizaynKablo } from 'src/app/Models/yangin-genel-dizayn-kablo';
-import { YanginGenelDizaynService } from 'src/app/Services/YanginKabloServices/yangin-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
   selector: 'app-yangin-genel-dizayn-update',
@@ -22,7 +22,7 @@ export class YanginGenelDizaynUpdateComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private yanginGenelDizaynService:YanginGenelDizaynService,
+     private genelDizaynService:GenelDizaynService,
      private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class YanginGenelDizaynUpdateComponent implements OnInit {
     
   }
   getKablo(){
-    this.yanginGenelDizaynService.getById(this.kabloId).subscribe ((response)=>{
+    this.genelDizaynService.getById(this.kabloId).subscribe ((response)=>{
       this.kablo=response.data
       this.createTelefonGenelUpdateForm()
     })
@@ -71,7 +71,7 @@ export class YanginGenelDizaynUpdateComponent implements OnInit {
       model["tarih"]=this.date
       model["degistiren"]=this.userName
       
-      this.yanginGenelDizaynService.update(model).subscribe(data=>{
+      this.genelDizaynService.update(model).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
       },responseError=>{
         console.log(responseError.error.errors)

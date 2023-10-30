@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { YanginDamarDizaynService } from 'src/app/Services/YanginKabloServices/yangin-damar-dizayn.service';
+import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 @Component({
   selector: 'app-yangin-damar-dizayn-add',
   templateUrl: './yangin-damar-dizayn-add.component.html',
@@ -21,14 +21,14 @@ export class YanginDamarDizaynAddComponent implements OnInit {
   anaId:number
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private yanginDamarDizaynService:YanginDamarDizaynService,
+     private damarDizaynService:DamarDizaynService,
      private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createYanginDamarDizaynAddForm()
     this.activatedRoute.params.subscribe((params)=>{
-      if(params["yanginGenelDizaynId"]){
-        this.anaId=params["yanginGenelDizaynId"];
+      if(params["genelDizaynId"]){
+        this.anaId=params["genelDizaynId"];
       }
       else{
         console.log("tüm damarlar?")
@@ -56,7 +56,7 @@ export class YanginDamarDizaynAddComponent implements OnInit {
       let formModel =Object.assign({},this.yanginDamarAddForm.value);
       formModel["anaId"]=this.anaId
       
-      this.yanginDamarDizaynService.addDamarDizayn(formModel).subscribe(data=>{
+      this.damarDizaynService.add(formModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
         location.reload();
       },responseError=>{

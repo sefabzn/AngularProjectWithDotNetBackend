@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { YanginGenelDizaynKablo } from 'src/app/Models/yangin-genel-dizayn-kablo';
-import { YanginGenelDizaynService } from 'src/app/Services/YanginKabloServices/yangin-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 @Component({
   selector: 'app-yangin-genel-dizayn',
   templateUrl: './yangin-genel-dizayn.component.html',
@@ -19,7 +19,7 @@ export class YanginGenelDizaynComponent implements OnInit {
   }
   constructor(
     private toastrService:ToastrService,
-    private yanginGenelDizaynService:YanginGenelDizaynService) { }
+    private genelDizaynService:GenelDizaynService) { }
 
   ngOnInit(): void {
     this.getKablos()
@@ -38,13 +38,13 @@ export class YanginGenelDizaynComponent implements OnInit {
     }
   }
   getKablos(){
-    this.yanginGenelDizaynService.getKablolar().subscribe(response=>{
+    this.genelDizaynService.getAll().subscribe(response=>{
       this.kablolar=response.data
     })
   }
   deleteKablo(kablo:YanginGenelDizaynKablo){
 
-    this.yanginGenelDizaynService.deleteGenelDizayn(kablo).subscribe(response=>{
+    this.genelDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload()
 

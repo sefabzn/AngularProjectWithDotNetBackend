@@ -6,7 +6,7 @@ import { FormGroup,
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TelefonGenelDizaynKablo } from 'src/app/Models/telefon-genel-dizayn-kablo';
-import { TelefonGenelDizaynService } from 'src/app/Services/TelefonKabloService/telefon-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
   selector: 'app-telefon-genel-dizayn-update',
@@ -22,7 +22,7 @@ export class TelefonGenelDizaynUpdateComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private telefonGenelDizaynService:TelefonGenelDizaynService,
+     private genelDizaynService:GenelDizaynService,
      private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class TelefonGenelDizaynUpdateComponent implements OnInit {
     
   }
   getKablo(){
-    this.telefonGenelDizaynService.getById(this.kabloId).subscribe ((response)=>{
+    this.genelDizaynService.getById(this.kabloId).subscribe ((response)=>{
       this.kablo=response.data
       this.createTelefonGenelUpdateForm()
     })
@@ -72,7 +72,7 @@ export class TelefonGenelDizaynUpdateComponent implements OnInit {
       model["tarih"]=this.date
       model["degistiren"]=this.userName
       
-      this.telefonGenelDizaynService.update(model).subscribe(data=>{
+      this.genelDizaynService.update(model).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
       },responseError=>{
         console.log(responseError.error.errors)

@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { YanginGenelDizaynService } from 'src/app/Services/YanginKabloServices/yangin-genel-dizayn.service';
+import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 @Component({
   selector: 'app-yangin-genel-add',
   templateUrl: './yangin-genel-add.component.html',
@@ -20,7 +20,7 @@ export class YanginGenelAddComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-     private yanginGenelDizaynService:YanginGenelDizaynService) { }
+     private genelDizaynService:GenelDizaynService) { }
 
   ngOnInit(): void {
     this.createKabloUretimAddForm()
@@ -57,7 +57,7 @@ export class YanginGenelAddComponent implements OnInit {
       makinaModel["tarih"]=this.date
       console.log(makinaModel)
       
-      this.yanginGenelDizaynService.addGenelDizayn(makinaModel).subscribe(data=>{
+      this.genelDizaynService.add(makinaModel).subscribe(data=>{
         this.toastrService.success(data.message,"Başarılı")
       },responseError=>{
         console.log(responseError.error.errors)
