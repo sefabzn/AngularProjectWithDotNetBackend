@@ -38,7 +38,7 @@ export class YanginGenelDizaynComponent implements OnInit {
     }
   }
   getKablos(){
-    this.genelDizaynService.getAll().subscribe(response=>{
+    this.genelDizaynService.getAll("YANGIN").subscribe(response=>{
       this.kablolar=response.data
     })
   }

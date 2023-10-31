@@ -63,7 +63,6 @@ import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-gen
 import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-update/operator-is-emri-update.component';
 import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.component';
 
-import { NgxBarcodeModule } from 'ngx-barcode';
 import { SureclerComponent } from './Components/surecler/surecler.component';
 import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add.component';
 import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
@@ -136,7 +135,6 @@ import { SurecUpdateComponent } from './Components/surec-update/surec-update.com
     BrowserAnimationsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    NgxBarcodeModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}

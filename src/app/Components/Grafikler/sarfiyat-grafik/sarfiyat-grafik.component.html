@@ -8,10 +8,10 @@
   <br><div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-4">
-      Date Picker:<input type="date" [(ngModel)]="startDate" />
+      Date Picker:<input type="date" [(ngModel)]="firstDate" />
     </div>
     <div class="col-md-4">
-      Date Picker:<input type="date" [(ngModel)]="finishDate" />
+      Date Picker:<input type="date" [(ngModel)]="lastDate" />
     </div>
   </div>
   <div style="margin-left: 480px; margin-top: 50px; width: 200px">
@@ -19,17 +19,17 @@
       <label for="makineler"><h5>Bir makine seçin:</h5> </label>
       <select
         class="form-select"
-        [(ngModel)]="selectedMakineIsmi"
+        [(ngModel)]="selectedMakineId"
         name="makineler"
         id="makineler"
       >
-        <option *ngFor="let makine of makineler">{{ makine.makineIsmi }}</option>
+        <option value="{{makine.id}}" *ngFor="let makine of makineler">{{ makine.makineIsmi }}</option>
       </select>
     </div>
     <button
       style="margin-left: 15px; margin-top: 50px; width: 150px; height: 50px"
       (click)="
-        getData(startDate, finishDate)
+        getAnalysis()
       "
     >
       Seç

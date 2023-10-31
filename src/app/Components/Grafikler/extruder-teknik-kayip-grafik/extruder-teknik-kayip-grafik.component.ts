@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { GunlukRapor } from 'src/app/Models/gunlukRapor';
 import { KabloUretim } from 'src/app/Models/kabloUretim';
 import { Makine } from 'src/app/Models/makine';
 import { KabloUretimService } from 'src/app/Services/kablo-uretim.service';
@@ -11,21 +12,18 @@ import { MakineService } from 'src/app/Services/makine.service';
   styleUrls: ['./extruder-teknik-kayip-grafik.component.css'],
 })
 export class ExtruderTeknikKayipGrafikComponent implements OnInit {
-  startDate: string;
-  finishDate: string;
-  kablolar: KabloUretim[];
+  firstDate: Date;
+  lastDate: Date;
+  selectedMakineId: number;
+  teknikKayipChart:Chart<"pie", number[], string>
   makineler: Makine[];
-  selectedMakine:Makine;
-  selectedMakineIsmi:string;
-  ortalamaGunlukAriza: number;
+  ortalamaGunlukAriza: any;
   ortalamaRenkDegisimKaybi: number;
-  ortalamaKesitDegisimKaybi: number; //bu biraz meşakatli
-  ortalamaKopmaKaybi:number
-  ortalamaIsinma:number
-  teknikKayipChart:Chart
+  ortalamaKesitDegisimKaybi: number;
+  ortalamaKopmaKaybi: number;
+  ortalamaIsinma: number;
 
   constructor(
-    private kabloUretimService: KabloUretimService,
     private makineService: MakineService
   ) {}
 
@@ -75,46 +73,26 @@ export class ExtruderTeknikKayipGrafikComponent implements OnInit {
       },
     });
   }
-  setSelectedMakine(makine:string){
-   return (this.makineler.filter(x=>x.makineIsmi==makine)[0])
-  }
+ 
   getMakineler() {
     this.makineService.getMakinas().subscribe((response) => {
       this.makineler = response.data;
+      this.selectedMakineId=this.makineler[0].id
     });
   }
+  getAnalysis() {
+
+    this.makineService.getRaporAnalysis(this.selectedMakineId,this.firstDate,this.lastDate).subscribe((response) => {
+
+      this.ortalamaGunlukAriza=response.data.ortalamaAriza
+      this.ortalamaRenkDegisimKaybi=response.data.ortalamaRenkDegisimKaybi
+      this.ortalamaKesitDegisimKaybi=response.data.ortalamaKesitDegisimKaybi
+      this.ortalamaKopmaKaybi=response.data.ortalamaKopmaKaybi
+      this.ortalamaIsinma=response.data.ortalamaIsinma
+      this.getChart()
+
+    })
+  }
+ 
   
-  getKablolarByDateRangeAndMakine(startDate, finishDate,selectedMakineIsmi:string) {
-    
-    this.selectedMakine=this.setSelectedMakine(selectedMakineIsmi)
-    if (startDate && finishDate) {
-      this.kabloUretimService
-        .getKablolarbyDateRangeAndMakine(startDate, finishDate,this.selectedMakine.id)
-        .subscribe((response) => {
-          this.kablolar = response.data;
-          this.getOrtalamaGunlukAriza(this.kablolar);
-          this.getChart()
-          console.log(this.kablolar)
-        });
-    } else {
-      // A MESSAGE
-    }
-  }
-
-  getOrtalamaGunlukAriza(data: KabloUretim[]) {
-    let gunlukAriza: number = 0;
-    let gunlukRenkDegisimikaybi:number=0;
-    let gunlukKopmaKaybi:number=0;
-    data.forEach((element) => {
-      gunlukAriza += element.genelAriza;
-      gunlukRenkDegisimikaybi+=element.renkDegisimi*this.selectedMakine.renkDegisimi
-      gunlukKopmaKaybi+=element.kopma*this.selectedMakine.kopma
-    });
-
-    this.ortalamaGunlukAriza = gunlukAriza / data.length;
-    this.ortalamaRenkDegisimKaybi=gunlukRenkDegisimikaybi/data.length
-    this.ortalamaKopmaKaybi=gunlukKopmaKaybi/data.length
-    this.ortalamaKesitDegisimKaybi=this.selectedMakine.kesitDegisimi
-    this.ortalamaIsinma=this.selectedMakine.isinma
-  }
 }

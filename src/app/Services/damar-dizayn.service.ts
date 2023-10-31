@@ -16,25 +16,25 @@ export class DamarDizaynService {
   constructor(private httpClient:HttpClient) { }
   delete(kablo:DamarDizaynBase):Observable<ResponseModel>
   {
-    let apiUrl=this.baseUrl+"DamarDizayn/Delete"
+    let apiUrl=this.baseUrl+"/Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,kablo)
   }
   getAllByGenelDizaynId(genelDizaynId:number):Observable<ListResponseModel<DamarDizaynBase>>{
 
-    let apiUrl=this.baseUrl+"DamarDizayn/GetAllByGenelDizaynId?id="+genelDizaynId
+    let apiUrl=this.baseUrl+"/GetAllByGenelDizaynId?id="+genelDizaynId
     return this.httpClient.get<ListResponseModel<DamarDizaynBase>>(apiUrl)
   }
   update(kablo:DamarDizaynBase):Observable<ResponseModel>{
-    return this.httpClient.put<ResponseModel>(this.baseUrl+"Cctv/CctvDamarDizayn/Update",kablo)
+    return this.httpClient.put<ResponseModel>(this.baseUrl+"/Update",kablo)
   }
   getById(kabloId:number){
-    let apiUrl=this.baseUrl+"DamarDizayn/GetById?id="+kabloId
+    let apiUrl=this.baseUrl+"/GetById?id="+kabloId
     return this.httpClient.get<SingleResponseModel<DamarDizaynBase>>(apiUrl)
 
   }
   add(kablo:DamarDizaynBase):Observable<ResponseModel>{
 
-    let apiUrl=this.baseUrl+"DamarDizayn/Add"
+    let apiUrl=this.baseUrl+"/Add"
     return this.httpClient.post<ResponseModel>(apiUrl,kablo)
 
   }

@@ -25,8 +25,8 @@ export class YanginDamarDizaynComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
-      if(params["yanginGenelDizaynId"]){
-        this.getKablolarByGenelDizaynId(params["yanginGenelDizaynId"])
+      if(params["GenelDizaynId"]){
+        this.getKablolarByGenelDizaynId(params["GenelDizaynId"])
       }
       else{
         console.log("tüm damarlar")

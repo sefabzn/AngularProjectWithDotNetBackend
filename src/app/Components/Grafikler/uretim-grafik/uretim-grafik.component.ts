@@ -10,28 +10,28 @@ import { MakineService } from 'src/app/Services/makine.service';
   styleUrls: ['./uretim-grafik.component.css'],
 })
 export class UretimGrafikComponent implements OnInit {
-  startDate: string;
-  finishDate: string;
-  kablolar: KabloUretim[];
-  makineler: Makine[];
-  selectedMakine: Makine;
-  selectedMakineIsmi: string;
-  verimlilikChart: Chart;
-  chartGun: Chart;
-  chartUretim: Chart;
+ 
+  verimlilikChart: Chart<"pie", number[], string>;
+  chartGun: Chart<"pie", number[], string>;
+  chartUretim: Chart<"pie", number[], string>;
   ortalamaVerimlilik: number;
+  verimliGun: number;
+  verimsizGun: number;
   secilenGun: number;
   calisilanGun: number;
-  verimliGun:number;
-  verimsizGun:number
-  toplamMetraj:number;
+  makineler: Makine[];
+  selectedMakineId: number;
+  startDate: Date;
+  finishDate: Date;
+  toplamMetraj: number;
+
   constructor(
     private makineService: MakineService,
     private kabloUretimService: KabloUretimService
   ) {}
 
   ngOnInit(): void {
-    this.getMakineler();
+    this.getMakineler()
   }
   getChart() {
     if (this.verimlilikChart && this.chartUretim && this.chartGun) {
@@ -47,7 +47,7 @@ export class UretimGrafikComponent implements OnInit {
         datasets: [
           {
             label: 'Malihler mal olur',
-            data: [this.ortalamaVerimlilik, 100-this.ortalamaVerimlilik],
+            data: [this.ortalamaVerimlilik, 1-this.ortalamaVerimlilik],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(75, 192, 192, 0.2)',
@@ -115,78 +115,26 @@ export class UretimGrafikComponent implements OnInit {
       },
     });
   }
-  setSelectedMakine(makine: string) {
-    return this.makineler.filter((x) => x.makineIsmi == makine)[0];
-  }
-  getMakineler() {
-    this.makineService.getMakinas().subscribe((response) => {
-      this.makineler = response.data;
-    });
-  }
-  getCalisilanGun(data: KabloUretim[]) {
-    this.secilenGun;
-    
-    let newDate = new Date(this.startDate);
-    let lastDate = new Date(this.finishDate);
-    this.secilenGun =
-      (lastDate.getTime() - newDate.getTime()) / (1000 * 3600 * 24) + 1;
 
-    let Gun = 0;
-    let metraj=0;
-    let verimliGun=0;
+  getMakineler(){
+    this.makineService.getMakinas().subscribe(response=>{
     
-    data.forEach(element => {
-      metraj+=element.metraj
-    });
-
-    for (newDate; newDate <= lastDate; newDate.setDate(newDate.getDate() + 1)) {
-      if ((data.filter(x=>x.tarih.substring(0,10)==newDate.toISOString().substring(0,10))).length>0) {
-        let verimlilik=0;
-        let subData=(data.filter(x=>x.tarih.substring(0,10)==newDate.toISOString().substring(0,10)))
-        subData.forEach(element => {
-          verimlilik+=element.verimlilik
-        });
-        let ortalamaVerimlilik= verimlilik/subData.length
-        if (ortalamaVerimlilik>=70) {
-          verimliGun+=1
-        }
-        Gun+=1        
-      }
-    }
-    this.toplamMetraj=metraj;
-    this.calisilanGun = Gun;
-    this.verimliGun =verimliGun
-    this.verimsizGun=Gun-verimliGun
+      this.makineler=response.data
+      this.selectedMakineId=this.makineler[0].id
+    })
   }
-  getOrtalamaVerimlilik(data: KabloUretim[]) {
-    let gunlukVerimlilik = 0;
-    data.forEach((element) => {
-      gunlukVerimlilik += element.verimlilik;
-    });
-    this.ortalamaVerimlilik = gunlukVerimlilik / data.length; //aynı günde birden fazla kablo üretilmişse bu da hatalı cıkar
+  getAnalysis(){
+    this.makineService.getRaporAnalysis(this.selectedMakineId,this.startDate,this.finishDate).subscribe(response=>{
+      
+      this.toplamMetraj=response.data.toplamMetraj
+      this.ortalamaVerimlilik=response.data.ortalamaVerimlilik
+      this.verimliGun=response.data.verimliGun
+      this.verimsizGun=response.data.verimsizGun
+      this.secilenGun=response.data.secilenGun
+      this.calisilanGun=response.data.calisilanGun
+      this.getChart()
+      
+    })
   }
-  getKablolarByDateRangeAndMakine(
-    startDate,
-    finishDate,
-    selectedMakineIsmi: string
-  ) {
-    this.selectedMakine = this.setSelectedMakine(selectedMakineIsmi);
-    if (startDate && finishDate) {
-      this.kabloUretimService
-        .getKablolarbyDateRangeAndMakine(
-          startDate,
-          finishDate,
-          this.selectedMakine.id
-        )
-        .subscribe((response) => {
-          this.kablolar = response.data;
-          this.getOrtalamaVerimlilik(this.kablolar);
-          this.getCalisilanGun(this.kablolar);
-          this.getChart();
-          console.log(this.kablolar);
-        });
-    } else {
-      // A MESSAGE
-    }
-  }
+ 
 }

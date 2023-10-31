@@ -26,8 +26,8 @@ export class TelefonDamarDizaynComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
-      if(params["telefonGenelDizaynId"]){
-        this.getKablolarByGenelDizaynId(params["telefonGenelDizaynId"])
+      if(params["GenelDizaynId"]){
+        this.getKablolarByGenelDizaynId(params["GenelDizaynId"])
       }
       else{
         console.log("tüm damarlar")

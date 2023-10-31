@@ -27,8 +27,9 @@ export class CctvDamarDizaynComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
-      if(params["cctvGenelDizaynId"]){
-        this.getKablolarByGenelDizaynId(params["cctvGenelDizaynId"])
+      if(params["genelDizaynId"]){
+        this.getKablolarByGenelDizaynId(params["genelDizaynId"])
+        
       }
       else{
         console.log("tüm damarlar")

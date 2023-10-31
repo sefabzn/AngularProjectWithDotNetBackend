@@ -1,5 +1,4 @@
 import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { NgxBarcodeComponent } from 'ngx-barcode';
 @Component({
   selector: 'app-is-emri-takip',
   templateUrl: './is-emri-takip.component.html',

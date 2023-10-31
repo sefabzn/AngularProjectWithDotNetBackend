@@ -11,24 +11,24 @@
     </div>
     <div class="col-md-4">
   
-    Date Picker:<input type="date" [(ngModel)]="startDate" />
+    Date Picker:<input type="date" [(ngModel)]="firstDate" />
   </div>
   <div class="col-md-4">
   
-    Date Picker:<input type="date" [(ngModel)]="finishDate" />
+    Date Picker:<input type="date" [(ngModel)]="lastDate" />
    
   </div>
  
   </div>
   <div style="margin-left: 480px;margin-top: 50px;width:200px ;"> <div class="col-md-15">
     <label for="makineler"><h5>Bir makine seçin:</h5>   </label>
-    <select class="form-select" [(ngModel)]="selectedMakineIsmi" name="makineler" id="makineler">
-      <option  *ngFor="let makine of makineler " >{{makine.makineIsmi}}</option>
+    <select class="form-select" [(ngModel)]="selectedMakineId"  name="makineler" id="makineler">
+      <option  *ngFor="let makine of makineler " value="{{makine.id}}">{{makine.makineIsmi}}</option>
       
     </select>
   </div>
   <button style="margin-left: 15px;margin-top: 50px;width: 150px;height: 50px;"
-  (click)="getKablolarByDateRangeAndMakine(startDate,finishDate,selectedMakineIsmi)"
+  (click)="getAnalysis()"
 >
   Seç
 </button></div>

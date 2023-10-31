@@ -40,7 +40,7 @@ export class CctvGenelDizaynComponent implements OnInit {
     }
   }
   getKablos(){
-    this.GenelDizaynService.getAll('TELEFON').subscribe(response=>{
+    this.GenelDizaynService.getAll('CCTV').subscribe(response=>{
       this.kablolar=response.data
     })
   }
