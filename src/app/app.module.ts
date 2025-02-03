@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,9 +11,8 @@ import { KullaniciComponent } from './Components/kullanici/kullanici.component';
 import { NaviComponent } from './Components/navi/navi.component';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 
-import {NgxPaginationModule} from 'ngx-pagination'
+import { NgxPaginationModule } from 'ngx-pagination';
 
-import { ToastrModule } from 'ngx-toastr';
 import { CartSummaryComponent } from './Components/cart-summary/cart-summary.component';
 import { LoginComponent } from './Components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -66,6 +65,7 @@ import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.c
 import { SureclerComponent } from './Components/surecler/surecler.component';
 import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add.component';
 import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
+import { RegisterComponent } from './Components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -123,21 +123,22 @@ import { SurecUpdateComponent } from './Components/surec-update/surec-update.com
     SureclerComponent,
     SurecAddComponent,
     SurecUpdateComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-right"
+      positionClass: 'toast-bottom-right'
     }),
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

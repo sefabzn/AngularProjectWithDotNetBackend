@@ -1,4 +1,4 @@
-export interface LoginModel{
-    kullaniciAdi:string;
-    sifre:string;
+export interface LoginModel {
+  email: string;
+  password: string;
 }

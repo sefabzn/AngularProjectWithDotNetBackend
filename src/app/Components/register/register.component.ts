@@ -5,12 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,22 +20,23 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.createLoginForm();
+    this.createRegisterForm();
   }
 
-  createLoginForm() {
-    this.loginForm = this.formBuilder.group({
+  createRegisterForm() {
+    this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  login() {
-    if (this.loginForm.valid) {
-      let loginModel = Object.assign({}, this.loginForm.value);
-      this.authService.login(loginModel).subscribe(response => {
+  register() {
+    if (this.registerForm.valid) {
+      let registerModel = Object.assign({}, this.registerForm.value);
+      this.authService.register(registerModel).subscribe(response => {
         if (response.success) {
-          this.toastrService.success('Login successful');
+          this.toastrService.success('Registration successful');
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', response.data.email);
           this.router.navigate(['/anamenu']);
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.toastrService.error(response.message);
         }
       }, responseError => {
-        this.toastrService.error('An error occurred during login');
+        this.toastrService.error('An error occurred during registration');
       });
     }
   }

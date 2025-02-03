@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../Models/loginModel';
-import { SingleResponseModel } from '../Models/singleResponseModel';
+import { RegisterModel } from '../Models/registerModel';
 import { TokenModel } from '../Models/tokenModel';
 
 @Injectable({
@@ -10,19 +10,18 @@ import { TokenModel } from '../Models/tokenModel';
 })
 export class AuthService {
 
-  baseUrl="https://localhost:7289/api/auth/"
-  constructor(private httpClient:HttpClient) { }
+  baseUrl = "https://localhost:7289/api/auth/";
+  constructor(private httpClient: HttpClient) { }
 
-  login(loginModel:LoginModel):Observable<TokenModel>{
-    return this.httpClient.post<TokenModel>(this.baseUrl+"login",loginModel)
-  }
-  isAuthenticated(){
-    if(localStorage.getItem("token")){
-      return true;
-    }
-    else{
-      return false;
-    }
+  login(loginModel: LoginModel): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl + "login", loginModel);
   }
 
+  register(registerModel: RegisterModel): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl + "register", registerModel);
+  }
+
+  isAuthenticated() {
+    return localStorage.getItem("token") !== null;
+  }
 }

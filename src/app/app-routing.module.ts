@@ -18,6 +18,7 @@ import { KabloUretimUpdateComponent } from './Components/kablo-uretim/kablo-uret
 import { KabloUretimComponent } from './Components/kablo-uretim/kablo-uretim.component';
 import { KullaniciComponent } from './Components/kullanici/kullanici.component';
 import { LoginComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
 import { GunlukRaporComponent } from './Components/makineGunlukRapor/gunluk-rapor/gunluk-rapor.component';
 import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/operator-is-emri-add.component';
 import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-update/operator-is-emri-update.component';
@@ -46,12 +47,13 @@ import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add
 import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
 
 const routes: Routes = [
-  {path:"Login",pathMatch:"full",component:LoginComponent},
+  { path: 'Login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {path:"kullanicilar/getByMakineId/:makineId",component:KullaniciComponent},
   {path:"kullanicilar",component:KullaniciComponent},
   {path:"kablouretim",component:KabloUretimComponent, canActivate:[LoginGuard]},
   {path:"kablouretim/add",component:KabloUretimAddComponent},
-  {path:"anamenu",component:AnaMenuComponent},
+  { path: 'anamenu', component: AnaMenuComponent },
   {path:"cctvsecme",component:CctvSecmeComponent},
   {path:"cctvgeneldizayn",component:CctvGenelDizaynComponent},
   {path:"cctvdamardizayn/getbycctvgeneldizaynid/:genelDizaynId",component:CctvDamarDizaynComponent},
