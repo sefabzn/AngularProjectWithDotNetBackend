@@ -32,13 +32,11 @@ import { SarfiyatGrafikComponent } from './Components/Grafikler/sarfiyat-grafik/
 import { SabitVerilerMenuComponent } from './Components/Sabit Veriler/sabit-veriler-menu/sabit-veriler-menu.component';
 import { GunlukRaporComponent } from './Components/makineGunlukRapor/gunluk-rapor/gunluk-rapor.component';
 import { KabloIsmiFilterPipe } from './pipes/kablo-ismi-filter.pipe';
-import { OperatorIsEmriComponent } from './Components/operator-is-emri/operator-is-emri.component';
 import { OperatorFilterPipe } from './pipes/operator-filter.pipe';
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
 import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
 import { UretimPlanlamaComponent } from './Components/uretim-planlama/uretim-planlama.component';
-import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/operator-is-emri-add.component';
 import { TelefonSecmeComponent } from './Components/Telefon/telefon-secme/telefon-secme.component';
 import { TelefonIsEmirleriComponent } from './Components/Telefon/telefon-is-emirleri/telefon-is-emirleri.component';
 import { TelefonGenelDizaynComponent } from './Components/Telefon/telefon-genel-dizayn/telefon-genel-dizayn.component';
@@ -59,13 +57,13 @@ import { CctvGenelDizaynUpdateComponent } from './Components/CCTV/cctv-genel-diz
 import { CctvDamarDizaynUpdateComponent } from './Components/CCTV/cctv-damar-dizayn-update/cctv-damar-dizayn-update.component';
 import { TelefonGenelDizaynUpdateComponent } from './Components/Telefon/telefon-genel-dizayn-update/telefon-genel-dizayn-update.component';
 import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-genel-dizayn-update/yangin-genel-dizayn-update.component';
-import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-update/operator-is-emri-update.component';
 import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.component';
 
 import { SureclerComponent } from './Components/surecler/surecler.component';
 import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add.component';
 import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { IsEmriAddComponent } from './Components/is-emri-add/is-emri-add.component';
 
 @NgModule({
   declarations: [
@@ -91,13 +89,10 @@ import { RegisterComponent } from './Components/register/register.component';
     SabitVerilerMenuComponent,
     GunlukRaporComponent,
     KabloIsmiFilterPipe,
-    OperatorIsEmriComponent,
-    OperatorFilterPipe,
     MakinelerComponent,
     KesitYapisiComponent,
     SarfiyatComponent,
     UretimPlanlamaComponent,
-    OperatorIsEmriAddComponent,
     TelefonSecmeComponent,
     TelefonIsEmirleriComponent,
     TelefonGenelDizaynComponent,
@@ -118,12 +113,12 @@ import { RegisterComponent } from './Components/register/register.component';
     CctvDamarDizaynUpdateComponent,
     TelefonGenelDizaynUpdateComponent,
     YanginGenelDizaynUpdateComponent,
-    OperatorIsEmriUpdateComponent,
     IsEmriTakipComponent,
     SureclerComponent,
     SurecAddComponent,
     SurecUpdateComponent,
     RegisterComponent,
+    IsEmriAddComponent,
   ],
   imports: [
     BrowserModule,

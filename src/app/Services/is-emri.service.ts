@@ -1,35 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListResponseModel } from '../Models/listResponseModel';
-import { IsEmriBase } from '../Models/isEmriBase';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../Models/responseModel';
 import { SingleResponseModel } from '../Models/singleResponseModel';
+import { IsEmriModel } from '../Models/isEmri';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsEmriService {
 
-  baseUrl="https://localhost:7289/api/IsEmri"
-  constructor(private httpClient:HttpClient) { }
-  getAll():Observable<ListResponseModel<IsEmriBase>>{
+  baseUrl="https://localhost:7289/api/IsEmri/"
 
-    let apiUrl=this.baseUrl+"IsEmri/GetAll"
-    return this.httpClient.get<ListResponseModel<IsEmriBase>>(apiUrl)
+  constructor(private httpClient:HttpClient) { }
+  getAll():Observable<ListResponseModel<IsEmriModel>>{
+
+    let apiUrl=this.baseUrl+"GetAll"
+    return this.httpClient.get<ListResponseModel<IsEmriModel>>(apiUrl)
   }
-  add(isEmri:IsEmriBase):Observable<ResponseModel>{
-    let apiUrl = this.baseUrl+"IsEmri/Add"
-    return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
+  add(isEmriModel:IsEmriModel):Observable<any>{
+    return this.httpClient.post<any>(this.baseUrl + "Add", isEmriModel);
   }
   getById(kabloId:number){
-    let apiUrl=this.baseUrl+"IsEmri/GetById?id="+kabloId
-    return this.httpClient.get<SingleResponseModel<IsEmriBase>>(apiUrl)
+    let apiUrl=this.baseUrl+"GetById?id="+kabloId
+    return this.httpClient.get<SingleResponseModel<IsEmriModel>>(apiUrl)
 
   }
-  delete(isEmri:IsEmriBase):Observable<ResponseModel>
+  delete(isEmri:IsEmriModel):Observable<ResponseModel>
   {
-    let apiUrl=this.baseUrl+"IsEmri/Delete"
+    let apiUrl=this.baseUrl+"Delete"
     return this.httpClient.post<ResponseModel>(apiUrl,isEmri)
   }
 }

@@ -1,0 +1,1 @@
+export const TURLER: string[] = ['cctv', 'yangin', 'telefon', 'zayifakim', 'tekdamar'];

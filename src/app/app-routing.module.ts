@@ -20,9 +20,6 @@ import { KullaniciComponent } from './Components/kullanici/kullanici.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { GunlukRaporComponent } from './Components/makineGunlukRapor/gunluk-rapor/gunluk-rapor.component';
-import { OperatorIsEmriAddComponent } from './Components/operator-is-emri-add/operator-is-emri-add.component';
-import { OperatorIsEmriUpdateComponent } from './Components/operator-is-emri-update/operator-is-emri-update.component';
-import { OperatorIsEmriComponent } from './Components/operator-is-emri/operator-is-emri.component';
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
 import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makineler.component';
 import { SabitVerilerMenuComponent } from './Components/Sabit Veriler/sabit-veriler-menu/sabit-veriler-menu.component';
@@ -45,6 +42,7 @@ import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.c
 import { SureclerComponent } from './Components/surecler/surecler.component';
 import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add.component';
 import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
+import { IsEmriAddComponent } from './Components/is-emri-add/is-emri-add.component';
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent },
@@ -68,9 +66,6 @@ const routes: Routes = [
   {path:"SabitVerilerMenu/Makineler",component:MakinelerComponent},
   {path:"SabitVerilerMenu/DataList",component:KesitYapisiComponent},
   {path:"MakineGunlukRapor",component:GunlukRaporComponent},
-  {path:"OperatorIsEmirleri",component:OperatorIsEmriComponent},
-  {path:"OperatorIsEmri/Add",component:OperatorIsEmriAddComponent},
-  {path:"OperatorIsEmri/Update/:isEmriId",component:OperatorIsEmriUpdateComponent},
 
   {path:"Sarfiyat",component:SarfiyatComponent},
   {path:"UretimPlanlama",component:UretimPlanlamaComponent,},
@@ -90,6 +85,9 @@ const routes: Routes = [
   {path:"TelefonGenelDizayn/update/:kabloId",component:TelefonGenelDizaynUpdateComponent},
   {path:"YanginGenelDizayn/update/:kabloId",component:YanginGenelDizaynUpdateComponent},
   {path:"IsEmriTakip",component:IsEmriTakipComponent},
+  { path: 'is-emri-takip', component: IsEmriTakipComponent },
+  { path: 'is-emri-add', component: IsEmriAddComponent },
+  { path: '', redirectTo: '/is-emri-takip', pathMatch: 'full' },
 
   {path:"surecler/:isEmriId",component:SureclerComponent},
   {path:"surecler/Add/:isEmriId",component:SurecAddComponent},

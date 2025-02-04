@@ -5,7 +5,6 @@ import { ActivatedRoute, Routes } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OperatorIsEmri } from 'src/app/Models/operatorIsEmri';
 import { Process } from 'src/app/Models/process';
-import { OperatorIsEmriService } from 'src/app/Services/operator-is-emri.service';
 import { SurecService } from 'src/app/Services/surec.service';
 import { SureclerComponent } from '../../surecler/surecler.component';
 import { Router } from '@angular/router';
@@ -22,7 +21,6 @@ export class SurecAddComponent implements OnInit {
   isEmri:OperatorIsEmri
   constructor(private formBuilder:FormBuilder,
     private surecService:SurecService,
-    private isEmriService:OperatorIsEmriService,
     private activatedRoute:ActivatedRoute,
     private toastrService:ToastrService,
     private router: Router) { }
@@ -55,10 +53,7 @@ export class SurecAddComponent implements OnInit {
   }
   getIsEmri(isEmriId:number)
   {
-    this.isEmriService.getById(isEmriId).subscribe(data=>{
-      console.log(data)
-      this.isEmri=data.data
-    })
+    
   }
   add(){
     if(this.surecAddForm.valid){

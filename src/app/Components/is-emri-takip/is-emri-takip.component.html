@@ -1,1 +1,32 @@
-
+<div class="container">
+  <h2>İş Emri Takip</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>İsim</th>
+        <th>Tür</th>
+        <th>Metraj</th>
+        <th>Tamamlanma Durumu</th>
+        <th>Makine ID</th>
+        <th>Tarih</th>
+        <th>Değiştiren</th>
+        <th>Genel Dizayn ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let isEmri of isEmriList">
+        <td>{{ isEmri.id }}</td>
+        <td>{{ isEmri.isim }}</td>
+        <td>{{ isEmri.tur }}</td>
+        <td>{{ isEmri.metraj }}</td>
+        <td>{{ isEmri.tamamlanmaDurumu ? 'Tamamlandı' : 'Tamamlanmadı' }}</td>
+        <td>{{ isEmri.makineId }}</td>
+        <td>{{ isEmri.tarih | date: 'short' }}</td>
+        <td>{{ isEmri.degistiren }}</td>
+        <td>{{ isEmri.genelDizaynId }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary mt-3" routerLink="/is-emri-add">Add İş Emri</button>
+</div>

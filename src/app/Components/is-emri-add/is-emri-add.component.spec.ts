@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OperatorIsEmriComponent } from './operator-is-emri.component';
+import { IsEmriAddComponent } from './is-emri-add.component';
 
-describe('OperatorIsEmriComponent', () => {
-  let component: OperatorIsEmriComponent;
-  let fixture: ComponentFixture<OperatorIsEmriComponent>;
+describe('IsEmriAddComponent', () => {
+  let component: IsEmriAddComponent;
+  let fixture: ComponentFixture<IsEmriAddComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OperatorIsEmriComponent ]
+      declarations: [ IsEmriAddComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OperatorIsEmriComponent);
+    fixture = TestBed.createComponent(IsEmriAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

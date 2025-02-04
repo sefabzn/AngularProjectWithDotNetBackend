@@ -1,5 +1,5 @@
 import { DamarDizaynBase } from "./damarDizaynBase";
-import { IsEmriBase } from "./isEmriBase";
+import { IsEmriModel } from "./isEmri";
 
 export interface GenelDizaynBase{
 
@@ -26,5 +26,5 @@ export interface GenelDizaynBase{
     degistirilmeTarihi: string;
     degistiren: string | null;
     damarlar: DamarDizaynBase[] | null;
-    isEmirleri: IsEmriBase[] | null;
+    isEmirleri: IsEmriModel[] | null;
 }

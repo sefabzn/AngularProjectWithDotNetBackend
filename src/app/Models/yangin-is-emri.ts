@@ -1,4 +1,4 @@
-import { IsEmriBase } from "./isEmriBase";
+import { IsEmriModel } from "./isEmri";
 
-export interface YanginIsEmri extends IsEmriBase {
+export interface YanginIsEmri extends IsEmriModel {
 }

@@ -1,4 +1,4 @@
-import { IsEmriBase } from "./isEmriBase";
+import { IsEmriModel } from "./isEmri";
 
 export interface Process {
     id: number;
@@ -6,6 +6,6 @@ export interface Process {
     aciklama: string | null;
     order: number;
     isEmriId: number;
-    isEmri: IsEmriBase | null;
+    isEmri: IsEmriModel | null;
     tamamlanmaDurumu: boolean;
 }

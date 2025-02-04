@@ -1,0 +1,38 @@
+<div class="container">
+  <form [formGroup]="isEmriForm">
+    <div class="form-group">
+      <label for="isim">İsim</label>
+      <input formControlName="isim" type="text" class="form-control" id="isim" placeholder="İsim">
+    </div>
+    
+    <div class="form-group">
+      <label for="metraj">Metraj</label>
+      <input formControlName="metraj" type="number" class="form-control" id="metraj" placeholder="Metraj">
+    </div>
+    <div class="form-group">
+      <label for="tamamlanmaDurumu">Tamamlanma Durumu</label>
+      <input formControlName="tamamlanmaDurumu" type="checkbox" class="form-check-input" id="tamamlanmaDurumu">
+    </div>
+    <div class="form-group">
+      <label for="makineId">Makine</label>
+      <select formControlName="makineId" class="form-control" id="makineId">
+        <option *ngFor="let makine of makineList" [value]="makine.id">{{ makine.makineIsmi }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="tarih">Tarih</label>
+      <input formControlName="tarih" type="date" class="form-control" id="tarih" placeholder="Tarih">
+    </div>
+    <div class="form-group">
+      <label for="degistiren">Değiştiren</label>
+      <input formControlName="degistiren" type="text" class="form-control" id="degistiren" placeholder="Değiştiren">
+    </div>
+    <div class="form-group">
+      <label for="genelDizaynId">Genel Dizayn</label>
+      <select formControlName="genelDizaynId" class="form-control" id="genelDizaynId">
+        <option *ngFor="let genelDizayn of genelDizaynList" [value]="genelDizayn.id">{{ genelDizayn.kablo }}</option>
+      </select>
+    </div>
+    <button (click)="addIsEmri()" class="btn btn-primary">Add İş Emri</button>
+  </form>
+</div>
