@@ -19,12 +19,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { KabloUretimComponent } from './Components/kablo-uretim/kablo-uretim.component';
 import { KabloUretimAddComponent } from './Components/kablo-uretim-add/kablo-uretim-add.component';
 import { AnaMenuComponent } from './Components/ana-menu/ana-menu.component';
-import { CctvGenelDizaynComponent } from './Components/CCTV/cctv-genel-dizayn/cctv-genel-dizayn.component';
-import { CctvDamarDizaynComponent } from './Components/CCTV/cctv-damar-dizayn/cctv-damar-dizayn.component';
-import { CctvIsEmirleriComponent } from './Components/CCTV/cctv-is-emirleri/cctv-is-emirleri.component';
-import { CctvSecmeComponent } from './Components/CCTV/cctv-secme/cctv-secme.component';
 import { DizaynSecmeMenuComponent } from './Components/dizayn-secme-menu/dizayn-secme-menu.component';
-import { CctvGenelAddComponent } from './Components/CCTV/cctv-genel-add/cctv-genel-add.component';
 import { GrafikMenusuComponent } from './Components/Grafikler/grafik-menusu/grafik-menusu.component';
 import { UretimGrafikComponent } from './Components/Grafikler/uretim-grafik/uretim-grafik.component';
 import { ExtruderTeknikKayipGrafikComponent } from './Components/Grafikler/extruder-teknik-kayip-grafik/extruder-teknik-kayip-grafik.component';
@@ -37,26 +32,9 @@ import { MakinelerComponent } from './Components/Sabit Veriler/makineler/makinel
 import { KesitYapisiComponent } from './Components/Sabit Veriler/kesit-yapisi/kesit-yapisi.component';
 import { SarfiyatComponent } from './Components/sarfiyat/sarfiyat.component';
 import { UretimPlanlamaComponent } from './Components/uretim-planlama/uretim-planlama.component';
-import { TelefonSecmeComponent } from './Components/Telefon/telefon-secme/telefon-secme.component';
-import { TelefonIsEmirleriComponent } from './Components/Telefon/telefon-is-emirleri/telefon-is-emirleri.component';
-import { TelefonGenelDizaynComponent } from './Components/Telefon/telefon-genel-dizayn/telefon-genel-dizayn.component';
-import { TelefonGenelAddComponent } from './Components/Telefon/telefon-genel-add/telefon-genel-add.component';
-import { TelefonDamarDizaynComponent } from './Components/Telefon/telefon-damar-dizayn/telefon-damar-dizayn.component';
-import { YanginDamarDizaynComponent } from './Components/Yangin/yangin-damar-dizayn/yangin-damar-dizayn.component';
-import { YanginGenelAddComponent } from './Components/Yangin/yangin-genel-add/yangin-genel-add.component';
-import { YanginGenelDizaynComponent } from './Components/Yangin/yangin-genel-dizayn/yangin-genel-dizayn.component';
-import { YanginIsEmirleriComponent } from './Components/Yangin/yangin-is-emirleri/yangin-is-emirleri.component';
-import { YanginSecmeComponent } from './Components/Yangin/yangin-secme/yangin-secme.component';
 import { MakineFilterPipe } from './pipes/makine-filter.pipe';
 import { BeginningPageComponent } from './Components/beginning-page/beginning-page.component';
-import { CctvDamarDizaynAddComponent } from './Components/CCTV/cctv-damar-dizayn-add/cctv-damar-dizayn-add.component';
-import { TelefonDamarDizaynAddComponent } from './Components/Telefon/telefon-damar-dizayn-add/telefon-damar-dizayn-add.component';
-import { YanginDamarDizaynAddComponent } from './Components/Yangin/yangin-damar-dizayn-add/yangin-damar-dizayn-add.component';
 import { KabloUretimUpdateComponent } from './Components/kablo-uretim/kablo-uretim-update/kablo-uretim-update.component';
-import { CctvGenelDizaynUpdateComponent } from './Components/CCTV/cctv-genel-dizayn-update/cctv-genel-dizayn-update.component';
-import { CctvDamarDizaynUpdateComponent } from './Components/CCTV/cctv-damar-dizayn-update/cctv-damar-dizayn-update.component';
-import { TelefonGenelDizaynUpdateComponent } from './Components/Telefon/telefon-genel-dizayn-update/telefon-genel-dizayn-update.component';
-import { YanginGenelDizaynUpdateComponent } from './Components/Yangin/yangin-genel-dizayn-update/yangin-genel-dizayn-update.component';
 import { IsEmriTakipComponent } from './Components/is-emri-takip/is-emri-takip.component';
 
 import { SureclerComponent } from './Components/surecler/surecler.component';
@@ -64,6 +42,9 @@ import { SurecAddComponent } from './Components/Surecler-Add/surec-add/surec-add
 import { SurecUpdateComponent } from './Components/surec-update/surec-update.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { IsEmriAddComponent } from './Components/is-emri-add/is-emri-add.component';
+import { GenelDizaynListComponent } from './Components/genel-dizayn-list/genel-dizayn-list.component';
+import { GenelDizaynAddComponent } from './Components/genel-dizayn-add/genel-dizayn-add.component';
+import { GenelDizaynUpdateComponent } from './Components/genel-dizayn-update/genel-dizayn-update.component';
 
 @NgModule({
   declarations: [
@@ -76,12 +57,7 @@ import { IsEmriAddComponent } from './Components/is-emri-add/is-emri-add.compone
     KabloUretimComponent,
     KabloUretimAddComponent,
     AnaMenuComponent,
-    CctvGenelDizaynComponent,
-    CctvDamarDizaynComponent,
-    CctvIsEmirleriComponent,
-    CctvSecmeComponent,
     DizaynSecmeMenuComponent,
-    CctvGenelAddComponent,
     GrafikMenusuComponent,
     UretimGrafikComponent,
     ExtruderTeknikKayipGrafikComponent,
@@ -93,32 +69,18 @@ import { IsEmriAddComponent } from './Components/is-emri-add/is-emri-add.compone
     KesitYapisiComponent,
     SarfiyatComponent,
     UretimPlanlamaComponent,
-    TelefonSecmeComponent,
-    TelefonIsEmirleriComponent,
-    TelefonGenelDizaynComponent,
-    TelefonGenelAddComponent,
-    TelefonDamarDizaynComponent,
-    YanginDamarDizaynComponent,
-    YanginGenelAddComponent,
-    YanginGenelDizaynComponent,
-    YanginIsEmirleriComponent,
-    YanginSecmeComponent,
     MakineFilterPipe,
     BeginningPageComponent,
-    CctvDamarDizaynAddComponent,
-    TelefonDamarDizaynAddComponent,
-    YanginDamarDizaynAddComponent,
     KabloUretimUpdateComponent,
-    CctvGenelDizaynUpdateComponent,
-    CctvDamarDizaynUpdateComponent,
-    TelefonGenelDizaynUpdateComponent,
-    YanginGenelDizaynUpdateComponent,
     IsEmriTakipComponent,
     SureclerComponent,
     SurecAddComponent,
     SurecUpdateComponent,
     RegisterComponent,
     IsEmriAddComponent,
+    GenelDizaynListComponent,
+    GenelDizaynAddComponent,
+    GenelDizaynUpdateComponent,
   ],
   imports: [
     BrowserModule,

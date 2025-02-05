@@ -1,0 +1,66 @@
+<div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Kablo</th>
+          <th>Tür</th>
+          <th>Kesit Çapı</th>
+          <th>Örgü</th>
+          <th>Örgü Tel Yapısı</th>
+          <th>Polyester Ölçüsü</th>
+          <th>Folyo Tipi</th>
+          <th>Folyo Ölçüsü</th>
+          <th>Dış Kılıf</th>
+          <th>Dış Çap</th>
+          <th>Back</th>
+          <th>Ayna</th>
+          <th>Kalıp</th>
+          <th>Core</th>
+          <th>Hatve</th>
+          <th>Tarih</th>
+          <th>Damar Sayısı</th>
+          <th>Girilen Damar Sayısı</th>
+          <th>Zorlama</th>
+          <th>Değiştirilme Tarihi</th>
+          <th>Değiştiren</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let genelDizayn of genelDizaynList" (click)="selectGenelDizayn(genelDizayn)" [class.selected]="genelDizayn === selectedGenelDizayn">
+          <td>{{ genelDizayn.id }}</td>
+          <td>{{ genelDizayn.kablo }}</td>
+          <td>{{ genelDizayn.tur }}</td>
+          <td>{{ genelDizayn.kesitCapi }}</td>
+          <td>{{ genelDizayn.orgu }}</td>
+          <td>{{ genelDizayn.orguTelYapisi }}</td>
+          <td>{{ genelDizayn.polyesterOlcusu }}</td>
+          <td>{{ genelDizayn.folyoTipi }}</td>
+          <td>{{ genelDizayn.folyoOlcusu }}</td>
+          <td>{{ genelDizayn.disKilif }}</td>
+          <td>{{ genelDizayn.disCap }}</td>
+          <td>{{ genelDizayn.back }}</td>
+          <td>{{ genelDizayn.ayna }}</td>
+          <td>{{ genelDizayn.kalip }}</td>
+          <td>{{ genelDizayn.core }}</td>
+          <td>{{ genelDizayn.hatve }}</td>
+          <td>{{ genelDizayn.tarih }}</td>
+          <td>{{ genelDizayn.damarSayisi }}</td>
+          <td>{{ genelDizayn.girilenDamarSayisi }}</td>
+          <td>{{ genelDizayn.zorlama }}</td>
+          <td>{{ genelDizayn.degistirilmeTarihi }}</td>
+          <td>{{ genelDizayn.degistiren }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col col-md-4">
+        <br>
+        <button type="button" routerLink="/geneldizayn/add" class="btn btn-outline-primary">Genel Dizayn Ekle</button>
+      </div>
+      <div class="col col-md-4">
+        <br>
+        <button type="button" (click)="updateGenelDizayn()" class="btn btn-outline-primary">Düzenle</button>
+      </div>
+    </div>
+  </div>

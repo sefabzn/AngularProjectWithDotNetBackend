@@ -1,0 +1,89 @@
+<div class="container">
+    <form [formGroup]="genelDizaynForm">
+      <div class="form-group">
+        <label for="kablo">Kablo</label>
+        <input formControlName="kablo" type="text" class="form-control" id="kablo" placeholder="Kablo">
+      </div>
+      <div class="form-group">
+        <label for="tur">Tür</label>
+        <input formControlName="tur" type="text" class="form-control" id="tur" placeholder="Tür">
+      </div>
+      <div class="form-group">
+        <label for="kesitCapi">Kesit Çapı</label>
+        <input formControlName="kesitCapi" type="number" class="form-control" id="kesitCapi" placeholder="Kesit Çapı">
+      </div>
+      <div class="form-group">
+        <label for="orgu">Örgü</label>
+        <input formControlName="orgu" type="number" class="form-control" id="orgu" placeholder="Örgü">
+      </div>
+      <div class="form-group">
+        <label for="orguTelYapisi">Örgü Tel Yapısı</label>
+        <input formControlName="orguTelYapisi" type="text" class="form-control" id="orguTelYapisi" placeholder="Örgü Tel Yapısı">
+      </div>
+      <div class="form-group">
+        <label for="polyesterOlcusu">Polyester Ölçüsü</label>
+        <input formControlName="polyesterOlcusu" type="number" class="form-control" id="polyesterOlcusu" placeholder="Polyester Ölçüsü">
+      </div>
+      <div class="form-group">
+        <label for="folyoTipi">Folyo Tipi</label>
+        <input formControlName="folyoTipi" type="text" class="form-control" id="folyoTipi" placeholder="Folyo Tipi">
+      </div>
+      <div class="form-group">
+        <label for="folyoOlcusu">Folyo Ölçüsü</label>
+        <input formControlName="folyoOlcusu" type="number" class="form-control" id="folyoOlcusu" placeholder="Folyo Ölçüsü">
+      </div>
+      <div class="form-group">
+        <label for="disKilif">Dış Kılıf</label>
+        <input formControlName="disKilif" type="text" class="form-control" id="disKilif" placeholder="Dış Kılıf">
+      </div>
+      <div class="form-group">
+        <label for="disCap">Dış Çap</label>
+        <input formControlName="disCap" type="number" class="form-control" id="disCap" placeholder="Dış Çap">
+      </div>
+      <div class="form-group">
+        <label for="back">Back</label>
+        <input formControlName="back" type="number" class="form-control" id="back" placeholder="Back">
+      </div>
+      <div class="form-group">
+        <label for="ayna">Ayna</label>
+        <input formControlName="ayna" type="number" class="form-control" id="ayna" placeholder="Ayna">
+      </div>
+      <div class="form-group">
+        <label for="kalip">Kalıp</label>
+        <input formControlName="kalip" type="text" class="form-control" id="kalip" placeholder="Kalıp">
+      </div>
+      <div class="form-group">
+        <label for="core">Core</label>
+        <input formControlName="core" type="text" class="form-control" id="core" placeholder="Core">
+      </div>
+      <div class="form-group">
+        <label for="hatve">Hatve</label>
+        <input formControlName="hatve" type="number" class="form-control" id="hatve" placeholder="Hatve">
+      </div>
+      <div class="form-group">
+        <label for="tarih">Tarih</label>
+        <input formControlName="tarih" type="date" class="form-control" id="tarih" placeholder="Tarih">
+      </div>
+      <div class="form-group">
+        <label for="damarSayisi">Damar Sayısı</label>
+        <input formControlName="damarSayisi" type="number" class="form-control" id="damarSayisi" placeholder="Damar Sayısı">
+      </div>
+      <div class="form-group">
+        <label for="girilenDamarSayisi">Girilen Damar Sayısı</label>
+        <input formControlName="girilenDamarSayisi" type="number" class="form-control" id="girilenDamarSayisi" placeholder="Girilen Damar Sayısı">
+      </div>
+      <div class="form-group">
+        <label for="zorlama">Zorlama</label>
+        <input formControlName="zorlama" type="text" class="form-control" id="zorlama" placeholder="Zorlama">
+      </div>
+      <div class="form-group">
+        <label for="degistirilmeTarihi">Değiştirilme Tarihi</label>
+        <input formControlName="degistirilmeTarihi" type="date" class="form-control" id="degistirilmeTarihi" placeholder="Değiştirilme Tarihi">
+      </div>
+      <div class="form-group">
+        <label for="degistiren">Değiştiren</label>
+        <input formControlName="degistiren" type="text" class="form-control" id="degistiren" placeholder="Değiştiren">
+      </div>
+      <button (click)="updateGenelDizayn()" class="btn btn-primary">Update Genel Dizayn</button>
+    </form>
+  </div>
