@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { IsEmriModel } from 'src/app/Models/isEmri';
 import { paginationProps } from 'src/app/Models/paginationProps';
-import { TelefonIsEmri } from 'src/app/Models/telefon-is-emri';
 import { IsEmriService } from 'src/app/Services/is-emri.service';
 @Component({
   selector: 'app-telefon-is-emirleri',
@@ -10,9 +10,9 @@ import { IsEmriService } from 'src/app/Services/is-emri.service';
 })
 export class TelefonIsEmirleriComponent implements OnInit {
 
-  selectedIsEmri:TelefonIsEmri
+  selectedIsEmri:IsEmriModel
   filterText:string
-  isEmirleri:TelefonIsEmri[]
+  isEmirleri:IsEmriModel[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
   onTableDataChange(event:any){
@@ -25,10 +25,10 @@ export class TelefonIsEmirleriComponent implements OnInit {
     this.getTelefonIsEmirleri();
   }
 
-  setSelectedIsEmri(isEmri:TelefonIsEmri){
+  setSelectedIsEmri(isEmri:IsEmriModel){
     this.selectedIsEmri=isEmri
   }
-  setRowColor(isEmri:TelefonIsEmri){
+  setRowColor(isEmri:IsEmriModel){
     if (isEmri===this.selectedIsEmri) {
       return "table-primary"
     }
@@ -42,7 +42,7 @@ export class TelefonIsEmirleriComponent implements OnInit {
       console.log(response)
     })
   }
-  deleteIsEmri(isEmri:TelefonIsEmri){
+  deleteIsEmri(isEmri:IsEmriModel){
     this.isEmriService.delete(isEmri).subscribe(Response=>{
       this.toastrService.info(Response.message,"İşlem Başarılı")
       location.reload()

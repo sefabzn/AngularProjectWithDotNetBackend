@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
 import { paginationProps } from 'src/app/Models/paginationProps';
-import { TelefonGenelDizaynKablo } from 'src/app/Models/telefon-genel-dizayn-kablo';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 @Component({
   selector: 'app-telefon-genel-dizayn',
@@ -10,9 +10,9 @@ import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 })
 export class TelefonGenelDizaynComponent implements OnInit {
 
-  selectedKablo:TelefonGenelDizaynKablo
+  selectedKablo:GenelDizaynBase
   selectedKabloId:number
-  kablolar:TelefonGenelDizaynKablo[]=[]
+  kablolar:GenelDizaynBase[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
   onTableDataChange(event:any){
@@ -26,7 +26,7 @@ export class TelefonGenelDizaynComponent implements OnInit {
     this.getKablos()
   }
 
-  setSelectedKablo(kablo:TelefonGenelDizaynKablo){
+  setSelectedKablo(kablo:GenelDizaynBase){
     this.selectedKablo=kablo
     this.selectedKabloId=kablo.id
   }
@@ -43,7 +43,7 @@ export class TelefonGenelDizaynComponent implements OnInit {
       this.kablolar=response.data
     })
   }
-  deleteKablo(kablo:TelefonGenelDizaynKablo){
+  deleteKablo(kablo:GenelDizaynBase){
 
     this.genelDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")

@@ -5,7 +5,7 @@ import { FormGroup,
   Validators, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TelefonGenelDizaynKablo } from 'src/app/Models/telefon-genel-dizayn-kablo';
+import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 })
 export class TelefonGenelDizaynUpdateComponent implements OnInit {
   kabloId:number
-  kablo:TelefonGenelDizaynKablo
+  kablo:GenelDizaynBase
   userName=localStorage.getItem("user")
   TelefonGenelUpdateForm:FormGroup
   date:string=new Date().toISOString().split('/').reverse().join('-')

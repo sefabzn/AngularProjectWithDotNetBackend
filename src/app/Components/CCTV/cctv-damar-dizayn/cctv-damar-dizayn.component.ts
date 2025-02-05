@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CctvDamarDizaynKablo } from 'src/app/Models/cctvDamarDizaynKablo';
+import { DamarDizaynBase } from 'src/app/Models/damarDizaynBase';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 
@@ -12,8 +12,8 @@ import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
   styleUrls: ['./cctv-damar-dizayn.component.css']
 })
 export class CctvDamarDizaynComponent implements OnInit {
-  selectedKablo:CctvDamarDizaynKablo
-  damarlar:CctvDamarDizaynKablo[]=[]
+  selectedKablo:DamarDizaynBase
+  damarlar:DamarDizaynBase[]=[]
   isDamarEkle:boolean=false
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
@@ -36,10 +36,10 @@ export class CctvDamarDizaynComponent implements OnInit {
       }
     })
   }
-  setSelectedKablo(kablo:CctvDamarDizaynKablo){
+  setSelectedKablo(kablo:DamarDizaynBase){
     this.selectedKablo=kablo
   }
-  setRowColor(kablo:CctvDamarDizaynKablo){
+  setRowColor(kablo:DamarDizaynBase){
     if (kablo===this.selectedKablo) {
       return "table-primary"
     }
@@ -54,7 +54,7 @@ export class CctvDamarDizaynComponent implements OnInit {
       console.log(Response)
     })
   }
-  deleteKablo(kablo:CctvDamarDizaynKablo){
+  deleteKablo(kablo:DamarDizaynBase){
     this.damarDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload();

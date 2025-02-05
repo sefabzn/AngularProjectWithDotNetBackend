@@ -5,7 +5,7 @@ import { FormGroup,
   Validators, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { YanginGenelDizaynKablo } from 'src/app/Models/yangin-genel-dizayn-kablo';
+import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 })
 export class YanginGenelDizaynUpdateComponent implements OnInit {
   kabloId:number
-  kablo:YanginGenelDizaynKablo
+  kablo:GenelDizaynBase
   userName=localStorage.getItem("user")
   YanginGenelUpdateForm:FormGroup
   date:string=new Date().toISOString().split('/').reverse().join('-')

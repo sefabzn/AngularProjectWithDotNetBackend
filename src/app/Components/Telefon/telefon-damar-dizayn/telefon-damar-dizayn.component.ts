@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DamarDizaynBase } from 'src/app/Models/damarDizaynBase';
 import { paginationProps } from 'src/app/Models/paginationProps';
-import { TelefonDamarDizaynKablo } from 'src/app/Models/telefon-damar-dizayn-kablo';
 import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 @Component({
   selector: 'app-telefon-damar-dizayn',
@@ -12,8 +12,8 @@ import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 export class TelefonDamarDizaynComponent implements OnInit {
 
   isDamarEkle:boolean=false
-  selectedKablo:TelefonDamarDizaynKablo
-  damarlar:TelefonDamarDizaynKablo[]=[]
+  selectedKablo:DamarDizaynBase
+  damarlar:DamarDizaynBase[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
   onTableDataChange(event:any){
@@ -34,10 +34,10 @@ export class TelefonDamarDizaynComponent implements OnInit {
       }
     })
   }
-  setSelectedKablo(kablo:TelefonDamarDizaynKablo){
+  setSelectedKablo(kablo:DamarDizaynBase){
     this.selectedKablo=kablo
   }
-  setRowColor(kablo:TelefonDamarDizaynKablo){
+  setRowColor(kablo:DamarDizaynBase){
     if (kablo===this.selectedKablo) {
       return "table-primary"
     }
@@ -52,7 +52,7 @@ export class TelefonDamarDizaynComponent implements OnInit {
       console.log(Response)
     })
   }
-  deleteKablo(kablo:TelefonDamarDizaynKablo){
+  deleteKablo(kablo:DamarDizaynBase){
     this.damarDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload();

@@ -5,7 +5,7 @@ import { FormGroup,
   Validators, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { cctvGenelDizaynKablo } from 'src/app/Models/cctvGenelDizaynKablo';
+import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 })
 export class CctvGenelDizaynUpdateComponent implements OnInit {
   kabloId:number
-  kablo:cctvGenelDizaynKablo
+  kablo:GenelDizaynBase
   userName=localStorage.getItem("user")
   CctvGenelUpdateForm:FormGroup
   date:string=new Date().toISOString().split('/').reverse().join('-')

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DamarDizaynBase } from 'src/app/Models/damarDizaynBase';
 import { paginationProps } from 'src/app/Models/paginationProps';
-import { YanginDamarDizaynKablo } from 'src/app/Models/yangin-damar-dizayn-kablo';
 import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 @Component({
   selector: 'app-yangin-damar-dizayn',
@@ -11,8 +11,8 @@ import { DamarDizaynService } from 'src/app/Services/damar-dizayn.service';
 })
 export class YanginDamarDizaynComponent implements OnInit {
 
-  selectedKablo:YanginDamarDizaynKablo
-  damarlar:YanginDamarDizaynKablo[]=[]
+  selectedKablo:DamarDizaynBase
+  damarlar:DamarDizaynBase[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
   isDamarEkle:boolean=false
   onTableDataChange(event:any){
@@ -33,10 +33,10 @@ export class YanginDamarDizaynComponent implements OnInit {
       }
     })
   }
-  setSelectedKablo(kablo:YanginDamarDizaynKablo){
+  setSelectedKablo(kablo:DamarDizaynBase){
     this.selectedKablo=kablo
   }
-  setRowColor(kablo:YanginDamarDizaynKablo){
+  setRowColor(kablo:DamarDizaynBase){
     if (kablo===this.selectedKablo) {
       return "table-primary"
     }
@@ -51,7 +51,7 @@ export class YanginDamarDizaynComponent implements OnInit {
       console.log(Response)
     })
   }
-  deleteKablo(kablo:YanginDamarDizaynKablo){
+  deleteKablo(kablo:DamarDizaynBase){
     this.damarDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
       location.reload();

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { cctvGenelDizaynKablo } from 'src/app/Models/cctvGenelDizaynKablo';
+import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 
@@ -12,8 +12,8 @@ import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 export class CctvGenelDizaynComponent implements OnInit {
 
   selectedKabloId:number
-  selectedKablo:cctvGenelDizaynKablo
-  kablolar:cctvGenelDizaynKablo[]=[]
+  selectedKablo:GenelDizaynBase
+  kablolar:GenelDizaynBase[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
   onTableDataChange(event:any){
@@ -27,7 +27,7 @@ export class CctvGenelDizaynComponent implements OnInit {
     this.getKablos()
   }
 
-  setSelectedKablo(kablo:cctvGenelDizaynKablo){
+  setSelectedKablo(kablo:GenelDizaynBase){
     this.selectedKablo=kablo
     this.selectedKabloId=kablo.id
   }
@@ -44,7 +44,7 @@ export class CctvGenelDizaynComponent implements OnInit {
       this.kablolar=response.data
     })
   }
-  deleteKablo(kablo:cctvGenelDizaynKablo){
+  deleteKablo(kablo:GenelDizaynBase){
 
     this.GenelDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")

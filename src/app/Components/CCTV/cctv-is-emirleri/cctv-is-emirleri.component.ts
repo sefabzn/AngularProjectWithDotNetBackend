@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CctvIsEmri } from 'src/app/Models/cctvIsEmri';
+import { IsEmriModel } from 'src/app/Models/isEmri';
 import { paginationProps } from 'src/app/Models/paginationProps';
 import { IsEmriService } from 'src/app/Services/is-emri.service';
 
@@ -11,9 +11,9 @@ import { IsEmriService } from 'src/app/Services/is-emri.service';
 })
 export class CctvIsEmirleriComponent implements OnInit {
 
-  selectedIsEmri:CctvIsEmri
+  selectedIsEmri:IsEmriModel
   filterText:string
-  isEmirleri:CctvIsEmri[]
+  isEmirleri:IsEmriModel[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
   onTableDataChange(event:any){
@@ -26,10 +26,10 @@ export class CctvIsEmirleriComponent implements OnInit {
     this.getCctvIsEmirleri();
   }
 
-  setSelectedIsEmri(isEmri:CctvIsEmri){
+  setSelectedIsEmri(isEmri:IsEmriModel){
     this.selectedIsEmri=isEmri
   }
-  setRowColor(isEmri:CctvIsEmri){
+  setRowColor(isEmri:IsEmriModel){
     if (isEmri===this.selectedIsEmri) {
       return "table-primary"
     }
@@ -43,7 +43,7 @@ export class CctvIsEmirleriComponent implements OnInit {
       console.log(response)
     })
   }
-  deleteIsEmri(isEmri:CctvIsEmri){
+  deleteIsEmri(isEmri:IsEmriModel){
     this.isEmriService.delete(isEmri).subscribe(Response=>{
       this.toastrService.info(Response.message,"İşlem Başarılı")
       location.reload()

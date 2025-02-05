@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
 import { paginationProps } from 'src/app/Models/paginationProps';
-import { YanginGenelDizaynKablo } from 'src/app/Models/yangin-genel-dizayn-kablo';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 @Component({
   selector: 'app-yangin-genel-dizayn',
@@ -10,8 +10,8 @@ import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 })
 export class YanginGenelDizaynComponent implements OnInit {
   selectedKabloId:number
-  selectedKablo:YanginGenelDizaynKablo
-  kablolar:YanginGenelDizaynKablo[]=[]
+  selectedKablo:GenelDizaynBase
+  kablolar:GenelDizaynBase[]=[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
 
   onTableDataChange(event:any){
@@ -25,7 +25,7 @@ export class YanginGenelDizaynComponent implements OnInit {
     this.getKablos()
   }
 
-  setSelectedKablo(kablo:YanginGenelDizaynKablo){
+  setSelectedKablo(kablo:GenelDizaynBase){
     this.selectedKablo=kablo
     this.selectedKabloId=kablo.id
   }
@@ -42,7 +42,7 @@ export class YanginGenelDizaynComponent implements OnInit {
       this.kablolar=response.data
     })
   }
-  deleteKablo(kablo:YanginGenelDizaynKablo){
+  deleteKablo(kablo:GenelDizaynBase){
 
     this.genelDizaynService.delete(kablo).subscribe(response=>{
       this.toastrService.info(response.message,"İşlem Başarılı")
