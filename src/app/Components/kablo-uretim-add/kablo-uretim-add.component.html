@@ -1,118 +1,72 @@
-<br>
-<div class="text-center">
-  <h1>Kablo Girişi</h1>
-</div>
-<div class="content">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <form [formGroup]="kabloUretimAddForm">
-            <div class="form-group">
-              <label for="kabloIsmi">Kablo İsmi</label>
-              <input
-                type="text"
-                id="kabloIsmi"
-                formControlName="kabloIsmi"
-                class="form-control"
-                placeholder="Kablo İsmi"
-              />
-            </div>
-            <label for="makineId">Makina Id</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="makineId"
-                formControlName="makineId"
-                class="form-control"
-                placeholder="Makina Id"
-              />
-            </div>
-            <label for="kesitAlani">Kesit Alanı</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="kesitAlani"
-                formControlName="kesitCapi"
-                class="form-control"
-                placeholder="Kesit Alanı"
-              />
-            </div>
-            <label for="metraj">Metraj (cm)</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="metraj"
-                formControlName="metraj"
-                class="form-control"
-                placeholder="Metraj (m)"
-              />
-            </div>
-            <label for="kopma">Kopma</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="kopma"
-                formControlName="kopma"
-                class="form-control"
-                placeholder="Kopma"
-              />
-            </div>
-            <label for="renkDegisimi">Renk Değişimi</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="renkDegisimi"
-                formControlName="renkDegisimi"
-                class="form-control"
-                placeholder="Renk Değişimi"
-              />
-            </div>
-            <label for="genelAriza">Genel Arıza</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="genelAriza"
-                formControlName="genelAriza"
-                class="form-control"
-                placeholder="Genel Arıza"
-              />
-            </div>
-            <label for="hurdaPvc">Hurda Pvc</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="hurdaPvc"
-                formControlName="hurdaPvc"
-                class="form-control"
-                placeholder="Hurda Pvc"
-              />
-            </div>
-            <label for="hurdaCu">Hurda Cu</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="hurdaCu"
-                formControlName="hurdaCu"
-                class="form-control"
-                placeholder="Hurda Cu"
-              />
-            </div>
-            <label for="calismaSuresi">Çalışma Süresi (saat)</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="calismaSuresi"
-                formControlName="calismaSuresi"
-                class="form-control"
-                placeholder="Calışma Süresi (saat)"
-              />
-            </div>
-          </form>
-        </div>
-        <div class="card-footer">
-          <button class="btn btn-fill btn-primary" (click)="add()" routerLink="/kablouretim">Ekle</button>
-        </div>
-      </div>
+<div class="container">
+  <form [formGroup]="kabloForm">
+    <div class="form-group">
+      <label for="kabloIsmi">Kablo İsmi</label>
+      <input formControlName="kabloIsmi" type="text" class="form-control" id="kabloIsmi" placeholder="Kablo İsmi">
     </div>
-  </div>
-  
+    <div class="form-group">
+      <label for="makineId">Makine</label>
+      <select formControlName="makineId" class="form-control" id="makineId">
+        <option *ngFor="let makine of makineList" [value]="makine.id">{{ makine.makineIsmi }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="kesitCapi">Kesit Çapı</label>
+      <select formControlName="kesitCapi" class="form-control" id="kesitCapi">
+        <option *ngFor="let kesit of kesitCapiList" [value]="kesit.kesitCapi">{{ kesit.kesitCapi }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="isEmriId">İş Emri</label>
+      <select formControlName="isEmriId" class="form-control" id="isEmriId">
+        <option [value]="null">None</option>
+        <option *ngFor="let isEmri of isEmriList" [value]="isEmri.id">{{ isEmri.isim }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="metraj">Metraj</label>
+      <input formControlName="metraj" type="number" class="form-control" id="metraj" placeholder="Metraj">
+    </div>
+    <div class="form-group">
+      <label for="kopma">Kopma</label>
+      <input formControlName="kopma" type="number" class="form-control" id="kopma" placeholder="Kopma">
+    </div>
+    <div class="form-group">
+      <label for="renkDegisimi">Renk Değişimi</label>
+      <input formControlName="renkDegisimi" type="number" class="form-control" id="renkDegisimi" placeholder="Renk Değişimi">
+    </div>
+    <div class="form-group">
+      <label for="genelAriza">Genel Arıza</label>
+      <input formControlName="genelAriza" type="number" class="form-control" id="genelAriza" placeholder="Genel Arıza">
+    </div>
+    <div class="form-group">
+      <label for="hurdaPvc">Hurda PVC</label>
+      <input formControlName="hurdaPvc" type="number" class="form-control" id="hurdaPvc" placeholder="Hurda PVC">
+    </div>
+    <div class="form-group">
+      <label for="hurdaCu">Hurda Cu</label>
+      <input formControlName="hurdaCu" type="number" class="form-control" id="hurdaCu" placeholder="Hurda Cu">
+    </div>
+    <div class="form-group">
+      <label for="calismaSuresi">Çalışma Süresi</label>
+      <input formControlName="calismaSuresi" type="number" class="form-control" id="calismaSuresi" placeholder="Çalışma Süresi" min="1">
+    </div>
+    <div class="form-group">
+      <label for="kayipZaman">Kayıp Zaman</label>
+      <input formControlName="kayipZaman" type="number" class="form-control" id="kayipZaman" placeholder="Kayıp Zaman">
+    </div>
+    <div class="form-group">
+      <label for="verimlilik">Verimlilik</label>
+      <input formControlName="verimlilik" type="number" class="form-control" id="verimlilik" placeholder="Verimlilik">
+    </div>
+    <div class="form-group">
+      <label for="tarih">Tarih</label>
+      <input formControlName="tarih" type="date" class="form-control" id="tarih" placeholder="Tarih">
+    </div>
+    <div class="form-group">
+      <label for="degistiren">Değiştiren</label>
+      <input formControlName="degistiren" type="text" class="form-control" id="degistiren" placeholder="Değiştiren">
+    </div>
+    <button (click)="addKablo()" class="btn btn-primary">Add Kablo</button>
+  </form>
+</div>
