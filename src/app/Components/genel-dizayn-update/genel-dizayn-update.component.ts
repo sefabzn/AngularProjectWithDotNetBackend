@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { KesitYapisiService } from 'src/app/Services/kesit-yapisi.service';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
+import { TURLER } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-genel-dizayn-update',
@@ -14,13 +16,15 @@ export class GenelDizaynUpdateComponent implements OnInit {
   genelDizaynForm: FormGroup;
   genelDizaynId: number;
   genelDizayn: GenelDizaynBase;
-
+  turler = TURLER;
+  kesitCapiList: string[] = [];
   constructor(
     private formBuilder: FormBuilder,
-    private genelDizaynService: GenelDizaynService,
+    private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private genelDizaynService: GenelDizaynService,
+    private kesitYapisiService: KesitYapisiService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,8 +32,19 @@ export class GenelDizaynUpdateComponent implements OnInit {
       this.genelDizaynId = params['id'];
       this.getGenelDizaynById(this.genelDizaynId);
     });
+    this.getKesitCapiList();
   }
-
+  getKesitCapiList() {
+    this.kesitYapisiService.getKesitYapisiList().subscribe(response => {
+      if (response.success) {
+        this.kesitCapiList = response.data.map(kesit => kesit.kesitCapi);
+      } else {
+        this.toastrService.error(response.message);
+      }
+    }, error => {
+      this.toastrService.error('An error occurred while fetching the kesit capi list');
+    });
+  }
   createGenelDizaynForm() {
     this.genelDizaynForm = this.formBuilder.group({
       kablo: [this.genelDizayn.kablo, Validators.required],
@@ -66,7 +81,7 @@ export class GenelDizaynUpdateComponent implements OnInit {
   updateGenelDizayn() {
     if (this.genelDizaynForm.valid) {
       let genelDizaynModel = Object.assign({}, this.genelDizaynForm.value);
-      this.genelDizaynService.update( genelDizaynModel).subscribe(response => {
+      this.genelDizaynService.update(genelDizaynModel).subscribe(response => {
         this.toastrService.success('Genel Dizayn successfully updated');
         this.router.navigate(['/geneldizayn/list']);
       }, responseError => {

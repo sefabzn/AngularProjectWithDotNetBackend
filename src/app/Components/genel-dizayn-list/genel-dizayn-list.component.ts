@@ -13,6 +13,12 @@ export class GenelDizaynListComponent implements OnInit {
   genelDizaynList: GenelDizaynBase[] = [];
   selectedGenelDizayn: GenelDizaynBase;
   selectedGenelDizaynId: number;
+  
+  // Pagination properties
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  
 
   constructor(
     private toastrService: ToastrService,
@@ -26,7 +32,13 @@ export class GenelDizaynListComponent implements OnInit {
 
   getGenelDizaynList() {
     this.genelDizaynService.getAll().subscribe(response => {
-      this.genelDizaynList = response.data;
+      if (response.success) {
+        this.genelDizaynList = response.data;
+      } else {
+        this.toastrService.error(response.message);
+      }
+    }, error => {
+      this.toastrService.error('An error occurred while fetching the genel dizayn list');
     });
   }
 
@@ -42,4 +54,28 @@ export class GenelDizaynListComponent implements OnInit {
       this.toastrService.warning('Please select a Genel Dizayn to update');
     }
   }
+
+  deleteGenelDizayn() {
+    if (this.selectedGenelDizayn) {
+      this.genelDizaynService.delete(this.selectedGenelDizayn).subscribe(response => {
+        if (response.success) {
+          this.toastrService.success('Genel Dizayn successfully deleted');
+          this.getGenelDizaynList(); // Refresh the list after deletion
+        } else {
+          this.toastrService.error(response.message);
+        }
+      }, error => {
+        this.toastrService.error('An error occurred while deleting');
+      });
+    } else {
+      this.toastrService.warning('Please select a Genel Dizayn to delete');
+    }
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getGenelDizaynList();
+  }
+
+ 
 }
