@@ -22,5 +22,10 @@ export class GunlukRaporService {
     let apiUrl=this.baseUrl+"Makineler/DeleteGunlukRaporlar"
     return this.httpClient.post<ResponseModel>(apiUrl,rapor)
   }
+
+  getRaporByDateRange(makineId: number, startDate: string, finishDate: string): Observable<ListResponseModel<GunlukRapor>> {
+    let apiUrl = this.baseUrl + `Makineler/GetRaporByDateRange?makineId=${makineId}&startDate=${startDate}&finishDate=${finishDate}`;
+    return this.httpClient.get<ListResponseModel<GunlukRapor>>(apiUrl);
+  }
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GenelDizaynService } from 'src/app/Services/genel-dizayn.service';
 import { GenelDizaynBase } from 'src/app/Models/genelDizaynBase';
@@ -23,15 +23,34 @@ export class GenelDizaynListComponent implements OnInit {
   constructor(
     private toastrService: ToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private genelDizaynService: GenelDizaynService
   ) { }
 
   ngOnInit(): void {
-    this.getGenelDizaynList();
+    this.activatedRoute.params.subscribe(params => {
+      if (params['tur']) {
+        this.getGenelDizaynListByTur(params['tur']);
+      } else {
+        this.getGenelDizaynList();
+      }
+    });
   }
 
   getGenelDizaynList() {
     this.genelDizaynService.getAll().subscribe(response => {
+      if (response.success) {
+        this.genelDizaynList = response.data;
+      } else {
+        this.toastrService.error(response.message);
+      }
+    }, error => {
+      this.toastrService.error('An error occurred while fetching the genel dizayn list');
+    });
+  }
+
+  getGenelDizaynListByTur(tur: string) {
+    this.genelDizaynService.getAll(tur).subscribe(response => {
       if (response.success) {
         this.genelDizaynList = response.data;
       } else {

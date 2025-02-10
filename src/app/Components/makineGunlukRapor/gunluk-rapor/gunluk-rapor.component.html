@@ -1,14 +1,26 @@
 <div class="text-center"><H2>Günlük Raporlar</H2></div>
-<div>Date Picker:  <input type="date" [(ngModel)]="selectedDate">
-  <br><br>
-<br>
- <select class="form-select" size="1" [(ngModel)]="selectedMakine" >
-  <br>
-    <option   *ngFor="let makine of makineler"  >{{makine.makineIsmi}}</option>
- </select>
- <br>
- <button (click)="getGunlukRaporlar(selectedMakine,selectedDate)" class="btn btn-primary">Ara </button>
-<table class="table">
+<div class="container mt-3">
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <select class="form-control" (change)="onMakineSelect($event)">
+        <option value="">Select Machine</option>
+        <option *ngFor="let makine of makineler" [value]="makine.id">
+          {{makine.makineIsmi}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <input type="date" class="form-control" [(ngModel)]="startDate" placeholder="Start Date">
+    </div>
+    <div class="col-md-3">
+      <input type="date" class="form-control" [(ngModel)]="finishDate" placeholder="End Date">
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-primary" (click)="getRaporByDateRange()">Search</button>
+    </div>
+  </div>
+
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Kablo İsmi</th>
@@ -30,34 +42,35 @@
       </tr>
     </thead>
     <tbody>
-      <tr  scope="col"  *ngFor="let uretim of gunlukUretimler | paginate:{
+      <tr *ngFor="let rapor of gunlukRaporlar | paginate:{
         itemsPerPage:paginationProp.tableSize,
         currentPage:paginationProp.page,
         totalItems:paginationProp.count}; let i =index">
-          <td>{{uretim.kabloIsmi}}</td>
-          <td>{{uretim.metraj}}</td>
-          <td>{{uretim.kesitAlani}}</td>
-          <td>{{uretim.verimlilik}}</td>
-          <td>{{uretim.genelAriza}}</td>
-          <td>{{uretim.renkDegisimi}}</td>
-          <td>{{uretim.renkDegisimiKaybi}}</td>
-          <td>{{uretim.kesitDegisimiKaybi}}</td>
-          <td>{{uretim.kopma}}</td>
-          <td>{{uretim.kopmaKaybi}}</td>
-          <td>{{uretim.isinma}}</td>
-          <td>{{uretim.hurdaPvc}}</td>
-          <td>{{uretim.hurdaCu}}</td>
-          <td>{{uretim.calismaSuresi}}</td>
-          <td>{{uretim.kayipZaman}}</td>
-          <td>{{uretim.tarih}}</td>
-
-        </tr>
-      
+        <td>{{rapor.kabloIsmi}}</td>
+        <td>{{rapor.metraj}}</td>
+        <td>{{rapor.kesitAlani}}</td>
+        <td>{{rapor.verimlilik}}</td>
+        <td>{{rapor.genelAriza}}</td>
+        <td>{{rapor.renkDegisimi}}</td>
+        <td>{{rapor.renkDegisimiKaybi}}</td>
+        <td>{{rapor.kesitDegisimiKaybi}}</td>
+        <td>{{rapor.kopma}}</td>
+        <td>{{rapor.kopmaKaybi}}</td>
+        <td>{{rapor.isinma}}</td>
+        <td>{{rapor.hurdaPvc}}</td>
+        <td>{{rapor.hurdaCu}}</td>
+        <td>{{rapor.calismaSuresi}}</td>
+        <td>{{rapor.kayipZaman}}</td>
+        <td>{{rapor.tarih | date:'dd/MM/yyyy'}}</td>
+      </tr>
     </tbody>
-    <div>
-      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)" >
-      </pagination-controls>
-    </div>
   </table>
 
-  
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>

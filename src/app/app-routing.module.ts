@@ -61,6 +61,7 @@ const routes: Routes = [
   {path:"DizaynSecmeMenu",component:DizaynSecmeMenuComponent},
 
   {path:"geneldizayn/list",component:GenelDizaynListComponent},
+  {path:"geneldizayn/list/:tur", component: GenelDizaynListComponent},
   {path:"geneldizayn/add",component:GenelDizaynAddComponent},
   {path:"geneldizayn/update/:id",component:GenelDizaynUpdateComponent}
 

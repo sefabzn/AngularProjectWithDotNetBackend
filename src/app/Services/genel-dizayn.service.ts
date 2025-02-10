@@ -17,9 +17,8 @@ export class GenelDizaynService {
 
   getAll(tur?:string):Observable<ListResponseModel<GenelDizaynBase>>{
     if (tur) {
-    let apiUrl=this.baseUrl+"/GetAll/"+tur
-    return this.httpClient.get<ListResponseModel<GenelDizaynBase>>(apiUrl)
-      
+      let apiUrl=this.baseUrl+"/GetAll/"+tur
+      return this.httpClient.get<ListResponseModel<GenelDizaynBase>>(apiUrl)
     }
     let apiUrl=this.baseUrl+"/GetAll"
     return this.httpClient.get<ListResponseModel<GenelDizaynBase>>(apiUrl)

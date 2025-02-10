@@ -20,6 +20,10 @@ export class GunlukRaporComponent implements OnInit {
   makineler:Makine[]
   gunlukUretimler:GunlukRapor[]
   paginationProp:paginationProps= new paginationProps(1,0,10)
+  selectedMakineId: number;
+  startDate: string;
+  finishDate: string;
+  gunlukRaporlar: GunlukRapor[] = [];
 
   onTableDataChange(event:any){
     this.paginationProp.page =event;
@@ -38,16 +42,44 @@ export class GunlukRaporComponent implements OnInit {
       this.makineler=response.data
     })
   }
-  getGunlukRaporlar(makineIsmi:string,tarih:string){
-    
-    this.gunlukRaporService.getGunlukRaporlar(makineIsmi,tarih).subscribe(response=>{
-      this.gunlukUretimler=response.data
-      console.log(response.data)
-    },errorResponse=>{
-      if(errorResponse.error.errors.Tarih[0]){
-        this.toastrService.warning("Uygun bir tarih seçiniz!","Tarih Hatalı")
+
+  getRaporByDateRange() {
+    if (!this.selectedMakineId) {
+      this.toastrService.error('Please select a machine');
+      return;
+    }
+    if (!this.startDate || !this.finishDate) {
+      this.toastrService.error('Please select both start and finish dates');
+      return;
+    }
+
+    this.gunlukRaporService.getRaporByDateRange(
+      this.selectedMakineId,
+      this.startDate,
+      this.finishDate
+    ).subscribe(response => {
+      if (response.success) {
+        this.gunlukRaporlar = response.data;
+        if (this.gunlukRaporlar.length === 0) {
+          this.toastrService.info('No reports found for the selected date range');
+        }
+      } else {
+        this.toastrService.error(response.message);
       }
-      
-    })
+    }, error => {
+      this.toastrService.error('An error occurred while fetching reports');
+    });
   }
+
+  onMakineSelect(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedMakineId = Number(selectElement.value);
+  }
+
+  onDateRangeSelect() {
+    if (this.selectedMakineId && this.startDate && this.finishDate) {
+      this.getRaporByDateRange();
+    }
+  }
+  
 }
