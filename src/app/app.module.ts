@@ -45,6 +45,9 @@ import { IsEmriAddComponent } from './Components/is-emri-add/is-emri-add.compone
 import { GenelDizaynListComponent } from './Components/genel-dizayn-list/genel-dizayn-list.component';
 import { GenelDizaynAddComponent } from './Components/genel-dizayn-add/genel-dizayn-add.component';
 import { GenelDizaynUpdateComponent } from './Components/genel-dizayn-update/genel-dizayn-update.component';
+import { SevkIrsaliyeListComponent } from './Components/sevk-irsaliye-list/sevk-irsaliye-list.component';
+import { SevkIrsaliyeAddComponent } from './Components/sevk-irsaliye-add/sevk-irsaliye-add.component';
+import { SevkIrsaliyeDetailComponent } from './Components/sevk-irsaliye-detail/sevk-irsaliye-detail.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +84,9 @@ import { GenelDizaynUpdateComponent } from './Components/genel-dizayn-update/gen
     GenelDizaynListComponent,
     GenelDizaynAddComponent,
     GenelDizaynUpdateComponent,
+    SevkIrsaliyeListComponent,
+    SevkIrsaliyeAddComponent,
+    SevkIrsaliyeDetailComponent,
   ],
   imports: [
     BrowserModule,

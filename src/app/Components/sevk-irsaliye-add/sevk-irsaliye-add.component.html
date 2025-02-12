@@ -1,0 +1,112 @@
+<div class="container mt-4">
+  <h2>Yeni Sevk İrsaliyesi</h2>
+  <form [formGroup]="irsaliyeForm" (ngSubmit)="addIrsaliye()">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="musteriId">Müşteri</label>
+          <select class="form-control" id="musteriId" formControlName="musteriId">
+            <option value="">Müşteri Seçiniz</option>
+            <option *ngFor="let customer of customers" [value]="customer.id">
+              {{customer.ad}}
+            </option>
+          </select>
+          <div *ngIf="irsaliyeForm.get('musteriId')?.invalid && irsaliyeForm.get('musteriId')?.touched" class="text-danger">
+            Müşteri seçimi zorunludur
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="tarih">Tarih</label>
+          <input type="date" class="form-control" id="tarih" formControlName="tarih">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="aciklama">Açıklama</label>
+      <textarea class="form-control" id="aciklama" formControlName="aciklama" rows="3"></textarea>
+    </div>
+
+    <div class="mt-4">
+      <h3>Kalem Ekle</h3>
+      <form [formGroup]="kalemForm" (ngSubmit)="submitKalem()" class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="kabloUretimId">Kablo</label>
+            <select class="form-control" id="kabloUretimId" (change)="onKabloUretimSelect($event)">
+              <option value="">Kablo Seçiniz</option>
+              <option *ngFor="let kabloUretim of kabloUretimler" [value]="kabloUretim.id">
+                {{kabloUretim?.kabloIsmi}}
+              </option>
+            </select>
+            <div *ngIf="kalemForm.get('kabloUretim')?.invalid && kalemForm.get('kabloUretim')?.touched" class="text-danger">
+              Kablo seçimi zorunludur
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="miktar">Miktar</label>
+            <input type="number" class="form-control" id="miktar" formControlName="miktar">
+            <div *ngIf="kalemForm.get('miktar')?.invalid && kalemForm.get('miktar')?.touched" class="text-danger">
+              Miktar 1'den büyük olmalıdır
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="fiyat">Birim Fiyat</label>
+            <input type="number" class="form-control" id="fiyat" formControlName="fiyat">
+            <div *ngIf="kalemForm.get('fiyat')?.invalid && kalemForm.get('fiyat')?.touched" class="text-danger">
+              Fiyat 0'dan büyük olmalıdır
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary mt-4">
+            <i class="fas fa-plus"></i> Ekle
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="mt-4">
+      <h3>Kalemler</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Kablo</th>
+            <th>Miktar</th>
+            <th>Fiyat</th>
+            <th>Toplam</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let kalem of kalemler; let i = index">
+            <td>{{kalem.kabloIsmi || 'N/A'}}</td>
+            <td>{{kalem.miktar}}</td>
+            <td>{{kalem.fiyat | currency:'TRY':'symbol-narrow':'1.2-2'}}</td>
+            <td>{{kalem.miktar * kalem.fiyat | currency:'TRY':'symbol-narrow':'1.2-2'}}</td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeKalem(i)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="!irsaliyeForm.valid || kalemler.length === 0">
+        Kaydet
+      </button>
+      <button type="button" class="btn btn-secondary ml-2" routerLink="/sevk-irsaliye/list">
+        İptal
+      </button>
+    </div>
+  </form>
+</div>

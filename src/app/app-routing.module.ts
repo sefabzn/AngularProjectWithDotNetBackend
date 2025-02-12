@@ -28,6 +28,10 @@ import { DizaynSecmeMenuComponent } from './Components/dizayn-secme-menu/dizayn-
 import { GenelDizaynAddComponent } from './Components/genel-dizayn-add/genel-dizayn-add.component';
 import { GenelDizaynListComponent } from './Components/genel-dizayn-list/genel-dizayn-list.component';
 import { GenelDizaynUpdateComponent } from './Components/genel-dizayn-update/genel-dizayn-update.component';
+import { SevkIrsaliyeListComponent } from './Components/sevk-irsaliye-list/sevk-irsaliye-list.component';
+import { SevkIrsaliyeAddComponent } from './Components/sevk-irsaliye-add/sevk-irsaliye-add.component';
+import { SevkIrsaliyeDetailComponent } from './Components/sevk-irsaliye-detail/sevk-irsaliye-detail.component';
+
 const routes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -63,9 +67,10 @@ const routes: Routes = [
   {path:"geneldizayn/list",component:GenelDizaynListComponent},
   {path:"geneldizayn/list/:tur", component: GenelDizaynListComponent},
   {path:"geneldizayn/add",component:GenelDizaynAddComponent},
-  {path:"geneldizayn/update/:id",component:GenelDizaynUpdateComponent}
-
-
+  {path:"geneldizayn/update/:id",component:GenelDizaynUpdateComponent},
+  { path: 'irsaliye', component: SevkIrsaliyeListComponent },
+  { path: 'sevk-irsaliye/add', component: SevkIrsaliyeAddComponent },
+  { path: 'sevk-irsaliye/detail/:id', component: SevkIrsaliyeDetailComponent },
 ];
 
 @NgModule({

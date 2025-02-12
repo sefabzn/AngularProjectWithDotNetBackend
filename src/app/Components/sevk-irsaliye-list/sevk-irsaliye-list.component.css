@@ -1,0 +1,21 @@
+.table-primary {
+  background-color: #0d6efd !important;
+  color: white;
+}
+
+tr:hover {
+  background-color: #e9ecef;
+}
+
+tr.table-primary:hover {
+  background-color: #0b5ed7 !important;
+}
+
+.btn-danger {
+  margin: 10px;
+}
+
+.btn-danger:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}

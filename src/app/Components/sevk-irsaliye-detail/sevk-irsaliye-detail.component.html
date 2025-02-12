@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Sevk İrsaliyesi Detay</h3>
+    </div>
+
+    <div class="card-body">
+      <div *ngIf="loading" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div *ngIf="!loading && irsaliye">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <h4>Müşteri Bilgileri</h4>
+            <p><strong>Müşteri Adı:</strong> {{irsaliye.musteri?.ad}} {{irsaliye.musteri?.soyad}}</p>
+            <p><strong>Telefon:</strong> {{irsaliye.musteri?.telefon}}</p>
+            <p><strong>E-mail:</strong> {{irsaliye.musteri?.email}}</p>
+            <p><strong>Adres:</strong> {{irsaliye.musteri?.adres}}</p>
+          </div>
+          <div class="col-md-6">
+            <h4>İrsaliye Bilgileri</h4>
+            <p><strong>Tarih:</strong> {{irsaliye.tarih | date:'dd/MM/yyyy'}}</p>
+            <p><strong>Toplam Tutar:</strong> {{irsaliye.toplamTutar | currency:'TRY':'symbol-narrow':'1.2-2'}}</p>
+          </div>
+        </div>
+
+        <h4>Kalemler</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Kablo</th>
+              <th>Kesit</th>
+              <th>Metraj</th>
+              <th>Miktar</th>
+              <th>Birim Fiyat</th>
+              <th>Toplam</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let kalem of irsaliye.kalemler">
+              <td>{{kalem.kabloUretim?.kabloIsmi}}</td>
+              <td>{{kalem.kabloUretim?.kesitCapi}}</td>
+              <td>{{kalem.kabloUretim?.metraj}} m</td>
+              <td>{{kalem.miktar}}</td>
+              <td>{{kalem.fiyat | currency:'TRY':'symbol-narrow':'1.2-2'}}</td>
+              <td>{{kalem.miktar * kalem.fiyat | currency:'TRY':'symbol-narrow':'1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn btn-secondary" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Geri
+      </button>
+    </div>
+  </div>
+</div>
