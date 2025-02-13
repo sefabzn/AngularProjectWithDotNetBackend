@@ -74,7 +74,7 @@ export class GenelDizaynAddComponent implements OnInit {
       this.genelDizaynService.add(genelDizaynModel).subscribe(response => {
         if (response.success) {
           this.toastrService.success('Genel Dizayn successfully added');
-          this.router.navigate(['/geneldizayn/list']);
+          this.router.navigate(['/DizaynSecmeMenu']);
         } else {
           this.toastrService.error(response.message);
         }
